@@ -34,6 +34,9 @@
 <!-- Include Plugin Chosen para MultiSelect https://github.com/harvesthq/chosen-package -->
 <script src="{{ asset('/plugins/chosen/chosen.jquery.js') }}" type="text/javascript"></script>
 
+<!-- Include Plugin DatePicker -->
+<script src="{{ asset('/plugins/datepicker/bootstrap-datepicker.js') }}" type="text/javascript"></script>
+
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
       Both of these plugins are recommended to enhance the
       user experience. Slimscroll is required when using the
@@ -65,16 +68,23 @@
             });
        });
 </script>
-
 <!-- Include Plugin CheckBox -->
 <script>
+      $(function() {
+            $('#checkboxGenero').checkboxpicker({
+                  html: true,
+                  offLabel: 'F',
+                  onLabel: 'M'
+            })
+      }); 
       $(function() {
             $(':checkbox').checkboxpicker({
                   html: true,
                   offLabel: '<span class="glyphicon glyphicon-remove">',
                   onLabel: '<span class="glyphicon glyphicon-ok">'
             })
-      }); 
+      });
+      
 </script>
 
 <!-- Include Plugin FileShido -->
@@ -89,6 +99,10 @@
 <script>
       // defaults
       $("#chosen-select").chosen({
+             no_results_text: "Oops, No encontramos nada como:  ",
+             width: "100%",
+      });
+      $("#chosen-select_").chosen({
              no_results_text: "Oops, No encontramos nada como:  ",
              width: "100%",
       });

@@ -34,7 +34,21 @@ Route::get('/admin', 'HomeController@index');
 * RUTAS MOTTO
 *
 */
-
+/*
+        * Inicio Rutas para User
+        */
+        Route::resource('users','UserController');
+        Route::get('user/paciente', [
+            'as' => 'users.paciente',
+            'uses' => 'UserController@crearPaciente'
+        ]);
+        Route::post('user/storepaciente', [
+            'as' => 'users.storepaciente',
+            'uses' => 'UserController@storePaciente'
+        ]);
+        /*
+        * Fin Rutas para User
+        */
 /*
 *
 * FIN RUTAS MOTTO

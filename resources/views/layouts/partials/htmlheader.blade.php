@@ -44,4 +44,6 @@
     <link href="{{ asset('/plugins/file-input/css/fileinput.min.css') }}" media="all" rel="stylesheet" type="text/css" />
     <!-- Include Chosen Plugin -->
     <link href="{{ asset('/plugins/chosen/chosen.css') }}" rel="stylesheet" type="text/css" />
+    <!-- Include DatePicker Plugin -->
+    <link href="{{ asset('/plugins/datepicker/datepicker3.css') }}" rel="stylesheet" type="text/css" />
 </head>
