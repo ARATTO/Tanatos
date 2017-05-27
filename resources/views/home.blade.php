@@ -18,7 +18,8 @@
 
 					<div class="panel-body">
 						<!-- 16:9 aspect ratio -->
-						
+						@include('bones-flash::bones.flash')
+						@include('layouts.partials.flash')
 						
 					</div>
 				</div>

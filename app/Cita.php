@@ -14,11 +14,11 @@ class Cita extends Model
      */
     protected $fillable = [
         'id',
-        'duracion',
-        'fechacreacion',
-        'fechacita',
+        'title',
+        'start',
+        'fin',
+        'color',
         /*FK*/
-        'idconsultamedica',
         'idexpediente',
     ];
 
@@ -38,9 +38,12 @@ class Cita extends Model
      * RELACIONES
      *
      */
+
      public function consultasMedicas(){
          return $this->belongsTo('App\ConsultaMedica');
      }
+
+
      public function expedientes(){
          return $this->belongsTo('App\Expediente');
      }

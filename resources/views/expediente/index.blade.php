@@ -20,31 +20,31 @@
 
         <div class="panel-heading"  style="font-size: 24pt; " > Expedientes Encontrados     
         </div>
-	
+  
     @include('bones-flash::bones.flash')
-	  @include('flash::message')
-	<table class="table table-striped" > 
-		<thead>
+    @include('flash::message')
+  <table class="table table-striped" > 
+    <thead>
       <th>Codigo</th>
-			<th>Nombre</th>
-			<th>Apellido</th>
+      <th>Nombre</th>
+      <th>Apellido</th>
       
-		</thead>
-		<tbody>
-			@foreach($expedientes as $expediente)
-				<tr>
+    </thead>
+    <tbody>
+      @foreach($expedientes as $expediente)
+        <tr>
           <td>{{$expediente->id}} </td>
-					<td>{{$expediente->nombres}} </td>
+          <td>{{$expediente->nombres}} </td>
           <td>{{$expediente->apellidos}} </td>
 
-					<td> 
+          <td> 
             <a href="{{route('expediente.vista',$expediente->id)}}" class="btn btn-success"> <font color="black" size="2"> <b>Ver más</b> </font>  </a> 
             <a href=" {{route('expediente.destroy',$expediente->id)}}" onclick="return confirm('¿Seguro que deseas eliminarlo?')" class="btn btn-danger"><font color="black" size="2"> <b>Borrar</b>  </font></a> 
-						</td>
-				</tr>
-			@endforeach
-		</tbody>
-	</table>
+            </td>
+        </tr>
+      @endforeach
+    </tbody>
+  </table>
 
 
 

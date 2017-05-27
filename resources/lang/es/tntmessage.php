@@ -29,8 +29,12 @@ return [
     */
     'MenuCabecera'           => 'MENU PRINCIPAL',
     'Admin'                  => 'ADMINISTRADOR',
-    'Docente'                => 'DOCENTE',
-    'Estudiante'             => 'ESTUDIANTE',
+    'Enfermera'              => 'ENFERMERA',
+    'Fisioterapia'           => 'FISIOTERAPIA',
+    'Medico'                 => 'MEDICO',
+    'Laboratorista'          => 'LABORATORISTA',
+    'Paciente'               => 'PACIENTE',
+    'Recepccionista'         => 'RECEPCCIONISTA',
     
     /* Menu */
     'Usuario'                => 'USUARIOS',
@@ -60,7 +64,7 @@ return [
     'VerCiclo'               => 'Ver Ciclo',
 
     'CrearUsuario'           =>'Crear Usuario',
-    'CrearCiclo'             =>'Crear Ciclo',
+    'CrearPaciente'          =>'Crear Paciente',
     'CrearMateria'           =>'Crear Materia',
     
 

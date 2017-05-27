@@ -18,7 +18,7 @@ class expedienteController extends Controller
 {
     public function show(Request $request){
         $expediente = DB::table('expediente')
-        	->join("usuario","expediente.id","=","usuario.id")
+            ->join("usuario","expediente.id","=","usuario.id")
             ->get();
 
         return view('expediente.index');
@@ -58,7 +58,7 @@ class expedienteController extends Controller
 
     public function index(){
         $expediente = DB::table('expediente')
-        	->join("usuario","expediente.id","=","usuario.id")
+            ->join("usuario","expediente.id","=","usuario.id")
             ->get();
 
         return view('expediente.index')->with('expedientes',$expediente);
@@ -74,9 +74,10 @@ class expedienteController extends Controller
         	->where('expediente.id','=',$id)
             ->get();
 
+
         $consulta2 = DB::table('expediente')
-    	->join("historialclinico","expediente.idhistorialclinico","=","historialclinico.id")
-    	->where('expediente.id','=',$id)
+        ->join("historialclinico","expediente.idhistorialclinico","=","historialclinico.id")
+        ->where('expediente.id','=',$id)
         ->get();
 
         return view('expediente.vista')

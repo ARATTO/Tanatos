@@ -25,7 +25,6 @@
 						@include('bones-flash::bones.flash')
 						@include('layouts.partials.flash')						
 						
-						
 					</div>
 				</div>
 			</div>
