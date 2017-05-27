@@ -32,7 +32,6 @@ class expedienteController extends Controller
         $historialClinico->antesedentes = $request->antecedentes;
         $historialClinico->save();
 
-
         $auxiliar = DB::table('historialclinico')->orderBy('id','desc')->first();
 
         $expediente = new Expediente;
@@ -41,9 +40,10 @@ class expedienteController extends Controller
         $expediente->idhospital = $request->idhospitales;
         $expediente->save();
 
+        Flash::success('Se guardo el expediente');
+
         return view('/home');
     }
-
 
     public function create(){
 
@@ -55,7 +55,6 @@ class expedienteController extends Controller
         ->with('hospitales',$hospital);
 
     }
-
 
     public function index(){
         $expediente = DB::table('expediente')
@@ -73,8 +72,7 @@ class expedienteController extends Controller
         	->join("usuario","expediente.id","=","usuario.id")
         	->join("estadocivil","usuario.idestadocivil","=","estadocivil.id")
         	->where('expediente.id','=',$id)
-            ->get()
-            ->simplePaginate(2);
+            ->get();
 
         $consulta2 = DB::table('expediente')
     	->join("historialclinico","expediente.idhistorialclinico","=","historialclinico.id")
@@ -87,8 +85,6 @@ class expedienteController extends Controller
         ->with('consulta2',$consulta2);
 
     }
-
-    
 
     public function destroy($id){
 

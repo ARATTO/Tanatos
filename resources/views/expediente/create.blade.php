@@ -36,8 +36,8 @@
                   <div class="panel-heading">Formulario Nuevo Expediente</div>
                   </div>
 
-                  <!-- Aqui se mostrara el mensaje -->
-                   @include('flash::message')
+                  @include('bones-flash::bones.flash')
+                  @include('flash::message')
 	
 
               </div>
