@@ -39,6 +39,11 @@ class Cita extends Model
      *
      */
 
+     public function consultasMedicas(){
+         return $this->belongsTo('App\ConsultaMedica');
+     }
+
+
      public function expedientes(){
          return $this->belongsTo('App\Expediente');
      }

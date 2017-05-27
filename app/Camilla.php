@@ -39,6 +39,6 @@ class Camilla extends Model
      *
      */
      public function ingreso(){
-         return $this->belongsTo('App\Ingreso');
+         return $this->hasMany('App\Ingreso');
      }
 }

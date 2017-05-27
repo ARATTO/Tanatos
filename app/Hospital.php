@@ -37,13 +37,13 @@ class Hospital extends Model
      *
      */
      public function paises(){
-         return $this->hasMany('App\Pais');
+         return $this->belongsTo('App\Pais');
      }
      /**
      * RETORNO DE RELACIONES
      *
      */
      public function expediente(){
-         return $this->belongsTo('App\Expediente');
+         return $this->hasMany('App\Expediente');
      }
 }

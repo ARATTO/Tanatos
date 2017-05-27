@@ -7,6 +7,7 @@ use App\Cita;
 use App\Http\Requests;
 use DateTime;
 use DateInterval;
+use App\Expediente;
 use GeneaLabs\Bones\Flash\Flash;
 
 class CitaController extends Controller
@@ -41,36 +42,45 @@ class CitaController extends Controller
      */
     public function store(Request $request)
     {
-       // dd($request->all());
-        $cita = new  Cita();
-        $cita->fill($request->all());
-
-        //Verificacion de horarios utilizados con otras citas
-        $fechaInicio=$cita->start;
-        $minutes_to_add = 30;
-        $time = new DateTime($fechaInicio);
-        $time->add(new DateInterval('PT' . $minutes_to_add . 'M'));
-        $fechaFin = $time->format('Y-m-d H:i');
-       
-
-        if(\DB::table('cita')->wherebetween('start',[$fechaInicio,$fechaFin])->orWhereBetween('fin',[$fechaInicio,$fechaFin])->count()){    
-            Flash::danger(trans('eetntmessage.ErrorAlGuardar'));
-        }else{
-             if(\DB::table('cita')->where('start','<',$fechaInicio)->Where('fin','>',$fechaFin)->count()){
-                Flash::danger(trans('eetntmessage.ErrorAlGuardar'));
+        //dd($request->all());
+        $expe = Expediente::find($request->idexpediente);
+        //dd($expe);
+        if ($expe !=null) {//codigo si encuentra el expediente
                 
-             }else{
-                try{
-                    $cita->fin=$fechaFin;
-                    $cita->save();
-                    Flash::success(trans('eetntmessage.CitaGuardada'));
-                }catch(Exception $e){
-                    Flash::danger($e->getMessage());
-                }
-             }
-        }
+            $cita = new  Cita();
+            $cita->fill($request->all());
 
-        return redirect()->route('calendar');        
+            //Verificacion de horarios utilizados con otras citas
+            $fechaInicio=$cita->start;
+            $minutes_to_add = 30;
+            $time = new DateTime($fechaInicio);
+            $time->add(new DateInterval('PT' . $minutes_to_add . 'M'));
+            $fechaFin = $time->format('Y-m-d H:i');
+           
+
+            if(\DB::table('cita')->wherebetween('start',[$fechaInicio,$fechaFin])->orWhereBetween('fin',[$fechaInicio,$fechaFin])->count()){    
+                Flash::danger(trans('eetntmessage.ErrorAlGuardar'));
+            }else{
+                 if(\DB::table('cita')->where('start','<',$fechaInicio)->Where('fin','>',$fechaFin)->count()){
+                    Flash::danger(trans('eetntmessage.ErrorAlGuardar'));
+                    
+                 }else{
+                    try{
+                        $cita->fin=$fechaFin;
+                        $cita->save();
+                        Flash::success(trans('eetntmessage.CitaGuardada'));
+                    }catch(Exception $e){
+                        Flash::danger($e->getMessage());
+                    }
+                 }
+            }
+
+            return redirect()->route('calendar'); 
+        }else{
+            Flash::danger("No se encontro el expediente: ".$request->idexpediente);
+            return redirect()->route('calendar'); 
+        }
+       
     }
 
     /**

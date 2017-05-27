@@ -38,6 +38,6 @@ class Video extends Model
      *
      */
      public function examenesFisicos(){
-         return $this->hasMany('App\ExamenFisico');
+         return $this->belongsTo('App\ExamenFisico');
      }
 }

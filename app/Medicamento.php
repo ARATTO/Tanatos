@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Scopes\FinishScope;
 
 class Medicamento extends Model
 {
@@ -23,7 +24,6 @@ class Medicamento extends Model
         'preciomedicamento',
         /*FK*/
         'idtipomedicamento',
-        'idtratamiento',
     ];
 
     /**
@@ -42,10 +42,30 @@ class Medicamento extends Model
      * RELACIONES
      *
      */
-     public function tipoMedicamentos(){
+
+     /*public function tipoMedicamentos(){
          return $this->hasMany('App\TipoMedicamento');
+     }*/
+
+     public function tipoMedicamentos(){
+         return $this->belongsTo('App\TipoMedicamento');
      }
-     public function tratamientos(){
+
+
+     /**
+     * RETORNO DE RELACIONES
+     *
+     */
+     public function tratamiento(){
          return $this->hasMany('App\Tratamiento');
      }
+
+
+     public function scopeName($query,$name){
+        if($name != ""){
+        $query->where('nombremedicamento',"LIKE", "%$name%");
+            }
+     }
+
+
 }

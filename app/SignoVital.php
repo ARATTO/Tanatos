@@ -40,6 +40,6 @@ class SignoVital extends Model
      *
      */
      public function citas(){
-         return $this->hasMany('App\Cita');
+         return $this->belongsTo('App\Cita');
      }
 }

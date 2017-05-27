@@ -37,22 +37,22 @@ class Expediente extends Model
      *
      */
      public function historialesClinicos(){
-         return $this->hasMany('App\HistorialClinico');
+         return $this->belongsTo('App\HistorialClinico');
      }
      public function hospitales(){
-         return $this->hasMany('App\Hospital');
+         return $this->belongsTo('App\Hospital');
      }
      public function usuarios(){
-         return $this->hasMany('App\User');
+         return $this->belongsTo('App\User');
      }
      /**
      * RETORNO DE RELACIONES
      *
      */
      public function cita(){
-         return $this->belongsTo('App\Cita');
+         return $this->hasMany('App\Cita');
      }
      public function ingreso(){
-         return $this->belongsTo('App\Ingreso');
+         return $this->hasMany('App\Ingreso');
      }
 }

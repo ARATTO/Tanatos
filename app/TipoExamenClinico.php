@@ -40,6 +40,6 @@ class TipoExamenClinico extends Model
      *
      */
      public function examenClinico(){
-         return $this->belongsTo('App\ExamenClinico');
+         return $this->hasMany('App\ExamenClinico');
      }
 }

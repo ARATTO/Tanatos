@@ -38,6 +38,6 @@ class Bitacora extends Model
      *
      */
      public function ingresos(){
-         return $this->hasMany('App\Ingreso');
+         return $this->belongsTo('App\Ingreso');
      }
 }

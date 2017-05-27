@@ -41,9 +41,16 @@ class Doctor extends Model
      *
      */
      public function horario(){
-         return $this->belongsTo('App\Horario');
+         return $this->hasMany('App\Horario');
      }
      public function ingreso(){
-         return $this->belongsTo('App\Ingreso');
+         return $this->hasMany('App\Ingreso');
+     }
+
+
+    public function scopeNombre($query,$name){
+        if($name != ""){
+        $query->where('nombredoctor',"LIKE", "%$name%");
+            }
      }
 }

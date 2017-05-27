@@ -39,7 +39,7 @@ class TipoEnfermedad extends Model
      *
      */
      public function enfermedad(){
-         return $this->belongsTo('App\Enfermedad');
+         return $this->hasMany('App\Enfermedad');
      }
 
 }

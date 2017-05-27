@@ -21,7 +21,7 @@ class SeedUsuarios extends Seeder
             'telefono' => '72345678',
             'telefonoresponsable' => '',
             'apellidocasado' => '',
-            'email' => 'dario_aratto@hotmail.com',
+            'email' => 'am11098@ues.edu.sv',
             'password' => bcrypt('Administrador'),
             /*FK*/
             'idestadocivil' => 1,
@@ -37,7 +37,7 @@ class SeedUsuarios extends Seeder
             'telefono' => '72345678',
             'telefonoresponsable' => '',
             'apellidocasado' => '',
-            'email' => 'alam_lopez@hotmail.com',
+            'email' => 'll13002@ues.edu.sv',
             'password' => bcrypt('Administrador'),
             /*FK*/
             'idestadocivil' => 1,
@@ -53,7 +53,7 @@ class SeedUsuarios extends Seeder
             'telefono' => '72345678',
             'telefonoresponsable' => '',
             'apellidocasado' => '',
-            'email' => 'bryan_lobos@hotmail.com',
+            'email' => 'lc13004@ues.edu.sv',
             'password' => bcrypt('Administrador'),
             /*FK*/
             'idestadocivil' => 1,
@@ -69,7 +69,7 @@ class SeedUsuarios extends Seeder
             'telefono' => '72345678',
             'telefonoresponsable' => '',
             'apellidocasado' => '',
-            'email' => 'elias_barrera@hotmail.com',
+            'email' => 'bv13003@ues.edu.sv',
             'password' => bcrypt('Administrador'),
             /*FK*/
             'idestadocivil' => 1,
@@ -85,7 +85,7 @@ class SeedUsuarios extends Seeder
             'telefono' => '72345678',
             'telefonoresponsable' => '',
             'apellidocasado' => '',
-            'email' => 'rodrigo_romero@hotmail.com',
+            'email' => 'sr11038@ues.edu.sv',
             'password' => bcrypt('Administrador'),
             /*FK*/
             'idestadocivil' => 1,

@@ -41,6 +41,6 @@ class TipoTratamiento extends Model
      *
      */
      public function tratamiento(){
-         return $this->belongsTo('App\Tratamiento');
+         return $this->hasMany('App\Tratamiento');
      }
 }

@@ -38,6 +38,6 @@ class Horario extends Model
      *
      */
      public function doctores(){
-         return $this->hasMany('App\Doctor');
+         return $this->belongsTo('App\Doctor');
      }
 }

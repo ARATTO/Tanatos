@@ -37,13 +37,13 @@ class Enfermedad extends Model
      *
      */
      public function tipoEnfermedades(){
-         return $this->hasMany('App\TipoEnfermedad');
+         return $this->belongsTo('App\TipoEnfermedad');
      }
      /**
-     * RELACIONES
+     * RETORNO DE RELACIONES
      *
      */
      public function diagnostico(){
-         return $this->belongsTo('App\Diagnostico');
+         return $this->hasMany('App\Diagnostico');
      }
 }

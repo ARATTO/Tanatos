@@ -36,6 +36,6 @@ class ResultadoExamenClinico extends Model
      *
      */
      public function examenesClinicos(){
-         return $this->hasMany('App\ExamenClinico');
+         return $this->belongsTo('App\ExamenClinico');
      }
 }

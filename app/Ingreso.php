@@ -38,22 +38,22 @@ class Ingreso extends Model
      *
      */
      public function doctores(){
-         return $this->hasMany('App\Doctor');
+         return $this->belongsTo('App\Doctor');
      }
      public function expedientes(){
-         return $this->hasMany('App\Expediente');
+         return $this->belongsTo('App\Expediente');
      }
      public function camillas(){
-         return $this->hasMany('App\Camilla');
+         return $this->belongsTo('App\Camilla');
      }
      public function salas(){
-         return $this->hasMany('App\Sala');
+         return $this->belongsTo('App\Sala');
      }
      /**
      * RETORNO DE RELACIONES
      *
      */
      public function bitacora(){
-         return $this->belongsTo('App\Bitacora');
+         return $this->hasMany('App\Bitacora');
      }
 }

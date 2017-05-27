@@ -41,6 +41,6 @@ class HistorialClinico extends Model
      *
      */
      public function expediente(){
-         return $this->belongsTo('App\Expediente');
+         return $this->hasMany('App\Expediente');
      }
 }

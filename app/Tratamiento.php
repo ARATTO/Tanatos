@@ -20,6 +20,7 @@ class Tratamiento extends Model
         /*FK*/
         'idtipotratamiento',
         'iddiagnostico',
+        'idmedicamento',
     ];
 
     /**
@@ -39,16 +40,17 @@ class Tratamiento extends Model
      *
      */
      public function tipoTratamientos(){
-         return $this->hasMany('App\TipoTratamiento');
+         return $this->belongsTo('App\TipoTratamiento');
      }
      public function diagnosticos(){
-         return $this->hasMany('App\Diagnostico');
+         return $this->belongsTo('App\Diagnostico');
+     }
+     public function medicamentos(){
+         return $this->belongsTo('App\Medicamento');
      }
      /**
      * RETORNO DE RELACIONES
      *
      */
-     public function medicamento(){
-         return $this->belongsTo('App\Medicamento');
-     }
+     
 }

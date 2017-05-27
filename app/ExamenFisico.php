@@ -38,28 +38,28 @@ class ExamenFisico extends Model
      *
      */
      public function consultasMedicas(){
-         return $this->hasMany('App\ConsultaMedica');
+         return $this->belongsTo('App\ConsultaMedica');
      }
      public function tipoExamenFisico(){
-         return $this->hasMany('App\TipoExamenFisico');
+         return $this->belongsTo('App\TipoExamenFisico');
      }
      /**
      * RETORNO DE RELACIONES
      *
      */
      public function audio(){
-         return $this->belongsTo('App\Audio');
+         return $this->hasMany('App\Audio');
      }
      public function costoServicio(){
-         return $this->belongsTo('App\CostoServicio');
+         return $this->hasMany('App\CostoServicio');
      }
      public function imagen(){
-         return $this->belongsTo('App\Imagen');
+         return $this->hasMany('App\Imagen');
      }
      public function resultadoExamenFisico(){
-         return $this->belongsTo('App\ResultadoExamenFisico');
+         return $this->hasMany('App\ResultadoExamenFisico');
      }
      public function video(){
-         return $this->belongsTo('App\Video');
+         return $this->hasMany('App\Video');
      }
 }

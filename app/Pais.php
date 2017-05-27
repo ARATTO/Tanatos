@@ -36,9 +36,9 @@ class Pais extends Model
      *
      */
      public function departamento(){
-         return $this->belongsTo('App\Departamento');
+         return $this->hasMany('App\Departamento');
      }
      public function hospital(){
-         return $this->belongsTo('App\Hospital');
+         return $this->hasMany('App\Hospital');
      }
 }

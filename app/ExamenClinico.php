@@ -38,17 +38,17 @@ class ExamenClinico extends Model
      *
      */
      public function tipoExamenesClinicos(){
-         return $this->hasMany('App\TipoExamenClinico');
+         return $this->belongsTo('App\TipoExamenClinico');
      }
      public function consultasMedicas(){
-         return $this->hasMany('App\ConsultaMedica');
+         return $this->belongsTo('App\ConsultaMedica');
      }
      
      /**
-     * RELACIONES
+     * RETORNO DE RELACIONES
      *
      */
      public function resultadoExamenClinico(){
-         return $this->belongsTo('App\ResultadoExamenClinico');
+         return $this->hasMany('App\ResultadoExamenClinico');
      }
 }

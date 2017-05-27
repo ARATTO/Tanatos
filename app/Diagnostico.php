@@ -37,10 +37,10 @@ class Diagnostico extends Model
      *
      */
      public function consultasMedicas(){
-         return $this->hasMany('App\ConsultaMedica');
+         return $this->belongsTo('App\ConsultaMedica');
      }
      public function enfermedades(){
-         return $this->hasMany('App\Enfermedad');
+         return $this->belongsTo('App\Enfermedad');
      }
 
      /**
@@ -48,6 +48,6 @@ class Diagnostico extends Model
      *
      */
      public function tratamiento(){
-         return $this->belongsTo('App\Tratamiento');
+         return $this->hasMany('App\Tratamiento');
      }
 }

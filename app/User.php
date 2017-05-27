@@ -46,10 +46,10 @@ class User extends Authenticatable
      *
      */
      public function estadosCiviles(){
-         return $this->hasMany('App\EstadoCivil');
+         return $this->belongsTo('App\EstadoCivil');
      }
      public function roles(){
-         return $this->hasMany('App\Rol');
+         return $this->belongsTo('App\Rol');
      }
      
     /**
@@ -57,9 +57,7 @@ class User extends Authenticatable
      *
      */
      public function expediente(){
-         return $this->belongsTo('App\Expediente');
+         return $this->hasMany('App\Expediente');
      }
-     public function permiso(){
-         return $this->belongsTo('App\Permisos');
-     }
+    
 }

@@ -16,7 +16,7 @@ class Permisos extends Model
         'id',
         'nombrepermiso',
         /*FK*/
-        'idusuario'
+        'idrol'
     ];
 
     /**
@@ -35,7 +35,7 @@ class Permisos extends Model
      * RELACIONES
      *
      */
-     public function usuarios(){
-         return $this->hasMany('App\User');
+     public function roles(){
+         return $this->belongsTo('App\Rol');
      }
 }

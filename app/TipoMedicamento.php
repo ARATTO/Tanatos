@@ -39,7 +39,13 @@ class TipoMedicamento extends Model
      * RETORNO DE RELACIONES
      *
      */
-     public function medicamento(){
+
+     /*public function medicamento(){
          return $this->belongsTo('App\Medicamento');
+     }*/
+
+
+     public function medicamento(){
+         return $this->hasMany('App\Medicamento');
      }
 }
