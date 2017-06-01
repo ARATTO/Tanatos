@@ -23,6 +23,12 @@ class DoctorController extends Controller
     public function index()
     {
         $doctores = Doctor::orderBy('id', 'ASC')->paginate(15);
+
+        foreach ($doctores as $doctor) {
+            if($doctores->esemergencia = 'false'){
+                $doctores->esemergencia = 'No';
+            }
+        }
         
         return view('doctores.index')->with(['doctores'=>$doctores]);
     }
