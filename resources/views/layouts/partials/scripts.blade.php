@@ -2,6 +2,9 @@
 
 <!-- jQuery 2.1.4 -->
 <script src="{{ asset('/plugins/jQuery/jQuery-2.1.4.min.js') }}"></script>
+<!-- bootstrap collapse and transition plugins -->
+<script src="{{ asset('/plugins/datetimepicker/transition.js') }}" type="text/javascript"></script>
+<script src="{{ asset('/plugins/datetimepicker/collapse.js') }}" type="text/javascript"></script>
 <!-- Bootstrap 3.3.2 JS -->
 <script src="{{ asset('/js/bootstrap.min.js') }}" type="text/javascript"></script>
 <!-- AdminLTE App -->
@@ -34,6 +37,9 @@
 <!-- Include Plugin Chosen para MultiSelect https://github.com/harvesthq/chosen-package -->
 <script src="{{ asset('/plugins/chosen/chosen.jquery.js') }}" type="text/javascript"></script>
 
+<!-- Include Plugin DatePicker -->
+<script src="{{ asset('/plugins/datepicker/bootstrap-datepicker.js') }}" type="text/javascript"></script>
+
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
       Both of these plugins are recommended to enhance the
       user experience. Slimscroll is required when using the
@@ -65,16 +71,23 @@
             });
        });
 </script>
-
 <!-- Include Plugin CheckBox -->
 <script>
+      $(function() {
+            $('#checkboxGenero').checkboxpicker({
+                  html: true,
+                  offLabel: 'F',
+                  onLabel: 'M'
+            })
+      }); 
       $(function() {
             $(':checkbox').checkboxpicker({
                   html: true,
                   offLabel: '<span class="glyphicon glyphicon-remove">',
                   onLabel: '<span class="glyphicon glyphicon-ok">'
             })
-      }); 
+      });
+      
 </script>
 
 <!-- Include Plugin FileShido -->
@@ -92,9 +105,37 @@
              no_results_text: "Oops, No encontramos nada como:  ",
              width: "100%",
       });
+      $("#chosen-select_").chosen({
+             no_results_text: "Oops, No encontramos nada como:  ",
+             width: "100%",
+      });
       $("#chosen-borrar").chosen({
              no_results_text: "Oops, No encontramos nada como:  ",
              width: "100%",
       });
 </script>
 
+
+<!-- ELIAS CALENDAR SCRIPTS                      -->
+<!-- Including plugin moment -->
+<script src="{{ asset('/plugins/moment/moment.js') }}" type="text/javascript"></script>
+
+<!-- including plugin fullcalendar -->
+<script src="{{ asset('/plugins/fullcalendar/fullcalendar.min.js') }}" type="text/javascript"></script>
+
+<!-- including datetimepicker  plugin -->
+<script src="{{ asset('/plugins/datetimepicker/bootstrap-datetimepicker.min.js') }}" type="text/javascript"></script>
+
+<!-- including sweetalert plugin -->
+<script src="{{ asset('/plugins/sweetalert2/sweetalert2.min.js') }}" type="text/javascript"></script>
+
+<!-- Este archivo contiene la inicializacion del fullcalendar como la interaccion con este -->
+@include('citas.fullcalendarcitas')
+
+
+<script type="text/javascript">
+      $(function () {
+            $('#datetimepicker1').datetimepicker({format: "YYYY-MM-DD HH:mm"});
+      });
+      
+</script>

@@ -50,7 +50,7 @@
 							</div>
 
 							<div class="form-group col-md-12" align="center">
-								{!!Form::label('observacion', 'forma farmaceutica del medicamento:')!!}
+								{!!Form::label('observacion', 'Observacion del medicamento:')!!}
 								{!!Form::text('observacion',null,['class'=>'form-control','placeholder'=>'No se debe usar en mujeres embarazadas','required' ])!!}
 							</div>
 

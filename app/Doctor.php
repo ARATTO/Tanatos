@@ -46,4 +46,11 @@ class Doctor extends Model
      public function ingreso(){
          return $this->hasMany('App\Ingreso');
      }
+
+
+    public function scopeNombre($query,$name){
+        if($name != ""){
+        $query->where('nombredoctor',"LIKE", "%$name%");
+            }
+     }
 }

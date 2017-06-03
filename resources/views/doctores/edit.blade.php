@@ -29,10 +29,13 @@
 								{!!Form::text('especialidad',$doctor->especialidad,['class'=>'form-control','placeholder'=>'Cirujano','required' ])!!}
 							</div>
 
-					        <div class="form-group col-md-12" align="center">
-								{!!Form::label('esemergencia', '¿Trabaja en emergencias?')!!}
-								{!!Form::text('esemergencia',$doctor->esemergencia,['class'=>'form-control','placeholder'=>'t/f','required' ])!!}
-							</div>
+		        			<div class="form-group col-md-12" align="center">
+					            <label>¿Trabaja en emergencias?:</label>
+					            <div class="col-sm-10" align="center">
+					                <p><input type="radio" name="esemergencia" value="TRUE" checked="">Si</p>
+					                <p><input type="radio" name="esemergencia" value="FALSE">No</p>
+					            </div>
+				        	</div>
 
 						   
 

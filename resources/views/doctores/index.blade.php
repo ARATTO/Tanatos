@@ -28,6 +28,15 @@
 					<div class="panel-heading"> Listado de doctores 		
 			
 					</div>
+										<br>
+					{!! Form::open(['route' =>'doctores.index', 'method'=>'GET','class'=>'form-center', 'role'=>'search' ]) !!}
+					<div class="input-group">
+					  <span class="input-group-addon">@</span>
+					  {!!Form::text('name',null,['class'=>'form-control','placeholder'=>'Busqueda por nombre'])!!}
+					
+					</div>
+					{!! Form::close() !!}
+
 
 					<div class="panel-body">
 						<!-- 16:9 aspect ratio -->
@@ -55,8 +64,11 @@
 						  		<td>{{$nombredoctor = $doctor->nombredoctor}}</td>
 
 						  		<td>{{$especialidad = $doctor->especialidad}}</td>
-						  		<td>{{$esemergencia = $doctor->esemergencia}}</td>
-						  		
+						  		@if($doctor->esemergencia == 1)
+						  		<td>Si</td>
+						  		@else
+						  		<td>No</td>
+						  		@endif
 						  		@if (Auth::guest())
 					            @else
 					            @if(Auth::user()->idrol == 1)

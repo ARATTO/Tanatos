@@ -30,10 +30,14 @@
 							</div>
 
 
-							<div class="form-group col-md-12" align="center">
-								{!!Form::label('emergencia', '¿Trabaja en emergencias?:')!!}
-								{!!Form::text('emergencia',null,['class'=>'form-control','placeholder'=>'Si/No  (t/f)','required' ])!!}
-							</div>
+				        <div class="form-group col-md-12" align="center">
+				            <label>¿Trabaja en emergencias?:</label>
+				            <div class="col-sm-10" align="center">
+				                <p><input type="radio" name="esemergencia" value="TRUE" checked="">Si</p>
+				                <p><input type="radio" name="esemergencia" value="FALSE">No</p>
+				            </div>
+				        </div>
+
 
 					      <div class="form-group">
                 				<hr>

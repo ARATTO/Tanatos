@@ -20,16 +20,9 @@ class DoctorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $doctores = Doctor::orderBy('id', 'ASC')->paginate(15);
-
-        foreach ($doctores as $doctor) {
-            if($doctores->esemergencia = 'false'){
-                $doctores->esemergencia = 'No';
-            }
-        }
-        
+        $doctores = Doctor::Nombre($request->name)->orderBy('id', 'ASC')->paginate(15);        
         return view('doctores.index')->with(['doctores'=>$doctores]);
     }
 
@@ -41,7 +34,8 @@ class DoctorController extends Controller
 
     public function store(Request $request)
     {
-        
+       // dd($request->all());
+
         Doctor::create($request->all());
 
         $doctores = Doctor::orderBy('id','ASC')->paginate(20);  
