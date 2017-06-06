@@ -100,6 +100,8 @@ return [
     'FotoPerfil'             =>'Foto de Perfil',
     'PorDefecto'             =>'por Defecto',
     'Imagen'                 =>'Imagen',
+    'DatosGenerales'         =>'Datos Generales',
+    'Direccion'              =>'Direccion',
     /*
     *  Fin FORM
     */

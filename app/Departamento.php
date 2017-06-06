@@ -53,10 +53,10 @@ class Departamento extends Model
      *
      */
 
-     /*
-     public function name_singular(){
-         return $this->hasMany('App\Class');
+     
+     public function municipio(){
+         return $this->hasMany('App\Municipio');
      }
-     */
+     
      //////////////////////////////////////////////////////
 }

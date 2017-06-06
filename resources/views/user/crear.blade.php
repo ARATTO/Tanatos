@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('htmlheader_title')
-	{{ trans('tntmessage.Usuario') }}
+    {{ trans('tntmessage.Usuario') }}
 @endsection
         
 @section('main-content')
@@ -16,30 +16,38 @@
                                     @include('layouts.partials.flash')
 
                                     {!! Form::open(['route' => 'users.store', 'method' => 'POST', 'files' => true]) !!}
-                                        <div class="col-md-4 col-md-offset-1">
-                                            <div class="form-group ">
-                                                {!! form::label('Nombres','Nombres') !!}
-                                                {!! form::text('primernombre', null, ['class' => 'form-control ', 'placeholder'=> 'Juan', 'required']) !!}
-                                                {!! form::text('segundonombre', null, ['class' => 'form-control ', 'placeholder'=> 'Jose', 'required']) !!}
-                                            </div>
-                                            <div class="form-group">
-                                                {!! form::label('Apellidos','Apellidos') !!}
-                                                {!! form::text('primerapellido', null, ['class' => 'form-control', 'placeholder'=> 'Garcia', 'required']) !!}
-                                                {!! form::text('segundoapellido', null, ['class' => 'form-control', 'placeholder'=> 'Hernandez', 'required']) !!}
-                                            </div>
-                                            <div class="form-group">
-                                                    <input type="checkbox" value="1" name="genero" id="checkboxGenero" class="form-control">
-                                                    {!! form::label('checkbox',' Genero') !!}
-                                            </div>
-                                            <div class="form-group">
+                                        <div class="col-md-12 col-md-offset-1">
+                                            <h3><span class="label label-primary">{{ trans('tntmessage.DatosGenerales') }}</span></h3>
+                                                <div class="form-group form-inline">
+                                                    {!! form::label('Nombres','Nombres') !!}
+                                                    {!! form::text('primernombre', null, ['class' => 'form-control ', 'placeholder'=> 'Juan', 'required']) !!}
+                                                    {!! form::text('segundonombre', null, ['class' => 'form-control ', 'placeholder'=> 'Jose', 'required']) !!}
+                                                </div>
+                                                <div class="form-group form-inline">
+                                                    {!! form::label('Apellidos','Apellidos') !!}
+                                                    {!! form::text('primerapellido', null, ['class' => 'form-control', 'placeholder'=> 'Garcia', 'required']) !!}
+                                                    {!! form::text('segundoapellido', null, ['class' => 'form-control', 'placeholder'=> 'Hernandez', 'required']) !!}
+                                                    <hr>
+                                                </div>
+
+                                            <div class="form-group form-inline">
+                                                {!! form::label('FechaNacimiento','Fecha de Nacimiento') !!}
                                                 <div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd">
                                                     <input type="text" class="form-control datepicker" name="fechanacimiento">
                                                     <div class="input-group-addon">
                                                         <span class="glyphicon glyphicon-th"></span>
                                                     </div>
                                                 </div>
+                                                <hr>
                                             </div>
-                                            <hr>  
+                                            <div class="form-group form-inline">
+                                                    {!! form::label('checkbox','Genero') !!}
+                                                    <input type="checkbox" value="1" name="genero" id="checkboxGenero" class="form-control">
+                                                    <hr>
+                                            </div>
+                                            
+                                            <h3><span class="label label-primary">{{ trans('tntmessage.Direccion') }}</span></h3>
+                                            <hr>
                                             <div class="form-group">
                                                 {!! form::label('Direccion','Direccion') !!}
                                                 {!! form::text('detalledireccion', null, ['class' => 'form-control', 'placeholder'=> 'Direccion de Usuario', 'required']) !!}
@@ -52,8 +60,7 @@
                                                 {!! form::label('Telefono de Responsable','TelefonoRes') !!}
                                                 {!! form::text('telefonoresponsable', null, ['class' => 'form-control', 'placeholder'=> '77777777', 'required']) !!}
                                             </div>
-                                        </div>
-                                        <div class="col-md-4 col-md-offset-1">
+                                        
                                             <div class="form-group">
                                                 {!! form::label('Correo','Correo') !!}
                                                 {!! form::text('email', null, ['class' => 'form-control', 'placeholder'=> 'xxxx_xx@ues.com', 'required']) !!}
