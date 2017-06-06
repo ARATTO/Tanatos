@@ -12,11 +12,13 @@ class Bitacora extends Model
      *
      * @var array
      */
+     //////////////////////////////////////////////////////
     protected $fillable = [
         'id',
         'descripcionbitacora',
         'fechabitacora',
         'horabitacora',
+        
         /*FK*/
         'idingreso',
     ];
@@ -29,15 +31,34 @@ class Bitacora extends Model
     protected $hidden = [
         
     ];
+    //////////////////////////////////////////////////////
     /**
     * Eliminar timestamps del modelo
     */
     public $timestamps = false;
+    //////////////////////////////////////////////////////
+
     /**
      * RELACIONES
      *
      */
+
+     
      public function ingresos(){
          return $this->belongsTo('App\Ingreso');
      }
+     
+     //////////////////////////////////////////////////////
+
+     /**
+     * RETORNO DE RELACIONES
+     *
+     */
+
+     /*
+     public function name_singular(){
+         return $this->hasMany('App\Class');
+     }
+     */
+     //////////////////////////////////////////////////////
 }

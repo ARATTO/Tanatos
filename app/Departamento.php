@@ -12,9 +12,11 @@ class Departamento extends Model
      *
      * @var array
      */
+     //////////////////////////////////////////////////////
     protected $fillable = [
         'id',
         'nombredepartamento',
+        
         /*FK*/
         'idpais',
     ];
@@ -27,23 +29,34 @@ class Departamento extends Model
     protected $hidden = [
         
     ];
+    //////////////////////////////////////////////////////
     /**
     * Eliminar timestamps del modelo
     */
     public $timestamps = false;
+    //////////////////////////////////////////////////////
+
     /**
      * RELACIONES
      *
      */
+
+     
      public function paises(){
          return $this->belongsTo('App\Pais');
      }
+     
+     //////////////////////////////////////////////////////
 
      /**
      * RETORNO DE RELACIONES
      *
      */
-     public function municipio(){
-         return $this->hasMany('App\Municipio');
+
+     /*
+     public function name_singular(){
+         return $this->hasMany('App\Class');
      }
+     */
+     //////////////////////////////////////////////////////
 }

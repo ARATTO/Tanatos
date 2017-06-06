@@ -7,7 +7,13 @@
 
 @section('main-content')
 	@include('layouts.partials.contentheader.generic_head',array('contentheader_title' => trans('eetntmessage.CalendarioCitas')))
-	
+	<style type="text/css">
+			.fc-view
+			{
+				width: 100%;
+				overflow: visible;
+			}
+	</style>
     <!-- Main content -->
         <section class="content">
             <!-- Your Page Content Here -->
@@ -16,7 +22,7 @@
 			<div class="col-md-10 col-md-offset-1">
 				<div class="panel panel-default">
 					<div class="panel-heading"  >{{ trans('eetntmessage.Citas') }}
-					
+				
 					<!-- Trigger the modal with a button -->
 					<button style=" float:right;" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">{{ trans('eetntmessage.NuevaCita') }}</button></div>
 					
@@ -24,6 +30,7 @@
 						<!-- 16:9 aspect ratio -->
 						@include('bones-flash::bones.flash')
 						<div id='calendar'></div>
+						<meta name="csrf-token" content="<?php echo csrf_token() ?>"> 
 					</div>
 				</div>
 			</div>
@@ -47,9 +54,9 @@
 					<div class="modal-body">
 						
 					<div class="panel-body">
-						
+							<input id="token" value= {{csrf_field() }} 
 							{!! Form::open(['action'=>'CitaController@store','class'=>'form-center' ]) !!}
-
+							
 							<div class="form-group col-md-12" align="left">
 								{!!Form::label('title', trans('eetntmessage.IngreseTituloCita'))!!}
 								{!!Form::text('title',null,['class'=>'form-control','placeholder'=>trans('eetntmessage.ControlPrenatal'),'required' ])!!}

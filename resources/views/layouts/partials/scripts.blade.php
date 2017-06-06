@@ -126,47 +126,12 @@
 <!-- including datetimepicker  plugin -->
 <script src="{{ asset('/plugins/datetimepicker/bootstrap-datetimepicker.min.js') }}" type="text/javascript"></script>
 
+<!-- including sweetalert plugin -->
+<script src="{{ asset('/plugins/sweetalert2/sweetalert2.min.js') }}" type="text/javascript"></script>
 
+<!-- Este archivo contiene la inicializacion del fullcalendar como la interaccion con este -->
+@include('citas.fullcalendarcitas')
 
-
-<script>
-
-$(document).ready(function() {
-
-
-   $('#calendar').fullCalendar({
-                  //Encabezados que se muestran como los botones de adelante, atras y las diferentes vistas
-			header: {
-				left: 'prev,next today',
-				center: 'title',
-				right: 'month,agendaWeek,agendaDay'
-			},
-                  defaultTimedEventDuration: '00:30:00',
-			defaultView: 'month',
-			editable: true,
-                  eventDurationEditable:false,
-                  navLinks: true,
-                  eventLimit: true,
-			events:  {url:'citas'},
-                  eventDragStop: function(event, jsEvent, ui, view) {
-                       //Mensaje cuando termina de moverse
-                  },
-                  eventClick: function(event){
-				var r = confirm("¿Está seguro de que desea eliminar esta cita?");
-                        if (r == true) {
-                              $('#calendar').fullCalendar('removeEvents',event._id);
-                        }  
-		   	      
-			}
-                  
-		});
-
-            
-});
-
-
-
-</script>
 
 <script type="text/javascript">
       $(function () {

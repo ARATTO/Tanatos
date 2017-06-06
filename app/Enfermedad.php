@@ -12,10 +12,12 @@ class Enfermedad extends Model
      *
      * @var array
      */
+     //////////////////////////////////////////////////////
     protected $fillable = [
         'id',
         'codigoenfermedad',
         'nombreenfermedad',
+        
         /*FK*/
         'idtipoenfermedad',
     ];
@@ -28,22 +30,34 @@ class Enfermedad extends Model
     protected $hidden = [
         
     ];
+    //////////////////////////////////////////////////////
     /**
     * Eliminar timestamps del modelo
     */
     public $timestamps = false;
+    //////////////////////////////////////////////////////
+
     /**
      * RELACIONES
      *
      */
+
+     
      public function tipoEnfermedades(){
          return $this->belongsTo('App\TipoEnfermedad');
      }
+     
+     //////////////////////////////////////////////////////
+
      /**
      * RETORNO DE RELACIONES
      *
      */
+
+     
      public function diagnostico(){
          return $this->hasMany('App\Diagnostico');
      }
+     
+     //////////////////////////////////////////////////////
 }

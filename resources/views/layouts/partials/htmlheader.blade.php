@@ -55,5 +55,7 @@
     <link href="{{ asset('/plugins/fullcalendar/fullcalendar.print.css') }}" rel="stylesheet" media='print' />
     <link href="{{ asset('/plugins/datetimepicker/bootstrap-datetimepicker.min.css') }}"  rel="stylesheet" type="text/css" />
 
+    <!-- SweetAlert2.... Mensajes JavasScript -->
+    <link href="{{ asset('/plugins/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
 
 </head>
