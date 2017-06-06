@@ -48,19 +48,11 @@
 								<tbody>
 									@foreach($users as $user)
 										<tr>
-<<<<<<< HEAD
 											<td>{{$user->personas->primernombre}} {{$user->personas->segundonombre}}</td>
                                             <td>{{$user->personas->primerapellido}} {{$user->personas->segundoapellido}}</td>
                                             <td>{{$user->personas->genero}}</td>
 											<td>{{$user->email}}</td>
                                             <td>{{$user->personas->fechanacimiento}}</td>
-=======
-											<td>{{$user->nombres}}</td>
-                                            <td>{{$user->apellidos}}</td>
-                                            <td>{{$user->genero}}</td>
-											<td>{{$user->email}}</td>
-                                            <td>{{$user->fechanacimiento}}</td>
->>>>>>> f9ea6390589611718759cb66757b18ed654e8ec6
                                             <td>{{$user->roles->nombrerol}}</td>
 										</tr>
 									@endforeach

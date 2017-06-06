@@ -48,12 +48,9 @@ class Diagnostico extends Model
      }
      public function enfermedades(){
          return $this->belongsTo('App\Enfermedad');
-<<<<<<< HEAD
      }
      public function tratamientos(){
          return $this->belongsTo('App\Tratamiento');
-=======
->>>>>>> f9ea6390589611718759cb66757b18ed654e8ec6
      }
 
      //////////////////////////////////////////////////////
@@ -62,15 +59,10 @@ class Diagnostico extends Model
      * RETORNO DE RELACIONES
      *
      */
-<<<<<<< HEAD
 
      /*
      public function name_singular(){
          return $this->hasMany('App\Class');
-=======
-     public function tratamiento(){
-         return $this->hasMany('App\Tratamiento');
->>>>>>> f9ea6390589611718759cb66757b18ed654e8ec6
      }
      */
      //////////////////////////////////////////////////////

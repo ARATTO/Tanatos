@@ -46,11 +46,7 @@ class ExamenFisico extends Model
      public function consultasMedicas(){
          return $this->belongsTo('App\ConsultaMedica');
      }
-<<<<<<< HEAD
      public function tipoExamenesFisicos(){
-=======
-     public function tipoExamenFisico(){
->>>>>>> f9ea6390589611718759cb66757b18ed654e8ec6
          return $this->belongsTo('App\TipoExamenFisico');
      }
      public function resultadosExamenesFisicos(){
@@ -63,27 +59,10 @@ class ExamenFisico extends Model
      * RETORNO DE RELACIONES
      *
      */
-<<<<<<< HEAD
 
      /*
      public function name_singular(){
          return $this->hasMany('App\Class');
-=======
-     public function audio(){
-         return $this->hasMany('App\Audio');
-     }
-     public function costoServicio(){
-         return $this->hasMany('App\CostoServicio');
-     }
-     public function imagen(){
-         return $this->hasMany('App\Imagen');
-     }
-     public function resultadoExamenFisico(){
-         return $this->hasMany('App\ResultadoExamenFisico');
-     }
-     public function video(){
-         return $this->hasMany('App\Video');
->>>>>>> f9ea6390589611718759cb66757b18ed654e8ec6
      }
      */
      //////////////////////////////////////////////////////

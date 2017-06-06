@@ -55,12 +55,6 @@ class Pais extends Model
      
      public function departamento(){
          return $this->hasMany('App\Departamento');
-<<<<<<< HEAD
-=======
-     }
-     public function hospital(){
-         return $this->hasMany('App\Hospital');
->>>>>>> f9ea6390589611718759cb66757b18ed654e8ec6
      }
      
      //////////////////////////////////////////////////////

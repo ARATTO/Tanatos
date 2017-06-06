@@ -53,15 +53,10 @@ class Camilla extends Model
      * RETORNO DE RELACIONES
      *
      */
-<<<<<<< HEAD
 
      
      public function camilla(){
          return $this->hasMany('App\Camilla');
-=======
-     public function ingreso(){
-         return $this->hasMany('App\Ingreso');
->>>>>>> f9ea6390589611718759cb66757b18ed654e8ec6
      }
      
      //////////////////////////////////////////////////////

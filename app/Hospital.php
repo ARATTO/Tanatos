@@ -41,15 +41,10 @@ class Hospital extends Model
      * RELACIONES
      *
      */
-<<<<<<< HEAD
 
      
      public function municipios(){
          return $this->belongsTo('App\Municipio');
-=======
-     public function paises(){
-         return $this->belongsTo('App\Pais');
->>>>>>> f9ea6390589611718759cb66757b18ed654e8ec6
      }
      
      //////////////////////////////////////////////////////

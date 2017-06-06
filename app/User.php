@@ -37,13 +37,7 @@ class User extends Authenticatable
      * RELACIONES
      *
      */
-<<<<<<< HEAD
      
-=======
-     public function estadosCiviles(){
-         return $this->belongsTo('App\EstadoCivil');
-     }
->>>>>>> f9ea6390589611718759cb66757b18ed654e8ec6
      public function roles(){
          return $this->belongsTo('App\Rol');
      }
@@ -53,15 +47,10 @@ class User extends Authenticatable
      * RETORNO DE RELACIONES
      *
      */
-<<<<<<< HEAD
      
      
      public function persona(){
          return $this->hasMany('App\Persona');
-=======
-     public function expediente(){
-         return $this->hasMany('App\Expediente');
->>>>>>> f9ea6390589611718759cb66757b18ed654e8ec6
      }
     
 }

@@ -41,7 +41,6 @@ class Audio extends Model
      * RELACIONES
      *
      */
-<<<<<<< HEAD
 
      /*
      public function name_plural(){
@@ -58,10 +57,6 @@ class Audio extends Model
      
      public function resExamenFisico(){
          return $this->hasMany('App\ResExamenFisico');
-=======
-     public function examenesFisicos(){
-         return $this->belongsTo('App\ExamenFisico');
->>>>>>> f9ea6390589611718759cb66757b18ed654e8ec6
      }
      
      //////////////////////////////////////////////////////

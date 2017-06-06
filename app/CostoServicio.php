@@ -40,7 +40,6 @@ class CostoServicio extends Model
      * RELACIONES
      *
      */
-<<<<<<< HEAD
 
      /*
      public function name_plural(){
@@ -60,10 +59,6 @@ class CostoServicio extends Model
      }
      public function servicioPrecio(){
          return $this->hasMany('App\ServicoPrecio');
-=======
-     public function examenesFisicos(){
-         return $this->belongsTo('App\ExamenFisico');
->>>>>>> f9ea6390589611718759cb66757b18ed654e8ec6
      }
      
      //////////////////////////////////////////////////////

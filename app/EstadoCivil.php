@@ -51,15 +51,10 @@ class EstadoCivil extends Model
      * RETORNO DE RELACIONES
      *
      */
-<<<<<<< HEAD
 
      
      public function persona(){
          return $this->hasMany('App\Persona');
-=======
-     public function user(){
-         return $this->hasMany('App\User');
->>>>>>> f9ea6390589611718759cb66757b18ed654e8ec6
      }
      
      //////////////////////////////////////////////////////

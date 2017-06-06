@@ -21,11 +21,6 @@ class Tratamiento extends Model
         
         /*FK*/
         'idtipotratamiento',
-<<<<<<< HEAD
-=======
-        'iddiagnostico',
-        'idmedicamento',
->>>>>>> f9ea6390589611718759cb66757b18ed654e8ec6
     ];
 
     /**
@@ -47,21 +42,10 @@ class Tratamiento extends Model
      * RELACIONES
      *
      */
-<<<<<<< HEAD
 
      
      public function tiposTratamientos(){
          return $this->belongsTo('App\TipoTratamiento');
-=======
-     public function tipoTratamientos(){
-         return $this->belongsTo('App\TipoTratamiento');
-     }
-     public function diagnosticos(){
-         return $this->belongsTo('App\Diagnostico');
-     }
-     public function medicamentos(){
-         return $this->belongsTo('App\Medicamento');
->>>>>>> f9ea6390589611718759cb66757b18ed654e8ec6
      }
      
      //////////////////////////////////////////////////////
@@ -70,7 +54,6 @@ class Tratamiento extends Model
      * RETORNO DE RELACIONES
      *
      */
-<<<<<<< HEAD
 
      
      public function diagnostico(){
@@ -81,7 +64,4 @@ class Tratamiento extends Model
      }
      
      //////////////////////////////////////////////////////
-=======
-     
->>>>>>> f9ea6390589611718759cb66757b18ed654e8ec6
 }
