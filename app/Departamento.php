@@ -52,10 +52,15 @@ class Departamento extends Model
      * RETORNO DE RELACIONES
      *
      */
+<<<<<<< HEAD
 
      /*
      public function name_singular(){
          return $this->hasMany('App\Class');
+=======
+     public function municipio(){
+         return $this->hasMany('App\Municipio');
+>>>>>>> f9ea6390589611718759cb66757b18ed654e8ec6
      }
      */
      //////////////////////////////////////////////////////

@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(SeedRoles::class);
         $this->call(SeedUsuarios::class);
+<<<<<<< HEAD
         $this->call(SeedEstadoCivil::class);
         $this->call(SeedTelefonos::class);
         $this->call(SeedDetalleDireccion::class);
@@ -27,5 +28,18 @@ class DatabaseSeeder extends Seeder
         //$this->call(SeedDoctor::class);
         //$this->call(SeedMedicamento::class);
         //$this->call(SeedHospital::class);
+=======
+        $this->call(SeedTipoMedicamento::class);
+        $this->call(SeedPais::class);
+        $this->call(SeedTipoTratamiento::class);    
+        $this->call(SeedSala::class);
+        $this->call(SeedCamilla::class);
+        $this->call(SeedTipoExamenClinico::class);
+        $this->call(SeedTipoExamenFisico::class);
+        $this->call(SeedDoctor::class);
+        $this->call(SeedMedicamento::class);
+        $this->call(SeedHospital::class);
+        
+>>>>>>> f9ea6390589611718759cb66757b18ed654e8ec6
     }
 }

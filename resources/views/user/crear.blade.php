@@ -17,6 +17,7 @@
 
                                     {!! Form::open(['route' => 'users.store', 'method' => 'POST', 'files' => true]) !!}
                                         <div class="col-md-4 col-md-offset-1">
+<<<<<<< HEAD
                                             <div class="form-group ">
                                                 {!! form::label('Nombres','Nombres') !!}
                                                 {!! form::text('primernombre', null, ['class' => 'form-control ', 'placeholder'=> 'Juan', 'required']) !!}
@@ -26,6 +27,15 @@
                                                 {!! form::label('Apellidos','Apellidos') !!}
                                                 {!! form::text('primerapellido', null, ['class' => 'form-control', 'placeholder'=> 'Garcia', 'required']) !!}
                                                 {!! form::text('segundoapellido', null, ['class' => 'form-control', 'placeholder'=> 'Hernandez', 'required']) !!}
+=======
+                                            <div class="form-group">
+                                                {!! form::label('Nombres','Nombres') !!}
+                                                {!! form::text('nombres', null, ['class' => 'form-control', 'placeholder'=> 'Nombre de Usuario', 'required']) !!}
+                                            </div>
+                                            <div class="form-group">
+                                                {!! form::label('Apellidos','Apellidos') !!}
+                                                {!! form::text('apellidos', null, ['class' => 'form-control', 'placeholder'=> 'Apellidos de Usuario', 'required']) !!}
+>>>>>>> f9ea6390589611718759cb66757b18ed654e8ec6
                                             </div>
                                             <div class="form-group">
                                                     <input type="checkbox" value="1" name="genero" id="checkboxGenero" class="form-control">

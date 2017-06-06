@@ -51,6 +51,12 @@ class Expediente extends Model
      }
      public function hospitales(){
          return $this->belongsTo('App\Hospital');
+<<<<<<< HEAD
+=======
+     }
+     public function usuarios(){
+         return $this->belongsTo('App\User');
+>>>>>>> f9ea6390589611718759cb66757b18ed654e8ec6
      }
      
      //////////////////////////////////////////////////////

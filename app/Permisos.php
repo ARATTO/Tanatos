@@ -16,7 +16,12 @@ class Permisos extends Model
     protected $fillable = [
         'id',
         'nombrepermiso',
+<<<<<<< HEAD
         'descripcion',
+=======
+        /*FK*/
+        'idrol'
+>>>>>>> f9ea6390589611718759cb66757b18ed654e8ec6
     ];
 
     /**
@@ -38,6 +43,7 @@ class Permisos extends Model
      * RELACIONES
      *
      */
+<<<<<<< HEAD
 
      /*
      public function name_plural(){
@@ -54,6 +60,10 @@ class Permisos extends Model
      
      public function permisosRol(){
          return $this->hasMany('App\PermisosRol');
+=======
+     public function roles(){
+         return $this->belongsTo('App\Rol');
+>>>>>>> f9ea6390589611718759cb66757b18ed654e8ec6
      }
      
      //////////////////////////////////////////////////////

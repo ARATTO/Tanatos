@@ -52,7 +52,15 @@ class TipoMedicamento extends Model
      *
      */
 
+<<<<<<< HEAD
      
+=======
+     /*public function medicamento(){
+         return $this->belongsTo('App\Medicamento');
+     }*/
+
+
+>>>>>>> f9ea6390589611718759cb66757b18ed654e8ec6
      public function medicamento(){
          return $this->hasMany('App\Medicamento');
      }

@@ -38,6 +38,7 @@ class ResultadoExamenClinico extends Model
      * RELACIONES
      *
      */
+<<<<<<< HEAD
 
      /*
      public function name_plural(){
@@ -54,6 +55,10 @@ class ResultadoExamenClinico extends Model
      
      public function examenClinico(){
          return $this->hasMany('App\ExamenClinico');
+=======
+     public function examenesClinicos(){
+         return $this->belongsTo('App\ExamenClinico');
+>>>>>>> f9ea6390589611718759cb66757b18ed654e8ec6
      }
      
      //////////////////////////////////////////////////////

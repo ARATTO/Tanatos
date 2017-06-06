@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Scopes\FinishScope;
 
 class Medicamento extends Model
 {
@@ -47,17 +48,29 @@ class Medicamento extends Model
      *
      */
 
+<<<<<<< HEAD
      
      public function tipoMedicamentos(){
          return $this->belongsTo('App\TipoMedicamento');
      }
      
      //////////////////////////////////////////////////////
+=======
+     /*public function tipoMedicamentos(){
+         return $this->hasMany('App\TipoMedicamento');
+     }*/
+
+     public function tipoMedicamentos(){
+         return $this->belongsTo('App\TipoMedicamento');
+     }
+
+>>>>>>> f9ea6390589611718759cb66757b18ed654e8ec6
 
      /**
      * RETORNO DE RELACIONES
      *
      */
+<<<<<<< HEAD
 
      
      public function tratamientoMedicamento(){
@@ -65,4 +78,18 @@ class Medicamento extends Model
      }
      
      //////////////////////////////////////////////////////
+=======
+     public function tratamiento(){
+         return $this->hasMany('App\Tratamiento');
+     }
+
+
+     public function scopeName($query,$name){
+        if($name != ""){
+        $query->where('nombremedicamento',"LIKE", "%$name%");
+            }
+     }
+
+
+>>>>>>> f9ea6390589611718759cb66757b18ed654e8ec6
 }
