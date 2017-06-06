@@ -12,6 +12,7 @@ class HistorialClinico extends Model
      *
      * @var array
      */
+     //////////////////////////////////////////////////////
     protected $fillable = [
         'id',
         'nombremadre',
@@ -27,20 +28,34 @@ class HistorialClinico extends Model
     protected $hidden = [
         
     ];
+    //////////////////////////////////////////////////////
     /**
     * Eliminar timestamps del modelo
     */
     public $timestamps = false;
+    //////////////////////////////////////////////////////
+
     /**
      * RELACIONES
      *
      */
 
+     /*
+     public function name_plural(){
+         return $this->belongsTo('App\Class');
+     }
+     */
+     //////////////////////////////////////////////////////
+
      /**
      * RETORNO DE RELACIONES
      *
      */
+
+     
      public function expediente(){
-         return $this->belongsTo('App\Expediente');
+         return $this->hasMany('App\Expediente');
      }
+     
+     //////////////////////////////////////////////////////
 }

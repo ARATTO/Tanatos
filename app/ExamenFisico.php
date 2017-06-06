@@ -12,13 +12,14 @@ class ExamenFisico extends Model
      *
      * @var array
      */
+     //////////////////////////////////////////////////////
     protected $fillable = [
         'id',
-        'campoexamenfisico',
-        'precioexamenfisico',
+        
         /*FK*/
         'idconsultamedica',
         'idtipoexamenfisico',
+        'idresultadoexamenfisico',
     ];
 
     /**
@@ -29,37 +30,40 @@ class ExamenFisico extends Model
     protected $hidden = [
         
     ];
+    //////////////////////////////////////////////////////
     /**
     * Eliminar timestamps del modelo
     */
     public $timestamps = false;
+    //////////////////////////////////////////////////////
+
     /**
      * RELACIONES
      *
      */
+
+     
      public function consultasMedicas(){
-         return $this->hasMany('App\ConsultaMedica');
+         return $this->belongsTo('App\ConsultaMedica');
      }
-     public function tipoExamenFisico(){
-         return $this->hasMany('App\TipoExamenFisico');
+     public function tipoExamenesFisicos(){
+         return $this->belongsTo('App\TipoExamenFisico');
      }
+     public function resultadosExamenesFisicos(){
+         return $this->belongsTo('App\ResExamenFisico');
+     }
+     
+     //////////////////////////////////////////////////////
+
      /**
      * RETORNO DE RELACIONES
      *
      */
-     public function audio(){
-         return $this->belongsTo('App\Audio');
+
+     /*
+     public function name_singular(){
+         return $this->hasMany('App\Class');
      }
-     public function costoServicio(){
-         return $this->belongsTo('App\CostoServicio');
-     }
-     public function imagen(){
-         return $this->belongsTo('App\Imagen');
-     }
-     public function resultadoExamenFisico(){
-         return $this->belongsTo('App\ResultadoExamenFisico');
-     }
-     public function video(){
-         return $this->belongsTo('App\Video');
-     }
+     */
+     //////////////////////////////////////////////////////
 }

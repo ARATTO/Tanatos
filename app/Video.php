@@ -12,13 +12,13 @@ class Video extends Model
      *
      * @var array
      */
+     //////////////////////////////////////////////////////
     protected $fillable = [
         'id',
         'nombrevideo',
         'extensionvideo',
         'video',
-        /*FK*/
-        'idexamenfisico',
+        
     ];
 
     /**
@@ -29,15 +29,34 @@ class Video extends Model
     protected $hidden = [
         
     ];
+    //////////////////////////////////////////////////////
     /**
     * Eliminar timestamps del modelo
     */
     public $timestamps = false;
+    //////////////////////////////////////////////////////
+
     /**
      * RELACIONES
      *
      */
-     public function examenesFisicos(){
-         return $this->hasMany('App\ExamenFisico');
+
+     /*
+     public function name_plural(){
+         return $this->belongsTo('App\Class');
      }
+     */
+     //////////////////////////////////////////////////////
+
+     /**
+     * RETORNO DE RELACIONES
+     *
+     */
+
+     
+     public function resExamenFisico(){
+         return $this->hasMany('App\ResExamenFisico');
+     }
+     
+     //////////////////////////////////////////////////////
 }

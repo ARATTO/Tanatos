@@ -12,13 +12,13 @@ class CostoServicio extends Model
      *
      * @var array
      */
+     //////////////////////////////////////////////////////
     protected $fillable = [
         'id',
         'nombreservicio',
         'preciocostoservicio',
         'descripcionservicio',
-        /*FK*/
-        'idexamenfisico',
+     
     ];
 
     /**
@@ -29,15 +29,37 @@ class CostoServicio extends Model
     protected $hidden = [
         
     ];
+    //////////////////////////////////////////////////////
     /**
     * Eliminar timestamps del modelo
     */
     public $timestamps = false;
+    //////////////////////////////////////////////////////
+
     /**
      * RELACIONES
      *
      */
-     public function examenesFisicos(){
-         return $this->hasMany('App\ExamenFisico');
+
+     /*
+     public function name_plural(){
+         return $this->belongsTo('App\Class');
      }
+     */
+     //////////////////////////////////////////////////////
+
+     /**
+     * RETORNO DE RELACIONES
+     *
+     */
+
+     
+     public function consultaMedica(){
+         return $this->hasMany('App\ConsultaMedica');
+     }
+     public function servicioPrecio(){
+         return $this->hasMany('App\ServicoPrecio');
+     }
+     
+     //////////////////////////////////////////////////////
 }

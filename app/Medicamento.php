@@ -12,6 +12,7 @@ class Medicamento extends Model
      *
      * @var array
      */
+     //////////////////////////////////////////////////////
     protected $fillable = [
         'id',
         'codigomedicamento',
@@ -21,9 +22,9 @@ class Medicamento extends Model
         'formafarmaceutica',
         'observacion',
         'preciomedicamento',
+        
         /*FK*/
         'idtipomedicamento',
-        'idtratamiento',
     ];
 
     /**
@@ -34,18 +35,34 @@ class Medicamento extends Model
     protected $hidden = [
         
     ];
+    //////////////////////////////////////////////////////
     /**
     * Eliminar timestamps del modelo
     */
     public $timestamps = false;
+    //////////////////////////////////////////////////////
+
     /**
      * RELACIONES
      *
      */
+
+     
      public function tipoMedicamentos(){
-         return $this->hasMany('App\TipoMedicamento');
+         return $this->belongsTo('App\TipoMedicamento');
      }
-     public function tratamientos(){
-         return $this->hasMany('App\Tratamiento');
+     
+     //////////////////////////////////////////////////////
+
+     /**
+     * RETORNO DE RELACIONES
+     *
+     */
+
+     
+     public function tratamientoMedicamento(){
+         return $this->hasMany('App\TratamientoMedicamento');
      }
+     
+     //////////////////////////////////////////////////////
 }

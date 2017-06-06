@@ -12,12 +12,15 @@ class Diagnostico extends Model
      *
      * @var array
      */
+     //////////////////////////////////////////////////////
     protected $fillable = [
         'id',
         'descripciondiagnostico',
+        
         /*FK*/
         'idconsultamedica',
         'idenfermedad',
+        'idtratamiento',
     ];
 
     /**
@@ -28,26 +31,39 @@ class Diagnostico extends Model
     protected $hidden = [
         
     ];
+    //////////////////////////////////////////////////////
     /**
     * Eliminar timestamps del modelo
     */
     public $timestamps = false;
+    //////////////////////////////////////////////////////
+
     /**
      * RELACIONES
      *
      */
+
      public function consultasMedicas(){
-         return $this->hasMany('App\ConsultaMedica');
+         return $this->belongsTo('App\ConsultaMedica');
      }
      public function enfermedades(){
-         return $this->hasMany('App\Enfermedad');
+         return $this->belongsTo('App\Enfermedad');
      }
+     public function tratamientos(){
+         return $this->belongsTo('App\Tratamiento');
+     }
+
+     //////////////////////////////////////////////////////
 
      /**
      * RETORNO DE RELACIONES
      *
      */
-     public function tratamiento(){
-         return $this->belongsTo('App\Tratamiento');
+
+     /*
+     public function name_singular(){
+         return $this->hasMany('App\Class');
      }
+     */
+     //////////////////////////////////////////////////////
 }

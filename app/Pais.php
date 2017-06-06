@@ -12,6 +12,7 @@ class Pais extends Model
      *
      * @var array
      */
+     //////////////////////////////////////////////////////
     protected $fillable = [
         'id',
         'nombrepais',
@@ -27,18 +28,34 @@ class Pais extends Model
     protected $hidden = [
         
     ];
+    //////////////////////////////////////////////////////
     /**
     * Eliminar timestamps del modelo
     */
     public $timestamps = false;
+    //////////////////////////////////////////////////////
+
     /**
+     * RELACIONES
+     *
+     */
+
+     /*
+     public function name_plural(){
+         return $this->belongsTo('App\Class');
+     }
+     */
+     //////////////////////////////////////////////////////
+
+     /**
      * RETORNO DE RELACIONES
      *
      */
+
+     
      public function departamento(){
-         return $this->belongsTo('App\Departamento');
+         return $this->hasMany('App\Departamento');
      }
-     public function hospital(){
-         return $this->belongsTo('App\Hospital');
-     }
+     
+     //////////////////////////////////////////////////////
 }

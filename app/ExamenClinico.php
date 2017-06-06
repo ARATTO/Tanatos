@@ -12,11 +12,12 @@ class ExamenClinico extends Model
      *
      * @var array
      */
+     //////////////////////////////////////////////////////
     protected $fillable = [
         'id',
-        'campoexamenclinico',
-        'precioexamenclinico',
+
         /*FK*/
+        'idresultadoexamenclinico',
         'idtipoexamenclinico',
         'idconsultamedica',
     ];
@@ -29,26 +30,40 @@ class ExamenClinico extends Model
     protected $hidden = [
         
     ];
+    //////////////////////////////////////////////////////
     /**
     * Eliminar timestamps del modelo
     */
     public $timestamps = false;
+    //////////////////////////////////////////////////////
+
     /**
      * RELACIONES
      *
      */
-     public function tipoExamenesClinicos(){
-         return $this->hasMany('App\TipoExamenClinico');
-     }
-     public function consultasMedicas(){
-         return $this->hasMany('App\ConsultaMedica');
-     }
+
      
-     /**
-     * RELACIONES
-     *
-     */
-     public function resultadoExamenClinico(){
+     public function resultadoExamenesClinicos(){
          return $this->belongsTo('App\ResultadoExamenClinico');
      }
+     public function tipoExamenesClinico(){
+         return $this->belongsTo('App\TipoExamenClinico');
+     }
+     public function consultasMedicas(){
+         return $this->belongsTo('App\ConsultaMedica');
+     }
+     
+     //////////////////////////////////////////////////////
+
+     /**
+     * RETORNO DE RELACIONES
+     *
+     */
+
+     /*
+     public function name_singular(){
+         return $this->hasMany('App\Class');
+     }
+     */
+     //////////////////////////////////////////////////////
 }

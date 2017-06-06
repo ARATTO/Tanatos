@@ -12,10 +12,12 @@ class EstadoCivil extends Model
      *
      * @var array
      */
+     //////////////////////////////////////////////////////
     protected $fillable = [
         'id',
         'nombreestadocivil',
         'descripcionestadocivil',
+        
     ];
 
     /**
@@ -26,20 +28,34 @@ class EstadoCivil extends Model
     protected $hidden = [
         
     ];
+    //////////////////////////////////////////////////////
     /**
     * Eliminar timestamps del modelo
     */
     public $timestamps = false;
+    //////////////////////////////////////////////////////
+
     /**
      * RELACIONES
      *
      */
 
+     /*
+     public function name_plural(){
+         return $this->belongsTo('App\Class');
+     }
+     */
+     //////////////////////////////////////////////////////
+
      /**
      * RETORNO DE RELACIONES
      *
      */
-     public function user(){
-         return $this->belongsTo('App\User');
+
+     
+     public function persona(){
+         return $this->hasMany('App\Persona');
      }
+     
+     //////////////////////////////////////////////////////
 }

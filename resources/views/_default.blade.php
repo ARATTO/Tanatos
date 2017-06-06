@@ -22,8 +22,8 @@
                     <!-- AQUI DEBEN AGREGAR EL MENSAJE QUE QUIERAN EN EL PANEL HEAD -->
 					<div class="panel-heading"> TITULO DEL PANEL </div>
 					<div class="panel-body">
-
-						
+						@include('bones-flash::bones.flash')
+						@include('layouts.partials.flash')						
 						
 					</div>
 				</div>

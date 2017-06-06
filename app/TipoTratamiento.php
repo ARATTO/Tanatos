@@ -12,11 +12,13 @@ class TipoTratamiento extends Model
      *
      * @var array
      */
+     //////////////////////////////////////////////////////
     protected $fillable = [
         'id',
         'nombretipotratamiento',
         'descripciontipotratamiento',
         'preciotratamiento',
+        
     ];
 
     /**
@@ -27,20 +29,34 @@ class TipoTratamiento extends Model
     protected $hidden = [
         
     ];
+    //////////////////////////////////////////////////////
     /**
     * Eliminar timestamps del modelo
     */
     public $timestamps = false;
+    //////////////////////////////////////////////////////
+
     /**
      * RELACIONES
      *
      */
 
+     /*
+     public function name_plural(){
+         return $this->belongsTo('App\Class');
+     }
+     */
+     //////////////////////////////////////////////////////
+
      /**
      * RETORNO DE RELACIONES
      *
      */
+
+     
      public function tratamiento(){
-         return $this->belongsTo('App\Tratamiento');
+         return $this->hasMany('App\Tratamiento');
      }
+     
+     //////////////////////////////////////////////////////
 }

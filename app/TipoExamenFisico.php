@@ -12,10 +12,13 @@ class TipoExamenFisico extends Model
      *
      * @var array
      */
+     //////////////////////////////////////////////////////
     protected $fillable = [
         'id',
         'nombreexamenfisico',
         'descripcionexamenfisico',
+        'precioexamenfisico',
+        
     ];
 
     /**
@@ -26,20 +29,34 @@ class TipoExamenFisico extends Model
     protected $hidden = [
         
     ];
+    //////////////////////////////////////////////////////
     /**
     * Eliminar timestamps del modelo
     */
     public $timestamps = false;
+    //////////////////////////////////////////////////////
+
     /**
      * RELACIONES
      *
      */
-     
+
+     /*
+     public function name_plural(){
+         return $this->belongsTo('App\Class');
+     }
+     */
+     //////////////////////////////////////////////////////
+
      /**
-     * RETORNOS DE RELACIONES
+     * RETORNO DE RELACIONES
      *
      */
+
+     
      public function examenFisico(){
-         return $this->belongsTo('App\ExamenFisico');
+         return $this->hasMany('App\ExamenFisico');
      }
+     
+     //////////////////////////////////////////////////////
 }

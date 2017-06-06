@@ -12,14 +12,15 @@ class Tratamiento extends Model
      *
      * @var array
      */
+     //////////////////////////////////////////////////////
     protected $fillable = [
         'id',
         'dosis',
         'frecuencia',
         'espostop',
+        
         /*FK*/
         'idtipotratamiento',
-        'iddiagnostico',
     ];
 
     /**
@@ -30,25 +31,37 @@ class Tratamiento extends Model
     protected $hidden = [
         
     ];
+    //////////////////////////////////////////////////////
     /**
     * Eliminar timestamps del modelo
     */
     public $timestamps = false;
+    //////////////////////////////////////////////////////
+
     /**
      * RELACIONES
      *
      */
-     public function tipoTratamientos(){
-         return $this->hasMany('App\TipoTratamiento');
+
+     
+     public function tiposTratamientos(){
+         return $this->belongsTo('App\TipoTratamiento');
      }
-     public function diagnosticos(){
-         return $this->hasMany('App\Diagnostico');
-     }
+     
+     //////////////////////////////////////////////////////
+
      /**
      * RETORNO DE RELACIONES
      *
      */
-     public function medicamento(){
-         return $this->belongsTo('App\Medicamento');
+
+     
+     public function diagnostico(){
+         return $this->hasMany('App\Diagnostico');
      }
+     public function tratamientoMedicamento(){
+         return $this->hasMany('App\TratamientoMedicamento');
+     }
+     
+     //////////////////////////////////////////////////////
 }

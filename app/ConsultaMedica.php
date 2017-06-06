@@ -12,11 +12,15 @@ class ConsultaMedica extends Model
      *
      * @var array
      */
+     //////////////////////////////////////////////////////
     protected $fillable = [
         'id',
         'fechaconsulta',
         'descripcionsintomas',
         'sintomatologia',
+        
+        /*FK*/
+        'idcostoservicio',
     ];
 
     /**
@@ -27,29 +31,42 @@ class ConsultaMedica extends Model
     protected $hidden = [
         
     ];
+    //////////////////////////////////////////////////////
     /**
     * Eliminar timestamps del modelo
     */
     public $timestamps = false;
+    //////////////////////////////////////////////////////
+
     /**
      * RELACIONES
      *
      */
+
      
+     public function costosServicios(){
+         return $this->belongsTo('App\CostoServicio');
+     }
+     
+     //////////////////////////////////////////////////////
+
      /**
      * RETORNO DE RELACIONES
      *
      */
+
+     
      public function cita(){
-         return $this->belongsTo('App\Cita');
+         return $this->hasMany('App\Cita');
      }
      public function diagnostico(){
-         return $this->belongsTo('App\Diagnostico');
+         return $this->hasMany('App\Diagnostico');
      }
      public function examenClinico(){
-         return $this->belongsTo('App\ExamenClinico');
+         return $this->hasMany('App\ExamenClinico');
      }
      public function examenFisico(){
-         return $this->belongsTo('App\ExamenFisico');
+         return $this->hasMany('App\ExamenFisico');
      }
+     //////////////////////////////////////////////////////
 }
