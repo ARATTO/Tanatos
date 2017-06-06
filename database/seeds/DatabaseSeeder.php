@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SeedTelefonos::class);
         $this->call(SeedDetalleDireccion::class);
         $this->call(SeedPersona::class);
-        //$this->call(SeedTipoMedicamento::class);
+        $this->call(SeedTipoMedicamento::class);
         //$this->call(SeedPais::class);
         //$this->call(SeedTipoTratamiento::class);
         //$this->call(SeedSala::class);

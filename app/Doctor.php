@@ -70,4 +70,11 @@ class Doctor extends Model
      }
      
      //////////////////////////////////////////////////////
+
+     /*Scope de busqueda*/
+     public function scopeNombre($query,$name){
+        if($name != ""){
+        $query->where('nombredoctor',"LIKE", "%$name%");
+            }
+     }
 }
