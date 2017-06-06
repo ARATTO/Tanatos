@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\User;
+use App\Persona;
 use App\Rol;
 use App\EstadoCivil;
 use App\Http\Requests;
@@ -28,6 +29,7 @@ class UserController extends Controller
 
         $users->each(function($users){
             $users->roles = Rol::find($users->idrol);
+            $users->personas = Persona::find($users->id);
         });
 
         //dd($users);
