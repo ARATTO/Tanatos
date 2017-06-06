@@ -12,12 +12,14 @@ class Hospital extends Model
      *
      * @var array
      */
+     //////////////////////////////////////////////////////
     protected $fillable = [
         'id',
         'nombre',
         'descripciondireccion',
+        
         /*FK*/
-        'idpais',
+        'idmunicipio',
     ];
 
     /**
@@ -28,22 +30,34 @@ class Hospital extends Model
     protected $hidden = [
         
     ];
+    //////////////////////////////////////////////////////
     /**
     * Eliminar timestamps del modelo
     */
     public $timestamps = false;
+    //////////////////////////////////////////////////////
+
     /**
      * RELACIONES
      *
      */
-     public function paises(){
-         return $this->belongsTo('App\Pais');
+
+     
+     public function municipios(){
+         return $this->belongsTo('App\Municipio');
      }
+     
+     //////////////////////////////////////////////////////
+
      /**
      * RETORNO DE RELACIONES
      *
      */
+
+     
      public function expediente(){
          return $this->hasMany('App\Expediente');
      }
+     
+     //////////////////////////////////////////////////////
 }

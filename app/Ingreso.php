@@ -12,13 +12,15 @@ class Ingreso extends Model
      *
      * @var array
      */
+     //////////////////////////////////////////////////////
     protected $fillable = [
         'id',
+        
         /*FK*/
         'iddoctor',
         'idexpediente',
         'idcamilla',
-        'idsala'
+        'idsala',
     ];
 
     /**
@@ -29,14 +31,19 @@ class Ingreso extends Model
     protected $hidden = [
         
     ];
+    //////////////////////////////////////////////////////
     /**
     * Eliminar timestamps del modelo
     */
     public $timestamps = false;
+    //////////////////////////////////////////////////////
+
     /**
      * RELACIONES
      *
      */
+
+     
      public function doctores(){
          return $this->belongsTo('App\Doctor');
      }
@@ -49,11 +56,18 @@ class Ingreso extends Model
      public function salas(){
          return $this->belongsTo('App\Sala');
      }
+     
+     //////////////////////////////////////////////////////
+
      /**
      * RETORNO DE RELACIONES
      *
      */
+
+     
      public function bitacora(){
          return $this->hasMany('App\Bitacora');
      }
+     
+     //////////////////////////////////////////////////////
 }

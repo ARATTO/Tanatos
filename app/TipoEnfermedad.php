@@ -12,9 +12,11 @@ class TipoEnfermedad extends Model
      *
      * @var array
      */
+     //////////////////////////////////////////////////////
     protected $fillable = [
         'id',
         'nombretipoenfermedad',
+       
     ];
 
     /**
@@ -25,21 +27,34 @@ class TipoEnfermedad extends Model
     protected $hidden = [
         
     ];
+    //////////////////////////////////////////////////////
     /**
     * Eliminar timestamps del modelo
     */
     public $timestamps = false;
+    //////////////////////////////////////////////////////
+
     /**
      * RELACIONES
      *
      */
 
-    /**
+     /*
+     public function name_plural(){
+         return $this->belongsTo('App\Class');
+     }
+     */
+     //////////////////////////////////////////////////////
+
+     /**
      * RETORNO DE RELACIONES
      *
      */
+
+     
      public function enfermedad(){
          return $this->hasMany('App\Enfermedad');
      }
-
+     
+     //////////////////////////////////////////////////////
 }

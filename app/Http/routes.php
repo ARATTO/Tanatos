@@ -62,7 +62,12 @@ Route::get('/admin', 'HomeController@index');
 * RUTAS RODRIGO
 *
 */
+	Route::resource('medicamentos','MedicamentosController');
 
+	/*Route::get('verMedicamentos',[
+		'uses' => 'MedicamentosController@index',
+		'as' => 'verMedicamentos'
+			]);*/
 /*
 *
 * FIN RUTAS RODRIGO
@@ -75,7 +80,12 @@ Route::get('/admin', 'HomeController@index');
 * RUTAS ELIAS
 *
 */
+Route::get('/calendar', function () {
+    return view('citas/calendar');
+})->name('calendar');
 
+
+Route::resource('citas','CitaController');
 /*
 *
 * FIN RUTAS ELIAS
@@ -88,6 +98,34 @@ Route::get('/admin', 'HomeController@index');
 * RUTAS LOBO
 *
 */
+/*Route::get('expediente/create','expedienteController@create');
+	Route::get('expediente/show','expedienteController@show');
+	Route::get('Expedientes',[
+	        'uses' => 'expedienteController@index',
+	        'as' => 'expediente.index'
+	        ]);
+	Route::get('mostrarExpedientes/{expediente}/vista', [
+	    'uses' => 'expedienteController@verExpedientes', 
+	    'as'    => 'expediente.vista'
+	    ]);
+	Route::get('mostrarExpedientes/{id}/destroy',[
+	        'uses' => 'expedienteController@destroy',
+	        'as' => 'expediente.destroy'
+	        ]);*/
+
+	
+	Route::resource('expediente','expedienteController');
+
+	Route::get('mostrarExpedientes/{expediente}/vista', [
+	    'uses' => 'expedienteController@verExpedientes', 
+	    'as'    => 'expediente.vista'
+	    ]);
+
+	Route::get('mostrarExpedientes/{id}/destroy',[
+	        'uses' => 'expedienteController@destroy',
+	        'as' => 'expediente.destroy'
+	        ]);
+
 
 /*
 *
@@ -101,7 +139,7 @@ Route::get('/admin', 'HomeController@index');
 * RUTAS ALAM
 *
 */
-
+	Route::resource('doctores','DoctorController');
 /*
 *
 * FIN RUTAS ALAM
