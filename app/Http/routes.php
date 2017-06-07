@@ -64,10 +64,10 @@ Route::get('/admin', 'HomeController@index');
 */
 	Route::resource('medicamentos','MedicamentosController');
 
-	/*Route::get('verMedicamentos',[
-		'uses' => 'MedicamentosController@index',
-		'as' => 'verMedicamentos'
-			]);*/
+	Route::get('busqueda',[
+		'uses' => 'BusquedaController@index',
+		'as' => 'busqueda'
+			]);
 /*
 *
 * FIN RUTAS RODRIGO

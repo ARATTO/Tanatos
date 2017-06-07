@@ -12,11 +12,15 @@ class Doctor extends Model
      *
      * @var array
      */
+     //////////////////////////////////////////////////////
     protected $fillable = [
         'id',
         'nombredoctor',
-        'especialidad',
         'esemergencia',
+        
+        /*FK*/
+        'idpersona',
+        'idespecialidad',
     ];
 
     /**
@@ -27,28 +31,48 @@ class Doctor extends Model
     protected $hidden = [
         
     ];
+    //////////////////////////////////////////////////////
     /**
     * Eliminar timestamps del modelo
     */
     public $timestamps = false;
+    //////////////////////////////////////////////////////
+
     /**
      * RELACIONES
      *
      */
 
+     
+     public function personas(){
+         return $this->belongsTo('App\Personas');
+     }
+     public function especialidad(){
+         return $this->belongsTo('App\Especialidad');
+     }
+     
+     //////////////////////////////////////////////////////
+
      /**
      * RETORNO DE RELACIONES
      *
      */
+
+     
+     public function cita(){
+         return $this->hasMany('App\Cita');
+     }
      public function horario(){
          return $this->hasMany('App\Horario');
      }
      public function ingreso(){
          return $this->hasMany('App\Ingreso');
      }
+     
+     //////////////////////////////////////////////////////
 
-
-    public function scopeNombre($query,$name){
+     /*Scope de busqueda*/
+     public function scopeNombre($query,$name){
         if($name != ""){
         $query->where('nombredoctor',"LIKE", "%$name%");
             }

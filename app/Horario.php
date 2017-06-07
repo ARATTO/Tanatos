@@ -12,11 +12,12 @@ class Horario extends Model
      *
      * @var array
      */
+     //////////////////////////////////////////////////////
     protected $fillable = [
         'id',
         'horainicio',
         'horafin',
-        'fecha',
+        
         /*FK*/
         'iddoctor',
     ];
@@ -29,15 +30,34 @@ class Horario extends Model
     protected $hidden = [
         
     ];
+    //////////////////////////////////////////////////////
     /**
     * Eliminar timestamps del modelo
     */
     public $timestamps = false;
+    //////////////////////////////////////////////////////
+
     /**
      * RELACIONES
      *
      */
+
+     
      public function doctores(){
          return $this->belongsTo('App\Doctor');
      }
+     
+     //////////////////////////////////////////////////////
+
+     /**
+     * RETORNO DE RELACIONES
+     *
+     */
+
+     /*
+     public function name_singular(){
+         return $this->hasMany('App\Class');
+     }
+     */
+     //////////////////////////////////////////////////////
 }

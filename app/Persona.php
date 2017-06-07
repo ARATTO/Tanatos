@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ConsultaMedica extends Model
+class Persona extends Model
 {
-    protected $table = 'consultamedica';
+    protected $table = 'persona';
     /**
      * The attributes that are mass assignable.
      *
@@ -15,12 +15,18 @@ class ConsultaMedica extends Model
      //////////////////////////////////////////////////////
     protected $fillable = [
         'id',
-        'fechaconsulta',
-        'descripcionsintomas',
-        'sintomatologia',
+        'primernombre',
+        'segundonombre',
+        'primerapellido',
+        'segundoapellido',
+        'genero',
+        'fechanacimiento',
         
         /*FK*/
-        'idcostoservicio',
+        'iduser',
+        'idestadocivil',
+        'idtelefono',
+        'iddetalledireccion',
     ];
 
     /**
@@ -44,8 +50,17 @@ class ConsultaMedica extends Model
      */
 
      
-     public function costosServicios(){
-         return $this->belongsTo('App\CostoServicio');
+     public function users(){
+         return $this->belongsTo('App\User');
+     }
+     public function estadosCiviles(){
+         return $this->belongsTo('App\EstadoCivil');
+     }
+     public function telefonos(){
+         return $this->belongsTo('App\Telefono');
+     }
+     public function detallesDirecciones(){
+         return $this->belongsTo('App\DetalleDireccion');
      }
      
      //////////////////////////////////////////////////////
@@ -56,17 +71,12 @@ class ConsultaMedica extends Model
      */
 
      
-     public function cita(){
-         return $this->hasMany('App\Cita');
+     public function doctor(){
+         return $this->hasMany('App\Doctor');
      }
-     public function diagnostico(){
-         return $this->hasMany('App\Diagnostico');
+     public function expediente(){
+         return $this->hasMany('App\Expediente');
      }
-     public function examenClinico(){
-         return $this->hasMany('App\ExamenClinico');
-     }
-     public function examenFisico(){
-         return $this->hasMany('App\ExamenFisico');
-     }
+     
      //////////////////////////////////////////////////////
 }

@@ -12,9 +12,11 @@ class Municipio extends Model
      *
      * @var array
      */
+     //////////////////////////////////////////////////////
     protected $fillable = [
         'id',
         'nombremunicipio',
+        
         /*FK*/
         'iddepartamento',
     ];
@@ -27,15 +29,39 @@ class Municipio extends Model
     protected $hidden = [
         
     ];
+    //////////////////////////////////////////////////////
     /**
     * Eliminar timestamps del modelo
     */
     public $timestamps = false;
+    //////////////////////////////////////////////////////
+
     /**
      * RELACIONES
      *
      */
+
+     
      public function departamentos(){
          return $this->belongsTo('App\Departamento');
      }
+
+     
+     //////////////////////////////////////////////////////
+
+     /**
+     * RETORNO DE RELACIONES
+     *
+     */
+
+     
+     public function hospital(){
+         return $this->hasMany('App\Hospital');
+     }
+     public function detalleDireccion(){
+         return $this->hasMany('App\DetalleDireccion');
+     }
+     
+     
+     //////////////////////////////////////////////////////
 }

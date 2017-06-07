@@ -48,11 +48,11 @@
 								<tbody>
 									@foreach($users as $user)
 										<tr>
-											<td>{{$user->nombres}}</td>
-                                            <td>{{$user->apellidos}}</td>
-                                            <td>{{$user->genero}}</td>
+											<td>{{$user->personas->primernombre}} {{$user->personas->segundonombre}}</td>
+                                            <td>{{$user->personas->primerapellido}} {{$user->personas->segundoapellido}}</td>
+                                            <td>{{$user->personas->genero}}</td>
 											<td>{{$user->email}}</td>
-                                            <td>{{$user->fechanacimiento}}</td>
+                                            <td>{{$user->personas->fechanacimiento}}</td>
                                             <td>{{$user->roles->nombrerol}}</td>
 										</tr>
 									@endforeach
