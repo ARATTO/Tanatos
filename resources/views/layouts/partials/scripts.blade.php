@@ -139,3 +139,10 @@
       });
       
 </script>
+
+<script type="text/javascript">
+      function redireccionar(){
+            //window.location.replace("");
+            alert('hola');
+      } 
+</script>
