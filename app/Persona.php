@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Scope\AgeScope;
 use Illuminate\Database\Eloquent\Model;
 
 class Persona extends Model
@@ -79,4 +80,21 @@ class Persona extends Model
      }
      
      //////////////////////////////////////////////////////
+
+
+     /*Scope Global*/
+
+   /* protected static function boot(){
+        parent::boot();
+
+        static::addGlobalScope(new AgeScope);
+    }*/
+
+    public function scopeDatos($query,$name){
+
+        if($name != ""){
+        $query;
+
+            }
+     }
 }

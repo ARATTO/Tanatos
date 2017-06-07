@@ -27,6 +27,7 @@ class MedicamentosController extends Controller
 
         $medicamentos = Medicamento::name($request->name)->orderBy('codigomedicamento','ASC')->paginate(20); 
 
+        
        // $medicamentos = DB::table('medicamento')->paginate(20);
 
 
