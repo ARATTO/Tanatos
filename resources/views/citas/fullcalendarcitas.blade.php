@@ -118,8 +118,6 @@ $(document).ready(function() {
                         .addClass('some-class')
                         .text("Numero de Expediente: "+event.idexpediente
                               +" Hora de la cita: "+event.start
-                        
-                        
                               ),
                         animation: false,
                         customClass: 'animated tada'
