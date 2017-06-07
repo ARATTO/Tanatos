@@ -125,6 +125,21 @@ Route::resource('citas','CitaController');
 	        'uses' => 'expedienteController@destroy',
 	        'as' => 'expediente.destroy'
 	        ]);
+	
+	//consultas y diagnostico
+
+	Route::resource('diagnostico','ConsultaController');
+
+	Route::get('mostrarCitas/{diagnostico}/vista', [
+	    'uses' => 'ConsultaController@verConsulta', 
+	    'as'    => 'consulta.vista'
+	    ]);
+
+	Route::get('mostrarExpedientes/{id}/destroy',[
+	        'uses' => 'ConsultaController@destroy',
+	        'as' => 'consulta.destroy'
+	        ]);
+
 
 
 /*

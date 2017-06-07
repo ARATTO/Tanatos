@@ -25,6 +25,15 @@ class expedienteController extends Controller
 
     }
 
+    public function index(){
+        $expediente = DB::table('expediente')
+            ->join("usuario","expediente.id","=","usuario.id")
+            ->get();
+
+        return view('expediente.index')->with('expedientes',$expediente);
+
+    }
+
     public function store(Request $request){
         $historialClinico=new HistorialClinico;
         $historialClinico->nombremadre = $request->nombremadre;
@@ -53,15 +62,6 @@ class expedienteController extends Controller
         return view('expediente.create')
         ->with('usuarios',$usuario)
         ->with('hospitales',$hospital);
-
-    }
-
-    public function index(){
-        $expediente = DB::table('expediente')
-            ->join("usuario","expediente.id","=","usuario.id")
-            ->get();
-
-        return view('expediente.index')->with('expedientes',$expediente);
 
     }
 
