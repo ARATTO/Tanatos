@@ -18,6 +18,53 @@ $(document).ready(function() {
                   eventRender: function(event,element){
                         var descripcion = "Expediente:"+event.idexpediente;
                         element.tooltip({title: descripcion});
+                        element.bind('mousedown', function (e) {
+                              if (e.which == 3) {
+                                    var currentToken = $('meta[name="csrf-token"]').attr('content');
+                              //MENSAJE PARA SOLICITAR LA ELIMINACION DE UNA CITA METODO AJAX DENTRO DE EL!
+                                    swal({
+                                          title: '¿Está seguro?',
+                                          text: "No será posible reestaurarlo",
+                                          type: 'warning',
+                                          showCancelButton: true,
+                                          confirmButtonColor: '#3085d6',
+                                          cancelButtonColor: '#d33',
+                                          confirmButtonText: 'Si, Eliminar!',
+                                          cancelButtonText: 'Cancelar',
+                                          showLoaderOnConfirm: true,
+                                          allowOutsideClick: false,
+                                          preConfirm: function(){
+                                                //METODO AJAX PARA ELIMINAR CITAS                                                                     
+                                                $.ajax({
+
+                                                      type: 'post',
+                                                      data: {_method: 'delete', id :event.id,_token:currentToken},
+                                                      
+                                                      url:  '/citas/' + event.id,
+                                                      
+                                                      success: function() {  
+                                                                  
+                                                            $('#calendar').fullCalendar('removeEvents',event._id); //<--- ESTA LINEA ELIMINA LA PARTE VISUAL DEL EVENTO
+                                                            swal(
+                                                            'Eliminado!',
+                                                            'La cita ha sido eliminada.',
+                                                            'success'
+                                                            )
+                                                      },
+                                                      error:function(){
+                                                            swal(
+                                                            'FallÓ!',
+                                                            'Algo ha salido mal, la cita no se a podido eliminar.',
+                                                            'error'
+                                                            )
+                                                      }
+                                                });
+                                          },
+                                          }).then(function () {
+                                          
+                                          })
+                              }
+                              });
                   },
                   eventDragStop: function( event, jsEvent, view) {
                       /* var currentToken = $('meta[name="csrf-token"]').attr('content');
@@ -65,54 +112,18 @@ $(document).ready(function() {
                               })*/
                   },
                   eventClick: function(event){
-				/*var r = confirm("¿Está seguro de que desea eliminar esta cita?");
-                        if (r == true) {
-                              $('#calendar').fullCalendar('removeEvents',event._id);
-                        }   
-		   	      */           
-                        var currentToken = $('meta[name="csrf-token"]').attr('content');
-                        //MENSAJE PARA SOLICITAR LA ELIMINACION DE UNA CITA METODO AJAX DENTRO DE EL!
-                        swal({
-                              title: '¿Está seguro?',
-                              text: "No será posible reestaurarlo",
-                              type: 'warning',
-                              showCancelButton: true,
-                              confirmButtonColor: '#3085d6',
-                              cancelButtonColor: '#d33',
-                              confirmButtonText: 'Si, Eliminar!',
-                              cancelButtonText: 'Cancelar',
-                              showLoaderOnConfirm: true,
-                              allowOutsideClick: false,
-                              preConfirm: function(){
-                                     //METODO AJAX PARA ELIMINAR CITAS                                                                     
-                                    $.ajax({
-
-                                          type: 'post',
-                                          data: {_method: 'delete', id :event.id,_token:currentToken},
-                                          
-                                          url:  '/citas/' + event.id,
-                                          
-                                          success: function() {  
-                                                          
-                                                $('#calendar').fullCalendar('removeEvents',event._id); //<--- ESTA LINEA ELIMINA LA PARTE VISUAL DEL EVENTO
-                                                swal(
-                                                'Eliminado!',
-                                                'La cita ha sido eliminada.',
-                                                'success'
-                                                )
-                                          },
-                                          error:function(){
-                                                swal(
-                                                'FallÓ!',
-                                                'Algo ha salido mal, la cita no se a podido eliminar.',
-                                                'error'
-                                                )
-                                          }
-                                    });
-                              },
-                              }).then(function () {
-                                   
-                              })
+                      swal({
+                        title: event.title,
+                        html: $('<div>')
+                        .addClass('some-class')
+                        .text("Numero de Expediente: "+event.idexpediente
+                              +" Hora de la cita: "+event.start
+                        
+                        
+                              ),
+                        animation: false,
+                        customClass: 'animated tada'
+                        })
 			}
                   
 		});            

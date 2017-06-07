@@ -29,8 +29,8 @@ class DatabaseSeeder extends Seeder
         //$this->call(SeedCamilla::class);
         //$this->call(SeedTipoExamenClinico::class);
         //$this->call(SeedTipoExamenFisico::class);
-        //$this->call(SeedDoctor::class);
+        $this->call(SeedDoctor::class);
         //$this->call(SeedMedicamento::class);
-        //$this->call(SeedHospital::class);
+        $this->call(SeedHospital::class);
     }
 }

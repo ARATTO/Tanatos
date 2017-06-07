@@ -12,7 +12,7 @@ class SeedHospital extends Seeder
     public function run()
     {
              DB::table('hospital')->insert([
-            'idpais' => 1,
+            'idmunicipio' => 1,
             'nombre' => 'Santa Rita del Rosario',
             'descripciondireccion' => 'colonia las vegas calle N°5',
         ]);

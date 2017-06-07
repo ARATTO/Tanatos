@@ -14,33 +14,33 @@ class SeedDoctor extends Seeder
         //
         DB::table('doctor')->insert([
             'nombredoctor' => 'Aristides Figueroa',
-            'especialidad' => 'Urologo',
+            'idespecialidad' => '2',
             'esemergencia' => true,
         ]);
 
         DB::table('doctor')->insert([
             'nombredoctor' => 'Rafael Valle',
-            'especialidad' => 'Oncologo',
+            'idespecialidad' => '1',
             'esemergencia' => false,
         ]);
 
         DB::table('doctor')->insert([
             'nombredoctor' => 'Kevin Rivera',
-            'especialidad' => 'Neurologo',
+            'idespecialidad' => '1',
             'esemergencia' => false,
         ]);
 
 
         DB::table('doctor')->insert([
             'nombredoctor' => 'Ruth Torento',
-            'especialidad' => 'Neumologa',
+            'idespecialidad' => '1',
             'esemergencia' => true,
         ]);
 
 
         DB::table('doctor')->insert([
             'nombredoctor' => 'Rosa Fernandez',
-            'especialidad' => 'Oftalmologa',
+            'idespecialidad' => '2',
             'esemergencia' => true,
         ]);
     }
