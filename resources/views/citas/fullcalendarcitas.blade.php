@@ -112,13 +112,22 @@ $(document).ready(function() {
                               })*/
                   },
                   eventClick: function(event){
+                       var doctorestxt ='<?php echo$doctores;?>';
+                       var doctores= JSON.parse(doctorestxt);
+                       var d = new Date(event.start); 
+                       // alert(event.start);
+
+                       var start = d.getDate()+"/"+d.getMonth()+"/"+d.getFullYear();
+                       var hora =  d.getUTCHours()+":"+d.getMinutes();
+                      
+                       var texto="Doctor:             <b>"+doctores[event.iddoctor]+'</b><br/>' 
+                              +"Numero expediente:    <b>"+event.idexpediente+'</b><br/>'
+                              +"Fecha cita:           <b>"+start+'</b><br/>'
+                              +"Hora de la cita:      <b>"+hora;
+
                       swal({
                         title: event.title,
-                        html: $('<div>')
-                        .addClass('some-class')
-                        .text("Numero de Expediente: "+event.idexpediente
-                              +" Hora de la cita: "+event.start
-                              ),
+                        html: texto,
                         animation: false,
                         customClass: 'animated tada'
                         })
