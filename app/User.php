@@ -6,7 +6,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    protected $table = 'usuario';
+    protected $table = 'USER';
     /**
      * The attributes that are mass assignable.
      *
@@ -14,17 +14,9 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'id',
-        'nombres',
-        'apellidos',
-        'genero',
-        'fechanacimiento',
-        'detalledireccion',
-        'telefono',
-        'telefonoresponsable',
-        'apellidocasado',
         'email',
+        'estado',
         /*FK*/
-        'idestadocivil',
         'idrol',
     ];
 
@@ -45,19 +37,20 @@ class User extends Authenticatable
      * RELACIONES
      *
      */
-     public function estadosCiviles(){
-         return $this->belongsTo('App\EstadoCivil');
-     }
+     
      public function roles(){
          return $this->belongsTo('App\Rol');
      }
      
+
     /**
      * RETORNO DE RELACIONES
      *
      */
-     public function expediente(){
-         return $this->hasMany('App\Expediente');
+     
+     
+     public function persona(){
+         return $this->hasMany('App\Persona');
      }
     
 }

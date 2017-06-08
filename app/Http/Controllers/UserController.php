@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\User;
+use App\Persona;
 use App\Rol;
 use App\EstadoCivil;
 use App\Http\Requests;
@@ -18,9 +19,9 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function __construct()
-   	{
-   		$this->middleware('auth');
-   	}
+    {
+        $this->middleware('auth');
+    }
 
     public function index()
     {
@@ -28,12 +29,15 @@ class UserController extends Controller
 
         $users->each(function($users){
             $users->roles = Rol::find($users->idrol);
-        });
 
+            $users->personas = Persona::find($users->id);
+
+         });
         //dd($users);
 
         return view('user.index')->with(['users'=>$users]);
     }
+
 
     /**
      * Show the form for creating a new resource.

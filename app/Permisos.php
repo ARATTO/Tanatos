@@ -12,11 +12,11 @@ class Permisos extends Model
      *
      * @var array
      */
+     //////////////////////////////////////////////////////
     protected $fillable = [
         'id',
         'nombrepermiso',
-        /*FK*/
-        'idrol'
+        'descripcion',
     ];
 
     /**
@@ -27,15 +27,34 @@ class Permisos extends Model
     protected $hidden = [
         
     ];
+    //////////////////////////////////////////////////////
     /**
     * Eliminar timestamps del modelo
     */
     public $timestamps = false;
+    //////////////////////////////////////////////////////
+
     /**
      * RELACIONES
      *
      */
-     public function roles(){
-         return $this->belongsTo('App\Rol');
+
+     /*
+     public function name_plural(){
+         return $this->belongsTo('App\Class');
      }
+     */
+     //////////////////////////////////////////////////////
+
+     /**
+     * RETORNO DE RELACIONES
+     *
+     */
+
+     
+     public function permisosRol(){
+         return $this->hasMany('App\PermisosRol');
+     }
+     
+     //////////////////////////////////////////////////////
 }

@@ -3,7 +3,6 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Scopes\FinishScope;
 
 class Medicamento extends Model
 {
@@ -13,6 +12,7 @@ class Medicamento extends Model
      *
      * @var array
      */
+     //////////////////////////////////////////////////////
     protected $fillable = [
         'id',
         'codigomedicamento',
@@ -22,6 +22,7 @@ class Medicamento extends Model
         'formafarmaceutica',
         'observacion',
         'preciomedicamento',
+        
         /*FK*/
         'idtipomedicamento',
     ];
@@ -34,38 +35,42 @@ class Medicamento extends Model
     protected $hidden = [
         
     ];
+    //////////////////////////////////////////////////////
     /**
     * Eliminar timestamps del modelo
     */
     public $timestamps = false;
+    //////////////////////////////////////////////////////
+
     /**
      * RELACIONES
      *
      */
 
-     /*public function tipoMedicamentos(){
-         return $this->hasMany('App\TipoMedicamento');
-     }*/
-
+     
      public function tipoMedicamentos(){
          return $this->belongsTo('App\TipoMedicamento');
      }
-
+     
+     //////////////////////////////////////////////////////
 
      /**
      * RETORNO DE RELACIONES
      *
      */
-     public function tratamiento(){
-         return $this->hasMany('App\Tratamiento');
+
+     
+     public function tratamientoMedicamento(){
+         return $this->hasMany('App\TratamientoMedicamento');
      }
+     
+     //////////////////////////////////////////////////////
 
 
+     /*Scope metodos de busqueda*/
      public function scopeName($query,$name){
         if($name != ""){
         $query->where('nombremedicamento',"LIKE", "%$name%");
             }
      }
-
-
 }

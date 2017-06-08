@@ -12,13 +12,14 @@ class Audio extends Model
      *
      * @var array
      */
+     //////////////////////////////////////////////////////
     protected $fillable = [
         'id',
         'nombreaudio',
         'extensionaudio',
         'audio',
+        
         /*FK*/
-        'idexamenfisico',
     ];
 
     /**
@@ -29,15 +30,35 @@ class Audio extends Model
     protected $hidden = [
         
     ];
+    //////////////////////////////////////////////////////
     /**
     * Eliminar timestamps del modelo
     */
     public $timestamps = false;
+    //////////////////////////////////////////////////////
+
     /**
      * RELACIONES
      *
      */
-     public function examenesFisicos(){
-         return $this->belongsTo('App\ExamenFisico');
+
+     /*
+     public function name_plural(){
+         return $this->belongsTo('App\Class');
      }
+     */
+     //////////////////////////////////////////////////////
+
+     /**
+     * RETORNO DE RELACIONES
+     *
+     */
+
+     
+     public function resExamenFisico(){
+         return $this->hasMany('App\ResExamenFisico');
+     }
+     
+     //////////////////////////////////////////////////////
+
 }

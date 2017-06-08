@@ -12,11 +12,11 @@ class ResultadoExamenClinico extends Model
      *
      * @var array
      */
+     //////////////////////////////////////////////////////
     protected $fillable = [
         'id',
         'resultadoclinico',
-        /*FK*/
-        'idexamenclinico',
+        
     ];
 
     /**
@@ -27,15 +27,34 @@ class ResultadoExamenClinico extends Model
     protected $hidden = [
         
     ];
+    //////////////////////////////////////////////////////
     /**
     * Eliminar timestamps del modelo
     */
     public $timestamps = false;
+    //////////////////////////////////////////////////////
+
     /**
      * RELACIONES
      *
      */
-     public function examenesClinicos(){
-         return $this->belongsTo('App\ExamenClinico');
+
+     /*
+     public function name_plural(){
+         return $this->belongsTo('App\Class');
      }
+     */
+     //////////////////////////////////////////////////////
+
+     /**
+     * RETORNO DE RELACIONES
+     *
+     */
+
+     
+     public function examenClinico(){
+         return $this->hasMany('App\ExamenClinico');
+     }
+     
+     //////////////////////////////////////////////////////
 }
