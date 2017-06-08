@@ -12,12 +12,14 @@ class Expediente extends Model
      *
      * @var array
      */
+     //////////////////////////////////////////////////////
     protected $fillable = [
         'id',
+        
         /*FK*/
+        'idpersona',
         'idhistorialclinico',
         'idhospital',
-        'idusuario'
     ];
 
     /**
@@ -28,31 +30,43 @@ class Expediente extends Model
     protected $hidden = [
         
     ];
+    //////////////////////////////////////////////////////
     /**
     * Eliminar timestamps del modelo
     */
     public $timestamps = false;
+    //////////////////////////////////////////////////////
+
     /**
      * RELACIONES
      *
      */
+
+     
+     public function personas(){
+         return $this->belongsTo('App\Persona');
+     }
      public function historialesClinicos(){
          return $this->belongsTo('App\HistorialClinico');
      }
      public function hospitales(){
          return $this->belongsTo('App\Hospital');
      }
-     public function usuarios(){
-         return $this->belongsTo('App\User');
-     }
+     
+     //////////////////////////////////////////////////////
+
      /**
      * RETORNO DE RELACIONES
      *
      */
+
+     
      public function cita(){
          return $this->hasMany('App\Cita');
      }
      public function ingreso(){
          return $this->hasMany('App\Ingreso');
      }
+     
+     //////////////////////////////////////////////////////
 }

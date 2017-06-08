@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TipoEnfermedad extends Model
+class PermisosRol extends Model
 {
-    protected $table = 'tipoenfermedad';
+    protected $table = 'permisosrol';
     /**
      * The attributes that are mass assignable.
      *
@@ -15,8 +15,11 @@ class TipoEnfermedad extends Model
      //////////////////////////////////////////////////////
     protected $fillable = [
         'id',
-        'nombretipoenfermedad',
-       
+        'nombrepermisorol',
+        
+        /*FK*/
+        'idrol',
+        'idpermiso',
     ];
 
     /**
@@ -39,11 +42,14 @@ class TipoEnfermedad extends Model
      *
      */
 
-     /*
-     public function name_plural(){
-         return $this->belongsTo('App\Class');
+     
+     public function roles(){
+         return $this->belongsTo('App\Rol');
      }
-     */
+     public function permisos(){
+         return $this->belongsTo('App\Permiso');
+     }
+     
      //////////////////////////////////////////////////////
 
      /**
@@ -51,10 +57,10 @@ class TipoEnfermedad extends Model
      *
      */
 
-     
-     public function enfermedad(){
-         return $this->hasMany('App\Enfermedad');
+     /*
+     public function name_singular(){
+         return $this->hasMany('App\Class');
      }
-     
+     */
      //////////////////////////////////////////////////////
 }

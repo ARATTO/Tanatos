@@ -12,9 +12,11 @@ class Sala extends Model
      *
      * @var array
      */
+     //////////////////////////////////////////////////////
     protected $fillable = [
         'id',
         'numerosala',
+        
     ];
 
     /**
@@ -25,20 +27,34 @@ class Sala extends Model
     protected $hidden = [
         
     ];
+    //////////////////////////////////////////////////////
     /**
     * Eliminar timestamps del modelo
     */
     public $timestamps = false;
+    //////////////////////////////////////////////////////
+
     /**
      * RELACIONES
      *
      */
 
+     /*
+     public function name_plural(){
+         return $this->belongsTo('App\Class');
+     }
+     */
+     //////////////////////////////////////////////////////
+
      /**
      * RETORNO DE RELACIONES
      *
      */
+
+     
      public function ingreso(){
          return $this->hasMany('App\Ingreso');
      }
+     
+     //////////////////////////////////////////////////////
 }

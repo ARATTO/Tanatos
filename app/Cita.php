@@ -12,13 +12,17 @@ class Cita extends Model
      *
      * @var array
      */
+     //////////////////////////////////////////////////////
     protected $fillable = [
         'id',
         'title',
         'start',
         'fin',
         'color',
+
         /*FK*/
+        'iddoctor',
+        'idconsultamedica',
         'idexpediente',
     ];
 
@@ -30,28 +34,39 @@ class Cita extends Model
     protected $hidden = [
         
     ];
+    //////////////////////////////////////////////////////
     /**
     * Eliminar timestamps del modelo
     */
     public $timestamps = false;
+    //////////////////////////////////////////////////////
+
     /**
      * RELACIONES
      *
      */
 
+     
+     public function doctores(){
+         return $this->belongsTo('App\Doctor');
+     }
      public function consultasMedicas(){
          return $this->belongsTo('App\ConsultaMedica');
      }
-
-
      public function expedientes(){
          return $this->belongsTo('App\Expediente');
      }
+     //////////////////////////////////////////////////////
+
      /**
      * RETORNO DE RELACIONES
      *
      */
+
+     
      public function signoVital(){
          return $this->hasMany('App\SignoVital');
      }
+     
+     //////////////////////////////////////////////////////
 }

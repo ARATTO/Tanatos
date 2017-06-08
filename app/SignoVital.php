@@ -12,6 +12,7 @@ class SignoVital extends Model
      *
      * @var array
      */
+     //////////////////////////////////////////////////////
     protected $fillable = [
         'id',
         'peso',
@@ -19,6 +20,8 @@ class SignoVital extends Model
         'estatura',
         'presionarterial',
         'ritmocardiaco',
+        'momento',
+        
         /*FK*/
         'idcita',
     ];
@@ -31,15 +34,34 @@ class SignoVital extends Model
     protected $hidden = [
         
     ];
+    //////////////////////////////////////////////////////
     /**
     * Eliminar timestamps del modelo
     */
     public $timestamps = false;
+    //////////////////////////////////////////////////////
+
     /**
      * RELACIONES
      *
      */
+
+     
      public function citas(){
          return $this->belongsTo('App\Cita');
      }
+     
+     //////////////////////////////////////////////////////
+
+     /**
+     * RETORNO DE RELACIONES
+     *
+     */
+
+     /*
+     public function name_singular(){
+         return $this->hasMany('App\Class');
+     }
+     */
+     //////////////////////////////////////////////////////
 }

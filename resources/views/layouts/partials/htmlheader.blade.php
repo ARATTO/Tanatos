@@ -57,6 +57,9 @@
 
     <!-- SweetAlert2.... Mensajes JavasScript -->
     <link href="{{ asset('/plugins/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/Rodrigo
 
 </head>

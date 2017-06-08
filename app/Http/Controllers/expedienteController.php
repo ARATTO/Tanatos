@@ -18,7 +18,7 @@ class expedienteController extends Controller
 {
     public function show(Request $request){
         $expediente = DB::table('expediente')
-            ->join("usuario","expediente.id","=","usuario.id")
+            ->join("persona","expediente.id","=","persona.id")
             ->get();
 
         return view('expediente.index');
@@ -65,6 +65,19 @@ class expedienteController extends Controller
 
     }
 
+<<<<<<< HEAD
+=======
+
+    public function index(){
+        $expediente = DB::table('expediente')
+            ->join("persona","expediente.id","=","persona.id")
+            ->get();
+
+        return view('expediente.index')->with('expedientes',$expediente);
+
+    }
+
+>>>>>>> origin/Rodrigo
     public function verExpedientes($id){
         $expedientes = Cita::where('idexpediente','=',$id)->get();
 

@@ -12,9 +12,14 @@ class Camilla extends Model
      *
      * @var array
      */
+     //////////////////////////////////////////////////////
     protected $fillable = [
         'id',
         'numerocamilla',
+        
+        
+        /*FK*/
+
     ];
 
     /**
@@ -25,20 +30,34 @@ class Camilla extends Model
     protected $hidden = [
         
     ];
+    //////////////////////////////////////////////////////
     /**
     * Eliminar timestamps del modelo
     */
     public $timestamps = false;
+    //////////////////////////////////////////////////////
+
     /**
      * RELACIONES
      *
      */
 
+     /*
+     public function name_plural(){
+         return $this->belongsTo('App\Class');
+     }
+     */
+     //////////////////////////////////////////////////////
+
      /**
      * RETORNO DE RELACIONES
      *
      */
-     public function ingreso(){
-         return $this->hasMany('App\Ingreso');
+
+     
+     public function camilla(){
+         return $this->hasMany('App\Camilla');
      }
+     
+     //////////////////////////////////////////////////////
 }

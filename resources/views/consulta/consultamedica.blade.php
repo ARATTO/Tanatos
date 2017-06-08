@@ -29,34 +29,213 @@
 
 <!--//////////////////////////////////////////////////////////////////////////////////////////////////////////-->
 
-<br></br>
-
+        <br></br>
         <div class="row">
             <div class="col-md-10 col-md-offset-0">
-<div class="panel panel-default">
-    <div class="panel-heading">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
                         {{ trans('tntmessage.Usuario') }}
                         <a href="{{ route('users.create') }}">
                         <button type="button" class="btn btn-success btn-xs pull-right">
                             {{ trans('tntmessage.CrearUsuario') }}
                         </button>
                         </a>
-    </div>
+                    </div>
 
         
-                        <div class="panel-heading" >
-                                    <div class="panel-body">
-        <div role="tabpanel">
-        <!-- Nav tabs -->
-        <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active"><a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">Signos Vitales</a></li>
-            <li role="presentation"><a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">Consulta</a></li>
-            <li role="presentation"><a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">Examenes</a></li>
-            <li role="presentation"><a href="#tab4" aria-controls="tab4" role="tab" data-toggle="tab">Tratamiento</a></li>
-            <li role="presentation"><a href="#tab5" aria-controls="tab5" role="tab" data-toggle="tab">Ingreso</a></li>
-        </ul>
+        <div class="panel-heading" >
+                    <div class="panel-body">
 
-        <!-- Tab panes -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        3...................................................................................................................................................................................................................2222222222222222222222222222233333333
+
+                        3.
+                        <div role="tabpanel">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">Signos Vitales</a></li>
+                            <li role="presentation"><a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">Consulta</a></li>
+                            <li role="presentation"><a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">Examenes</a></li>
+                            <li role="presentation"><a href="#tab4" aria-controls="tab4" role="tab" data-toggle="tab">Tratamiento</a></li>
+                            <li role="presentation"><a href="#tab5" aria-controls="tab5" role="tab" data-toggle="tab">Ingreso</a></li>
+                            </ul>
+
+                            <!-- Tab panes -->
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="tab1">
                 <div class="panel-heading"  style="font-size: 24pt; ">Generalidades</div>
@@ -353,12 +532,12 @@
             </div>
 
         </div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 <!--//////////////////////////////////////////////////////////////////////////////////////////////////////////-->
 </form>
