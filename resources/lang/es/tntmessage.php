@@ -102,8 +102,20 @@ return [
     'Imagen'                 =>'Imagen',
     'DatosGenerales'         =>'Datos Generales',
     'Direccion'              =>'Direccion',
+    'Contacto'               =>'Contacto',
+    'Telefono'               =>'Telefono',
+    'Sistema'                =>'Sistema',
     /*
     *  Fin FORM
+    */
+
+    /*
+    *  Mensajes
+    */
+
+    'MensajePassword' => '**Contraseña inicial: Numero de DUI Ej: 12345678',
+    /*
+    *  Fin Menajes
     */
 
 ];

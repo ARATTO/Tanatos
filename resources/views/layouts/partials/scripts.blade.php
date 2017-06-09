@@ -109,6 +109,10 @@
              no_results_text: "Oops, No encontramos nada como:  ",
              width: "100%",
       });
+      $("#chosen-select__").chosen({
+             no_results_text: "Oops, No encontramos nada como:  ",
+             width: "100%",
+      });
       $("#chosen-borrar").chosen({
              no_results_text: "Oops, No encontramos nada como:  ",
              width: "100%",
