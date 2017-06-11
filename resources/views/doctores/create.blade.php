@@ -19,18 +19,21 @@
 					<div class="panel-body">
 						
 							{!! Form::open(['action' =>'DoctorController@store','class'=>'form-center' ]) !!}
-							<div class="form-group col-md-12" align="center">
+							<div class="form-group col-md-8" align="center">
 								{!!Form::label('nombredoctor', 'Nombre y apellido del doctor:')!!}
-								{!!Form::text('nombredoctor',null,['class'=>'form-control','placeholder'=>'Daniel Segovia','required' ])!!}
-							</div>
-
-							<div class="form-group col-md-12" align="center">
-								{!!Form::label('especialidad', 'Especialidad:')!!}
-								{!!Form::text('especialidad',null,['class'=>'form-control','placeholder'=>'pediatra','required' ])!!}
+								
+								{!! Form::select('nombredoctor',$personas1,null, ['class'=>'form-control select-persona','placeholder'=>'seleccione una persona','required', 'id'=>'chosen-select_']) !!}
 							</div>
 
 
-				        <div class="form-group col-md-12" align="center">
+
+                            <div class="form-group col-md-8" align="center">
+					            {!! Form::label('idespecialidad','Especialidad: ') !!}
+					            {!! Form::select('idespecialidad',$especialidades,null,['class'=>'form-control select-especialidad','placeholder'=>'seleccione una especialidad','required', 'id'=>'chosen-select_']) !!}
+					        </div>
+
+
+				        <div class="form-group col-md-8" align="center">
 				            <label>¿Trabaja en emergencias?:</label>
 				            <div class="col-sm-10" align="center">
 				                <p><input type="radio" name="esemergencia" value="TRUE" checked="">Si</p>
@@ -39,7 +42,7 @@
 				        </div>
 
 
-					      <div class="form-group">
+					      <div class="form-group col-md-4" align="center">
                 				<hr>
                 				{!! form::submit('Guardar', ['class'=> 'btn btn-primary']) !!}
 
