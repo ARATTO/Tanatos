@@ -6,8 +6,12 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Doctor;
-use GeneaLabs\Bones\Flash\Flash;
+use App\Especialidad;
+use App\Persona;
+
 use App\Http\Controllers\Controller;
+use Laracasts\Flash\Flash;
+
 use View;
 
 
@@ -22,15 +26,29 @@ class DoctorController extends Controller
      */
     public function index(Request $request)
     {
-        $doctores = Doctor::Nombre($request->name)->orderBy('id', 'ASC')->paginate(15);
-        
+        $doctores = Doctor::Nombre($request->name)->orderBy('id', 'ASC')->paginate(15); 
+
+        $doctores->each(function($doctores){
+            $doctores->especialidades = Especialidad::find($doctores->idespecialidad);
+            $doctores->personas = Persona::find($doctores->idpersona);
+        });
+
         return view('doctores.index')->with(['doctores'=>$doctores]);
     }
 
     //
     public function create()
     {
-        return view('doctores.create');
+        $especialidades = Especialidad::orderBy('id')->lists('nombreespecialidad','id');
+        //$personas1 = Persona::orderBy('id')->lists('primerapellido', 'id');
+        //$personas1 = Persona::selectRaw('CONCAT(primerapellido, " ", primernombre) as nombredoctor', 'id')->orderBy('id')->lists('nombredoctor', 'id');
+        $personas1 = Persona::orderBy('id')->select(DB::raw('CONCAT(primernombre, segundonombre, primerapellido, segundoapellido) as nombredctor', 'id'))->lists('nombredctor', 'id');
+        //$personas1 = Persona::orderBy('id')->get();
+        //$personas1 = $personas1->lists('NombreCompletoDoctor', 'id');
+        //$personas1 = Persona::select('id', '')
+        $personas2 = Persona::orderBy('id')->lists('primernombre', 'id');
+
+        return View::make('doctores.create')->with('especialidades',$especialidades)->with('personas1',$personas1);
     }
 
     public function store(Request $request)
@@ -39,7 +57,12 @@ class DoctorController extends Controller
 
         Doctor::create($request->all());
 
-        $doctores = Doctor::orderBy('id','ASC')->paginate(20);  
+        $doctores = Doctor::orderBy('id','ASC')->paginate(20);
+
+        $doctores->each(function($doctores){   
+            $doctores->especialidades;
+            $doctores->personas1;
+        });  
 
         Flash::success("Se ha guardado el doctor: ".$request->nombredoctor." con exito");
 
