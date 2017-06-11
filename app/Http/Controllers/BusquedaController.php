@@ -8,6 +8,9 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
 
 use App\Persona;
+use DB;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Collection;
 
 class BusquedaController extends Controller
 {
@@ -52,7 +55,26 @@ class BusquedaController extends Controller
 		if($request->q == "" || $request->q == " ")	{
 			$Personas = null;		
 		}else{
-			$Personas = Persona::datos($request->q)->where('primernombre',"LIKE", "%$nuevaCadena%")->paginate(10);
+
+
+
+			//$Personas = Persona::datos($request->q)->where('primernombre',"LIKE", "%$nuevaCadena%")->paginate(10);
+			//$Personas = Persona::datos($request->q)->raw("where primernombre LIKE '%$t%'")->paginate(10);
+
+			$sentencia = "select *from persona where primernombre like '%$nuevaCadena%' ";
+
+			$persona = DB::select($sentencia);
+
+			$currentPage = LengthAwarePaginator::resolveCurrentPage();
+			$col = new Collection($persona);
+			$perPage = 10;
+
+			$currentPageSearchResults = $col->slice(($currentPage - 1) * $perPage, $perPage)->all();
+
+			$Personas = new LengthAwarePaginator($currentPageSearchResults, count($col), $perPage, $currentPage,['path'=> LengthAwarePaginator::resolveCurrentPath()] );
+			//$Personas = new LengthAwarePaginator($currentPageSearchResults, count($col), $perPage);
+
+			//dd($Personas);
 		}
 
 		

@@ -31,7 +31,7 @@
 				                <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search" style="border-radius: 8px;"></i></button>
 				              </span>
 				            </div>
-			    	    {!! Form::close() !!}
+		
 
 			    	    <div class="input-group">
 			    	    	<p style="font-weight: bold;">
@@ -41,11 +41,12 @@
 			    	    	
 			    	    </div>
 
+
         					<div style="padding: 5px; float: left; width: 45%; text-align: justify;">
 
-        						{{Form::checkbox('criterio', '0', true)}} Nombres<br>
-				    	    	{{Form::checkbox('criterio', '0')}} Apellidos<br>
-				    	    	{{Form::checkbox('criterio', '0')}} Fecha Nacimiento<br>
+        						{{Form::checkbox('criterio[]', '1', true)}} Nombres<br>
+				    	    	{{Form::checkbox('criterio[]', '2')}} Apellidos<br>
+				    	    	{{Form::checkbox('criterio[]', '3')}} Fecha Nacimiento<br>
 			    	    		
         					</div>
 
@@ -53,12 +54,13 @@
         					@if (Auth::guest())
         					@else
 	        					 @if(Auth::user()->idrol == 1 || Auth::user()->idrol == 3 || Auth::user()->idrol == 4 || Auth::user()->idrol == 6)
-	       							{{Form::checkbox('criterio', '0')}} Numero de Expediente<br>
-					    	    	{{Form::checkbox('criterio', '0')}} Diagnostico<br>
-					    	    	{{Form::checkbox('criterio', '0')}} Fecha de expedicion<br>
+	       							{{Form::checkbox('criterio[]', '4')}} Numero de Expediente<br>
+					    	    	{{Form::checkbox('criterio[]', '5')}} Diagnostico<br>
+					    	    	{{Form::checkbox('criterio[]', '6')}} Fecha de expedicion<br>
 					    	    @endif	
 					    	@endif
         					</div>
+        				{!! Form::close() !!}
 					@if($Personas == null)        					
 					
 					@else
@@ -77,7 +79,7 @@
 							@foreach($Personas as $persona)
 						      <tr>
 						  		<td>{{$persona->primernombre}} {{$persona->segundonombre}}</td>
-						  		<td>{{$persona->primerApellido}} {{$persona->segundoApellido}} </td>
+						  		<td>{{$persona->primerapellido}} {{$persona->segundoapellido}} </td>
 						  	
 						      </tr>
 						     @endforeach
