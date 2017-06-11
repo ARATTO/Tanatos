@@ -48,7 +48,7 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h4 class="modal-title">{{trans('eetntmessage.NuevaCita')}}</h4>
+						<h4 id= 'tituloModal' class="modal-title">{{trans('eetntmessage.NuevaCita')}}</h4>
 					</div>
 					<!-- CONTENIDO DE LA CITA -->
 					<div class="modal-body">
@@ -57,17 +57,26 @@
 							<input id="token" value= {{csrf_field() }} 
 							{!! Form::open(['action'=>'CitaController@store','class'=>'form-center' ]) !!}
 							
+							<!--
 							<div class="form-group col-md-12" align="left">
 								{!!Form::label('title', trans('eetntmessage.IngreseTituloCita'))!!}
 								{!!Form::text('title',null,['class'=>'form-control','placeholder'=>trans('eetntmessage.ControlPrenatal'),'required' ])!!}
 							</div>
-
+							-->
 							<div class="form-group col-md-12" align="left">
 								{!!Form::label('idexpediente', trans('eetntmessage.IngreseNumeroExpedi'))!!}
-								{!!Form::number('idexpediente',null,['class'=>'form-control','placeholder'=>'052105141620','min'=>0,'required' ])!!}
+								{!!Form::number('idexpediente',null,['id'=>'idexpediente','class'=>'form-control','placeholder'=>'052105141620','min'=>0,'required' ])!!}
 							</div>
 				
+							<div class="form-group col-md-12" align="left">
+								{!!Form::label('title', trans('eetntmessage.Especialidad'))!!}												            
+								{!!Form::select('idespecialidad',$especialidades,null,['id'=>'idespecialidad','class'=>'form-control','placeholder'=>trans('eetntmessage.SeleccioneEspecialidad'),'required']) !!}
+							</div>					
 
+							<div class="form-group col-md-12" align="left">
+								{!!Form::label('title', trans('eetntmessage.Doctor'))!!}												            
+								{!!Form::select('iddoctor',$doctores,null,['id'=>'iddoctor','class'=>'form-control','placeholder'=>trans('eetntmessage.SeleccioneDoctor'),'required']) !!}
+							</div>	
 							
 							<div class="form-group col-md-12" align="left">     
 								{!!Form::label('start', trans('eetntmessage.IngreseFechaDeInicio'))!!}
@@ -94,6 +103,12 @@
 		</div>
 	</section> <!-- /.Modal -->
 
-
+<!-- Funcion para que no aparezca el menu contextual  -->
+<script language=JavaScript> 
+	function inhabilitar(){ 		
+		return false 
+	} 
+	document.oncontextmenu=inhabilitar 
+</script>
 @endsection
 

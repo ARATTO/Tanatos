@@ -80,12 +80,22 @@ Route::get('/admin', 'HomeController@index');
 * RUTAS ELIAS
 *
 */
-Route::get('/calendar', function () {
-    return view('citas/calendar');
-})->name('calendar');
-
+//----------------------------Calendario
+Route::get('/calendar', [
+            'as' => 'calendar',
+            'uses' => 'CitaController@mostrar'
+        ]);
 
 Route::resource('citas','CitaController');
+
+Route::get('/doctores/json',[
+			'as'	=> 	'doctores.json',
+			'uses'	=>	'DoctorController@doctoresJSON'
+]);
+
+
+
+
 /*
 *
 * FIN RUTAS ELIAS

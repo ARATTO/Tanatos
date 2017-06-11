@@ -31,6 +31,6 @@ class DatabaseSeeder extends Seeder
         //$this->call(SeedTipoExamenFisico::class);
         //$this->call(SeedDoctor::class);
         //$this->call(SeedMedicamento::class);
-        //$this->call(SeedHospital::class);
+        $this->call(SeedHospital::class);
     }
 }

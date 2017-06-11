@@ -24,6 +24,7 @@ return [
     'IngreseTituloCita'     =>'Titulo de la Cita',
     'CitaGuardada'          =>'Cita guardada exitosamente, no olvide estar 15 minutos antes de su cita.',
     'ErrorAlGuardar'        =>'Lo sentimos pero no ha sido posible agendar la cita en esas fechas, verificar dispinibilidad.',
+    'DoctorNoDisponible'    =>'El doctor seleccionado no esta disponible es el horario solicitado',
 
     /*
     *Fin Mensajes
@@ -33,9 +34,10 @@ return [
     *Placeholders
     */
 
-    'ControlPrenatal'       =>'Control Prenatal',
-    
-
+    'Especialidad'          =>'Especialidad',
+    'Doctor'                =>'Doctor',
+    'SeleccioneEspecialidad'=>'Seleccione una especialidad',
+    'SeleccioneDoctor'      =>'Seleccione un Doctor',
     /*
     * Fin Placeholders
     */

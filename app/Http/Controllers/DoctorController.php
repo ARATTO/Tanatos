@@ -106,4 +106,11 @@ class DoctorController extends Controller
     {
 
     }
+
+    //Funcion creada por EE 07/06/2017
+    public function doctoresJSON(){
+        $doctores = Doctor::select('id','nombredoctor')->get();
+        return Response()->json($doctores);
+    }
+    //---Fin de la funcion de EE
 }
