@@ -7,16 +7,11 @@
 
 @section('main-content')
 
-      <!-- Content Wrapper. Contains page content -->
-      <div class="content-wrapper" style="min-height:2000px !important;">
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
-        
-          <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i>Inicio</a></li>
-            <li class="active">Dashboard</li>
-          </ol>
-        </section>
+      <br></br>
+  <div class="container spark-screen">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <div class="panel panel-default">
 
         <div class="panel-heading"  style="font-size: 24pt; " > Citas Pendientes Para Hoy   
         </div>
@@ -26,18 +21,32 @@
   <table class="table table-striped" > 
     <thead>
       <th>Cita</th>
-      <th>Usuario</th>      
+      <th>DUI</th>     
+      <th>Nombre</th> 
+      <th>Apellido</th> 
+      <th>Nombre Doctor</th> 
+      <th>Expediente</th> 
+      <th>Color</th> 
     </thead>
     <tbody>
       @foreach($diagnostico as $diagnostico)
         <tr>
-          <a href="{{route('consulta.vista',$diagnostico->nombres)}}"><td>{{$diagnostico->id}} </td></a>
-          <td>{{$diagnostico->nombres}} </td>
+          <td>{{$diagnostico->id}} </td>
+          <td>{{$diagnostico->dui}} </td>
+          <td>{{$diagnostico->primernombre}} </td>
+          <td>{{$diagnostico->primerapellido}} </td>
+          <td>{{$diagnostico->nombredoctor}}</td>
+          <td>{{$diagnostico->idexpediente}} </td>
+          <td>{{$diagnostico->color}} </td>
+
         </tr>
       @endforeach
     </tbody>
   </table>
-
+</div>
+</div>
+</div>
+</div>
 
 
         <!-- contenido principal -->

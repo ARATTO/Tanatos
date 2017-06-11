@@ -125,11 +125,6 @@ class CitaController extends Controller
      */
     public function destroy($id)
     {
-<<<<<<< HEAD
-=======
-
-        
->>>>>>> origin/Rodrigo
         try{
            $cita = Cita::find($id);
             $cita->delete();

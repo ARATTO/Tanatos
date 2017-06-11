@@ -7,17 +7,12 @@
 
 @section('main-content')
 
-      <!-- Content Wrapper. Contains page content -->
-      <div class="content-wrapper" style="min-height:2000px !important;">
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
-        
-          <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i>Inicio</a></li>
-            <li class="active">Dashboard</li>
-          </ol>
-        </section>
-
+      <br></br>
+  <div class="container spark-screen">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <div class="panel panel-default">
+          
         <div class="panel-heading"  style="font-size: 24pt; " > Expedientes Encontrados     
         </div>
   
@@ -26,16 +21,22 @@
   <table class="table table-striped" > 
     <thead>
       <th>Codigo</th>
-      <th>Nombre</th>
-      <th>Apellido</th>
+      <th>Primer Nombre</th>
+      <th>SeguNdo Nombre</th>
+      <th>Primer Apellido</th>
+      <th>Segundo Apellido</th>
+      <th>DUI</th>
       
     </thead>
     <tbody>
       @foreach($expedientes as $expediente)
         <tr>
           <td>{{$expediente->id}} </td>
-          <td>{{$expediente->nombres}} </td>
-          <td>{{$expediente->apellidos}} </td>
+          <td>{{$expediente->primernombre}} </td>
+          <td>{{$expediente->segundonombre}} </td>
+          <td>{{$expediente->primerapellido}} </td>
+          <td>{{$expediente->segundoapellido}} </td>
+          <td>{{$expediente->dui}} </td>
 
           <td> 
             <a href="{{route('expediente.vista',$expediente->id)}}" class="btn btn-success"> <font color="black" size="2"> <b>Ver más</b> </font>  </a> 
@@ -45,6 +46,10 @@
       @endforeach
     </tbody>
   </table>
+</div>
+</div>
+</div>
+</div>
 
 
 

@@ -130,14 +130,14 @@ Route::resource('citas','CitaController');
 
 	Route::resource('diagnostico','ConsultaController');
 
-	Route::get('mostrarCitas/{diagnostico}/vista', [
-	    'uses' => 'ConsultaController@verConsulta', 
-	    'as'    => 'consulta.vista'
+	Route::get('examenespendientes', [
+	    'uses' => 'ConsultaController@VerExamenesPendientes', 
+	    'as'    => 'consulta.examenesexpedientes'
 	    ]);
 
-	Route::get('mostrarExpedientes/{id}/destroy',[
-	        'uses' => 'ConsultaController@destroy',
-	        'as' => 'consulta.destroy'
+	Route::get('resultadosexamenes',[
+	        'uses' => 'ConsultaController@RegistrarResultadosExamenes',
+	        'as' => 'consulta.resultadosexamenes'
 	        ]);
 
 

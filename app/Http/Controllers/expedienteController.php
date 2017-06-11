@@ -22,17 +22,9 @@ class expedienteController extends Controller
             ->get();
 
         return view('expediente.index');
-
     }
 
-    public function index(){
-        $expediente = DB::table('expediente')
-            ->join("usuario","expediente.id","=","usuario.id")
-            ->get();
-
-        return view('expediente.index')->with('expedientes',$expediente);
-
-    }
+    
 
     public function store(Request $request){
         $historialClinico=new HistorialClinico;
@@ -45,7 +37,7 @@ class expedienteController extends Controller
 
         $expediente = new Expediente;
         $expediente->idhistorialclinico = $auxiliar->id;
-        $expediente->idusuario = $request->id;
+        $expediente->idpersona = $request->id;
         $expediente->idhospital = $request->idhospitales;
         $expediente->save();
 
@@ -56,7 +48,7 @@ class expedienteController extends Controller
 
     public function create(){
 
-        $usuario = User::all()->lists('nombres','id');
+        $usuario = USER::all()->lists('email','id');
         $hospital = Hospital::all()->lists('nombre','id');
 
         return view('expediente.create')
@@ -65,8 +57,6 @@ class expedienteController extends Controller
 
     }
 
-<<<<<<< HEAD
-=======
 
     public function index(){
         $expediente = DB::table('expediente')
@@ -77,15 +67,22 @@ class expedienteController extends Controller
 
     }
 
->>>>>>> origin/Rodrigo
     public function verExpedientes($id){
         $expedientes = Cita::where('idexpediente','=',$id)->get();
 
         $consulta = DB::table('expediente')
-        	->join("usuario","expediente.id","=","usuario.id")
-        	->join("estadocivil","usuario.idestadocivil","=","estadocivil.id")
+        	->join("persona","expediente.id","=","persona.id")
+        	->join("estadocivil","persona.idestadocivil","=","estadocivil.id")
+            ->join("telefono","persona.idtelefono","=","telefono.id")
+            ->join("detalledireccion","persona.iddetalledireccion","=","detalledireccion.id")
+            ->join("municipio","detalledireccion.idmunicipio","=","municipio.id")
+            ->join("USER","persona.iduser","=","USER.id")
+            ->join("rol","USER.idrol","=","rol.id")
         	->where('expediente.id','=',$id)
             ->get();
+
+            
+
 
 
         $consulta2 = DB::table('expediente')

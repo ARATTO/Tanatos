@@ -7,30 +7,21 @@
 
 @section('main-content')
 
-      <!-- Content Wrapper. Contains page content -->
-      <div class="content-wrapper" style="min-height:2000px !important;">
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
-        
-          <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i>Inicio</a></li>
-            <li class="active">Dashboard</li>
-          </ol>
-        </section>
+      
 
 	
 	  @include('flash::message')
 	
+<br></br>
+  <div class="container spark-screen">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <div class="panel panel-default">
+          
 
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
-
-  <div class="panel-heading"  style="font-size: 24pt; " > Informacion del Cliente     
+  <div class="panel-heading"  style="font-size: 24pt; " > Expedientes del Paciente   
   </div>
+  <div class="panel-body">
 
   <form action="/foo/bar" method="POST">
     <input type="hidden" name="_method" value="PUT">
@@ -41,7 +32,10 @@
             <div class="form-group">
                 <label for="nombres">Nombres:</label>
                 <div>
-                  <input type="text" name="nombre" id="nombre" value="{{ $con->nombres }} " readonly="readonly" style="width: 300px;">
+                  <input type="text" name="nombre" id="nombre" value="{{ $con->primernombre }} " readonly="readonly" style="width: 300px;">
+                </div>
+                <div>
+                  <input type="text" name="nombre" id="nombre" value="{{ $con->segundonombre }} " readonly="readonly" style="width: 300px;">
                 </div>
             </div>
           </div><!-- /input-group -->
@@ -52,7 +46,21 @@
             <div class="form-group">
                 <label for="apellidos">Apellidos:</label>
                 <div>
-                <input type="text" name="nombre" id="nombre" value="{{ $con->apellidos }} " readonly="readonly">
+                <input type="text" name="nombre" id="nombre" value="{{ $con->primerapellido }} " readonly="readonly">
+                </div>
+                <div>
+                <input type="text" name="nombre" id="nombre" value="{{ $con->segundoapellido }} " readonly="readonly">
+                </div>
+            </div>
+          </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
+
+        <div class="col-xs-6">
+          <div class="input-group col-xs-12">
+            <div class="form-group">
+                <label for="genero">DUI:</label>
+                <div>
+                <input type="text" name="nombre" id="nombre" value="{{ $con->dui }} " readonly="readonly" style="width: 300px;">
                 </div>
             </div>
           </div><!-- /input-group -->
@@ -86,8 +94,21 @@
             <div class="form-group">
                 <label for="direccion">Direccion:</label>
                 <div>
-                <input type="textarea" name="nombre" id="nombre" value="{{ $con->detalledireccion }} " readonly="readonly" style="width: 300px;">
+                <input type="textarea" name="nombre" id="nombre" value="{{ $con->calle }} " readonly="readonly" style="width: 300px;">
                 </div>
+                <div>
+                <input type="textarea" name="nombre" id="nombre" value="{{ $con->colonia }} " readonly="readonly" style="width: 300px;">
+                </div>
+                <div>
+                <input type="textarea" name="nombre" id="nombre" value="{{ $con->pasaje }} " readonly="readonly" style="width: 300px;">
+                </div>
+                <div>
+                <input type="textarea" name="nombre" id="nombre" value="{{ $con->casa }} " readonly="readonly" style="width: 300px;">
+                </div>
+                <div>
+                <input type="textarea" name="nombre" id="nombre" value="{{ $con->nombremunicipio }}" readonly="readonly" style="width: 300px;">
+                </div>
+
             </div>
           </div><!-- /input-group -->
         </div><!-- /.col-lg-6 -->
@@ -95,9 +116,15 @@
         <div class="col-xs-6">
           <div class="input-group col-xs-12">
             <div class="form-group">
-                <label for="telefono">Telefono:</label>
+                <label for="telefono">Telefonos:</label>
                 <div>
-                <input type="text" name="nombre" id="nombre" value="{{ $con->telefono }} " readonly="readonly" >
+                <input type="text" name="nombre" id="nombre" value="{{ $con->casatelefono }} " readonly="readonly" >
+                </div>
+                <div>
+                <input type="text" name="nombre" id="nombre" value="{{ $con->trabajotelefono }} " readonly="readonly" >
+                </div>
+                <div>
+                <input type="text" name="nombre" id="nombre" value="{{ $con->celulartelefono }} " readonly="readonly" >
                 </div>
             </div>
           </div><!-- /input-group -->
@@ -114,16 +141,6 @@
           </div><!-- /input-group -->
         </div><!-- /.col-lg-6 -->  
 
-        <div class="col-xs-6">
-          <div class="input-group col-xs-12">
-            <div class="form-group">
-                <label for="telfonoresponsable">Telefono de Responsable:</label>
-                <div>
-                <input type="text" name="nombre" id="nombre" value="{{ $con->telefonoresponsable }}" readonly="readonly"   >
-                </div>
-            </div>
-          </div><!-- /input-group -->
-        </div><!-- /.col-lg-6 --> 
          
         <div class="col-xs-6">
           <div class="input-group col-xs-12">
@@ -187,12 +204,18 @@
       @foreach($expedientes as $expediente)
         <tr>
         <td>{{$expediente->id}} </td>
+        <td>{{$expediente->tittle}} </td>
         <td>{{$expediente->start}} </td>
         <td>{{$expediente->fin}} </td>
         </tr>
       @endforeach
     </tbody>
   </table>
+  </div>
+</div>
+</div>
+</div>
+</div>
   
 
         <!-- contenido principal -->

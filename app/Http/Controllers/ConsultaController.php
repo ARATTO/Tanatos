@@ -26,8 +26,8 @@ class ConsultaController extends Controller
         $dia=date("d");
         $day= (string) $dia;
 
-        $cadena1="select * from (select EXTRACT(DAY FROM cita.start),nombres,cita.id  from cita natural join expediente natural join usuario) as dia";
-        $cadena2=" where date_part= ".$day;
+        $cadena1="select  * from (select (EXTRACT(DAY FROM start)),cita.id,cita.idexpediente,primernombre,primerapellido,dui,nombredoctor,color from cita inner join doctor on cita.iddoctor = doctor.id inner join persona on persona.id=doctor.idpersona) as dia inner join expediente on dia.idexpediente=expediente.id";
+        $cadena2=" where date_part= 9";
         $resultado=$cadena1 . $cadena2;
 
         $consultamedica = DB::select(DB::raw($resultado));

@@ -20,7 +20,7 @@ class SeedPersona extends Seeder
             'segundoapellido'       => 'Motto',
             'genero'                => 'M',
             'fechanacimiento'       => '1993/06/21',
-        
+            'dui'                   => '05177882-6',
             /*FK*/
             'iduser'                => 1,
             'idestadocivil'         => 1,
@@ -38,7 +38,7 @@ class SeedPersona extends Seeder
             'segundoapellido'       => 'Lopez',
             'genero'                => 'M',
             'fechanacimiento'       => '1995/01/01',
-        
+            'dui'                   => '05177882-7',
             /*FK*/
             'iduser'                => 2,
             'idestadocivil'         => 1,
@@ -55,7 +55,7 @@ class SeedPersona extends Seeder
             'segundoapellido'       => 'Cruz',
             'genero'                => 'M',
             'fechanacimiento'       => '1995/01/01',
-        
+            'dui'                   => '05177882-8',
             /*FK*/
             'iduser'                => 3,
             'idestadocivil'         => 1,
@@ -72,7 +72,7 @@ class SeedPersona extends Seeder
             'segundoapellido'       => 'Barrera',
             'genero'                => 'M',
             'fechanacimiento'       => '1995/02/01',
-        
+            'dui'                   => '05177882-9',
             /*FK*/
             'iduser'                => 4,
             'idestadocivil'         => 1,
@@ -89,7 +89,7 @@ class SeedPersona extends Seeder
             'segundoapellido'       => 'Segovia',
             'genero'                => 'M',
             'fechanacimiento'       => '1995/01/11',
-        
+            'dui'                   => '05177882-0',
             /*FK*/
             'iduser'                => 5,
             'idestadocivil'         => 1,
