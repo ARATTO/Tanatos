@@ -12,36 +12,33 @@
     <div class="row">
       <div class="col-md-10 col-md-offset-1">
         <div class="panel panel-default">
-          
-        <div class="panel-heading"  style="font-size: 24pt; " > Expedientes Encontrados     
+
+        <div class="panel-heading"  style="font-size: 24pt; " > Citas Pendientes Para Hoy   
         </div>
   
     @include('bones-flash::bones.flash')
     @include('flash::message')
   <table class="table table-striped" > 
     <thead>
-      <th>Codigo</th>
-      <th>Primer Nombre</th>
-      <th>SeguNdo Nombre</th>
-      <th>Primer Apellido</th>
-      <th>Segundo Apellido</th>
-      <th>DUI</th>
-      
+      <th>Cita</th>
+      <th>DUI</th>     
+      <th>Nombre</th> 
+      <th>Apellido</th> 
+      <th>Nombre Doctor</th> 
+      <th>Expediente</th> 
+      <th>Color</th> 
     </thead>
     <tbody>
-      @foreach($expedientes as $expediente)
+      @foreach($diagnostico as $diagnostico)
         <tr>
-          <td>{{$expediente->id}} </td>
-          <td>{{$expediente->primernombre}} </td>
-          <td>{{$expediente->segundonombre}} </td>
-          <td>{{$expediente->primerapellido}} </td>
-          <td>{{$expediente->segundoapellido}} </td>
-          <td>{{$expediente->dui}} </td>
+          <td>{{$diagnostico->id}} </td>
+          <td>{{$diagnostico->dui}} </td>
+          <td>{{$diagnostico->primernombre}} </td>
+          <td>{{$diagnostico->primerapellido}} </td>
+          <td>{{$diagnostico->nombredoctor}}</td>
+          <td>{{$diagnostico->idexpediente}} </td>
+          <td>{{$diagnostico->color}} </td>
 
-          <td> 
-            <a href="{{route('expediente.vista',$expediente->id)}}" class="btn btn-success"> <font color="black" size="2"> <b>Ver más</b> </font>  </a> 
-            <a href=" {{route('expediente.destroy',$expediente->id)}}" onclick="return confirm('¿Seguro que deseas eliminarlo?')" class="btn btn-danger"><font color="black" size="2"> <b>Borrar</b>  </font></a> 
-            </td>
         </tr>
       @endforeach
     </tbody>
@@ -50,7 +47,6 @@
 </div>
 </div>
 </div>
-
 
 
         <!-- contenido principal -->

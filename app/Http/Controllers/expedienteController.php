@@ -22,8 +22,9 @@ class expedienteController extends Controller
             ->get();
 
         return view('expediente.index');
-
     }
+
+    
 
     public function store(Request $request){
         $historialClinico=new HistorialClinico;
@@ -32,22 +33,22 @@ class expedienteController extends Controller
         $historialClinico->antesedentes = $request->antecedentes;
         $historialClinico->save();
 
-
         $auxiliar = DB::table('historialclinico')->orderBy('id','desc')->first();
 
         $expediente = new Expediente;
         $expediente->idhistorialclinico = $auxiliar->id;
-        $expediente->idusuario = $request->id;
+        $expediente->idpersona = $request->id;
         $expediente->idhospital = $request->idhospitales;
         $expediente->save();
+
+        Flash::success('Se guardo el expediente');
 
         return view('/home');
     }
 
-
     public function create(){
 
-        $usuario = User::all()->lists('nombres','id');
+        $usuario = USER::all()->lists('email','id');
         $hospital = Hospital::all()->lists('nombre','id');
 
         return view('expediente.create')
@@ -70,11 +71,19 @@ class expedienteController extends Controller
         $expedientes = Cita::where('idexpediente','=',$id)->get();
 
         $consulta = DB::table('expediente')
-            ->join("usuario","expediente.id","=","usuario.id")
-            ->join("estadocivil","usuario.idestadocivil","=","estadocivil.id")
-            ->where('expediente.id','=',$id)
-            ->get()
-            ->simplePaginate(2);
+        	->join("persona","expediente.id","=","persona.id")
+        	->join("estadocivil","persona.idestadocivil","=","estadocivil.id")
+            ->join("telefono","persona.idtelefono","=","telefono.id")
+            ->join("detalledireccion","persona.iddetalledireccion","=","detalledireccion.id")
+            ->join("municipio","detalledireccion.idmunicipio","=","municipio.id")
+            ->join("USER","persona.iduser","=","USER.id")
+            ->join("rol","USER.idrol","=","rol.id")
+        	->where('expediente.id','=',$id)
+            ->get();
+
+            
+
+
 
         $consulta2 = DB::table('expediente')
         ->join("historialclinico","expediente.idhistorialclinico","=","historialclinico.id")
@@ -87,8 +96,6 @@ class expedienteController extends Controller
         ->with('consulta2',$consulta2);
 
     }
-
-    
 
     public function destroy($id){
 

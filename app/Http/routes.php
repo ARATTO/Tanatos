@@ -125,6 +125,21 @@ Route::resource('citas','CitaController');
 	        'uses' => 'expedienteController@destroy',
 	        'as' => 'expediente.destroy'
 	        ]);
+	
+	//consultas y diagnostico
+
+	Route::resource('diagnostico','ConsultaController');
+
+	Route::get('examenespendientes', [
+	    'uses' => 'ConsultaController@VerExamenesPendientes', 
+	    'as'    => 'consulta.examenesexpedientes'
+	    ]);
+
+	Route::get('resultadosexamenes',[
+	        'uses' => 'ConsultaController@RegistrarResultadosExamenes',
+	        'as' => 'consulta.resultadosexamenes'
+	        ]);
+
 
 
 /*
