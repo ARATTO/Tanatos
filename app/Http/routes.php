@@ -155,6 +155,8 @@ Route::resource('citas','CitaController');
 *
 */
 	Route::resource('doctores','DoctorController');
+	Route::post('send', ['as' => 'send', 'uses' => 'CorreoController@send'] );
+	Route::get('contact', ['as' => 'contact', 'uses' => 'CorreoController@index'] );
 /*
 *
 * FIN RUTAS ALAM
