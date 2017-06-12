@@ -90,7 +90,7 @@ class SeedEspecialidad extends Seeder
         ]);
 
         DB::table('especialidad')->insert([
-            'nombreespecialidad' => 'Toxiclogia',
+            'nombreespecialidad' => 'Toxicologia',
         ]);
 
         DB::table('especialidad')->insert([

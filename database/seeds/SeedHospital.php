@@ -13,7 +13,7 @@ class SeedHospital extends Seeder
     {
         DB::table('hospital')->insert([
             'idmunicipio' => 27 ,
-            'nombre' => 'Hospital Nacional "Arturo Morales" de Metapan',
+            'nombre' => 'Hospital Nacional Arturo Morales de Metapan',
             'descripciondireccion' => 'colonia las vegas calle N°5',
         ]);
 
@@ -25,8 +25,8 @@ class SeedHospital extends Seeder
 
         DB::table('hospital')->insert([
             'idmunicipio' => 9 ,
-            'nombre' => 'Hospital Nacional de San Bartolo “Enfermera
-             Angélica Vidal de Najarro”' => 'Carretera de Oro km  3',
+            'nombre' => 'Hospital Nacional de San Bartolo Enfermera Angélica Vidal de Najarro',
+            'descripciondireccion' => 'Carretera de Oro km  3',
         ]);
 
         DB::table('hospital')->insert([
@@ -56,8 +56,9 @@ class SeedHospital extends Seeder
         DB::table('hospital')->insert([
             'idmunicipio' => 11 ,
             'nombre' => 'Hospital Nacional de Neumología y Medicina
-             Familiar "Dr. José A. Saldaña"',
+             Familiar Dr. José A. Saldaña',
             'descripciondireccion' => 'Carretera a los planes de Renderos km 9',
         ]);
+
     }
 }

@@ -56,14 +56,43 @@ class BusquedaController extends Controller
 			$Personas = null;		
 		}else{
 
-
-
+			$sentencia = ""; 
 			//$Personas = Persona::datos($request->q)->where('primernombre',"LIKE", "%$nuevaCadena%")->paginate(10);
 			//$Personas = Persona::datos($request->q)->raw("where primernombre LIKE '%$t%'")->paginate(10);
 
-			$sentencia = "select *from persona where primernombre like '%$nuevaCadena%' ";
+			$valores = $request->criterio;
+
+			$sentencia = "select *from persona  
+			inner join on expediente persona.id = expediente.idpersona 
+			";
+
+
+
+			for ($i=0; $i <count($valores) ; $i++) { 
+				
+				switch ($valores[$i]) {
+					case 4:
+						# code...
+					break;
+					case 5:
+						# code...
+					break;
+					case 6:
+						# code...
+					break;
+					default:
+						# code...
+					break;
+				}
+			}
+
+			$sentencia = $sentencia ." where primernombre like '%$nuevaCadena%' ";
+
+			dd($sentencia);
 
 			$persona = DB::select($sentencia);
+
+			dd($persona);
 
 			$currentPage = LengthAwarePaginator::resolveCurrentPage();
 			$col = new Collection($persona);

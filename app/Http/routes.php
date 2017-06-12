@@ -93,9 +93,6 @@ Route::get('/doctores/json',[
 			'uses'	=>	'DoctorController@doctoresJSON'
 ]);
 
-
-
-
 /*
 *
 * FIN RUTAS ELIAS

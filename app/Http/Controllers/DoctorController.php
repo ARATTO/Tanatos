@@ -42,18 +42,20 @@ class DoctorController extends Controller
         $especialidades = Especialidad::orderBy('id')->lists('nombreespecialidad','id');
         //$personas1 = Persona::orderBy('id')->lists('primerapellido', 'id');
         //$personas1 = Persona::selectRaw('CONCAT(primerapellido, " ", primernombre) as nombredoctor', 'id')->orderBy('id')->lists('nombredoctor', 'id');
-        $personas1 = Persona::orderBy('id')->select(DB::raw('CONCAT(primernombre, segundonombre, primerapellido, segundoapellido) as nombredctor', 'id'))->lists('nombredctor', 'id');
+        $personas1 = Persona::orderBy('id')->select(DB::raw('CONCAT(primernombre, segundonombre, primerapellido, segundoapellido) as nombredctor', 'id'))->pluck('nombredoctor', 'id');
         //$personas1 = Persona::orderBy('id')->get();
         //$personas1 = $personas1->lists('NombreCompletoDoctor', 'id');
         //$personas1 = Persona::select('id', '')
         $personas2 = Persona::orderBy('id')->lists('primernombre', 'id');
+
+        dd($personas1);
 
         return View::make('doctores.create')->with('especialidades',$especialidades)->with('personas1',$personas1);
     }
 
     public function store(Request $request)
     {
-       // dd($request->all());
+       dd($request->all());
 
         Doctor::create($request->all());
 
