@@ -21,12 +21,13 @@
 							{!! Form::open(['action' =>'DoctorController@store','class'=>'form-center' ]) !!}
 							<div class="form-group col-md-8" align="center">
 								{!!Form::label('nombredoctor', 'Nombre y apellido del doctor:')!!}
-
-								<select name="idpersona" id="chosen-select_" data-placeholder="Seleccione estado civil a asignar...">
+								
+								<select name="nombredoctor" id="chosen-select_" data-placeholder="Seleccione estado civil a asignar...">
                                                             @foreach ($personas1 as $persona)
-                                                                <option value="{{ $persona->id }}">{{$persona->nombredoctor}}</option>
+                                                                <option value="{{ $persona->nombredoctor}}">{{$persona->nombredoctor}}</option>
                                                             @endforeach
-                                                        </select>
+                                </select>
+
 
 								
 							</div>

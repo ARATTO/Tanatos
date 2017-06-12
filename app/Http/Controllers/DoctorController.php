@@ -73,6 +73,7 @@ where". "$otro.idrol = 4 order by persona.id";
         Doctor::create($request->all());
         
         $doctores = Doctor::orderBy('id','ASC')->paginate(20);
+        //dd($doctores);
         //$doctores = Doctor::first();
 
         $doctores->each(function($doctores){   
