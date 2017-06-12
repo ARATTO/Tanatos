@@ -62,4 +62,7 @@
     <!-- Para animar el mensaje de SweetAlert2 -->
     <link href="{{ asset('/css/animate.css') }}" rel="stylesheet" type="text/css" />
 
+    <!--CSS RODRIGO PARA POP UP -->
+    <link href="{{ asset('/css/popup.css') }}" rel="stylesheet" type="text/css" />
+
 </head>

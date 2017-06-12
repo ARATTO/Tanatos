@@ -11,7 +11,7 @@
 
 @section('main-content')
     <!-- AQUI DEBEN LLAMAR EL HEADER PARA CADA VIEW CREADO EN "CONTENTHEADER"" -->
-
+	@include('layouts.partials.contentheader._default')
     <!-- Main content -->
         <section class="content">
             <!-- Your Page Content Here -->
@@ -25,10 +25,28 @@
 						@include('bones-flash::bones.flash')
 						@include('layouts.partials.flash')						
 				        {!! Form::open(['route' =>'busqueda', 'method'=>'GET','class'=>'form-center', 'role'=>'search' ]) !!}
+
 				            <div class="input-group" >
-				                <input type="text" name="q" class="form-control" placeholder="Digite su busqueda"/ style="border-radius: 5px;" autofocus>
+
+				            <div class="popup" >
+							  <span class="popuptext" id="myPopup">
+ejemplos de buqueda                              
+Nombre: Rodrigo Romero     
+Fecha: 1995-12-30
+Expediente: 0001 </span>
+
+
+		
+							</div> 
+				                <input type="text" name="q" class="form-control" placeholder="Digite su busqueda" style="border-radius: 5px;" autofocus, title="ejemplos de buqueda
+Nombre: Rodrigo
+Fecha: 1995-15-30
+Expediente: 0001 ">	
 				              <span class="input-group-btn" >
 				                <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search" style="border-radius: 8px;"></i></button>
+
+				              <button  type="button" onmouseover="myFunction()" name='ayuda' id='ayuda-btn' class="btn btn-flat"><i class="fa fa-info-circle" style="border-radius: 8px;"></i></button>
+				                
 				              </span>
 				            </div>
 		
@@ -44,9 +62,15 @@
 
         					<div style="padding: 5px; float: left; width: 45%; text-align: justify;">
 
-        						{{Form::checkbox('criterio[]', '1', true)}} Nombres<br>
-				    	    	{{Form::checkbox('criterio[]', '2')}} Apellidos<br>
-				    	    	{{Form::checkbox('criterio[]', '3')}} Fecha Nacimiento<br>
+        						<div style = "display: none">
+        							{{Form::checkbox('criterio[]', '1', true)}} Primer Nombre<br>
+        						</div>
+
+        						{{Form::checkbox('criterio[]', '1', true, ['disabled'])}} Primer Nombre<br>
+        						{{Form::checkbox('criterio[]', '2'	)}} Segundo Nombre<br>
+				    	    	{{Form::checkbox('criterio[]', '3')}} Primer Apellido<br>
+				    	    	{{Form::checkbox('criterio[]', '4')}} Segundo Apellido<br>
+				    	    	{{Form::checkbox('criterio[]', '5')}} Fecha Nacimiento<br>
 			    	    		
         					</div>
 
@@ -54,9 +78,9 @@
         					@if (Auth::guest())
         					@else
 	        					 @if(Auth::user()->idrol == 1 || Auth::user()->idrol == 3 || Auth::user()->idrol == 4 || Auth::user()->idrol == 6)
-	       							{{Form::checkbox('criterio[]', '4')}} Numero de Expediente<br>
-					    	    	{{Form::checkbox('criterio[]', '5')}} Diagnostico<br>
-					    	    	{{Form::checkbox('criterio[]', '6')}} Fecha de expedicion<br>
+	       							{{Form::checkbox('criterio[]', '6')}} Numero de Expediente<br>
+					    	    <!--	{{Form::checkbox('criterio[]', '5')}} Diagnostico<br>
+					    	    	{{Form::checkbox('criterio[]', '6')}} Fecha de expedicion<br>-->
 					    	    @endif	
 					    	@endif
         					</div>
@@ -100,3 +124,30 @@
 	</section><!-- /.content -->
 
 @endsection
+
+
+<script type="text/javascript">
+    function c(a)
+    {
+        a.checked='checked';
+    }
+
+$(document).ready(function(){  
+  
+    $("#nombre").click(function() {  
+        $("#nombre").attr('checked', true);  
+    });  
+
+  
+}); 
+
+
+// When the user clicks on <div>, open the popup
+function myFunction() {
+    var popup = document.getElementById("myPopup");
+    popup.classList.toggle("show");
+}
+
+
+
+</script>
