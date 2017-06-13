@@ -130,7 +130,7 @@
 <script src="{{ asset('/plugins/sweetalert2/sweetalert2.min.js') }}" type="text/javascript"></script>
 
 <!-- Este archivo contiene la inicializacion del fullcalendar como la interaccion con este -->
-@include('citas.fullcalendarcitas')
+
 
 
 <script type="text/javascript">
