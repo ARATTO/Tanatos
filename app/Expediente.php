@@ -67,6 +67,7 @@ class Expediente extends Model
      public function ingreso(){
          return $this->hasMany('App\Ingreso');
      }
+
      
      //////////////////////////////////////////////////////
 }

@@ -24,7 +24,8 @@
 					<div class="panel-body">
 						@include('bones-flash::bones.flash')
 						@include('layouts.partials.flash')						
-				        {!! Form::open(['route' =>'busqueda', 'method'=>'GET','class'=>'form-center', 'role'=>'search' ]) !!}
+				        {!! Form::model( Request::all(), ['route' =>'busqueda', 'method'=>'GET','class'=>'form-center', 'role'=>'search' ]) !!}
+
 
 				            <div class="input-group" >
 
@@ -38,10 +39,13 @@ Expediente: 0001 </span>
 
 		
 							</div> 
-				                <input type="text" name="q" class="form-control" placeholder="Digite su busqueda" style="border-radius: 5px;" autofocus, title="ejemplos de buqueda
+								{!!Form::text('q',null, ['class'=>'form-control', 'placeholde'=>'Digite su busqueda', 'style'=>'border-radius: 5px;', 'autofocus', 'title' => 'ejemplos de buqueda
+								
 Nombre: Rodrigo
 Fecha: 1995-15-30
-Expediente: 0001 ">	
+Expediente: 0001' ])  !!}
+
+	
 				              <span class="input-group-btn" >
 				                <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search" style="border-radius: 8px;"></i></button>
 
@@ -59,8 +63,8 @@ Expediente: 0001 ">
 			    	    	
 			    	    </div>
 
-
-        					<div style="padding: 5px; float: left; width: 45%; text-align: justify;">
+			    	    <section>
+							<div style="padding: 5px; float: left; width: 45%; text-align: justify;">
 
         						<div style = "display: none">
         							{{Form::checkbox('criterio[]', '1', true)}} Primer Nombre<br>
@@ -84,18 +88,28 @@ Expediente: 0001 ">
 					    	    @endif	
 					    	@endif
         					</div>
+			    	    </section>
+
+
         				{!! Form::close() !!}
 					@if($Personas == null)        					
 					
 					@else
-        			<div class="input-group">
-        			<br>
-        			<br>
-        							<table class="table table-striped">
+					<section>
+
+					<div class=" form-center" >
+
+
+        			<table class="table table-striped">
 						    <thead>
 						      <tr>
 						        <th>Nombre</th>
 								<th>Apellidos</th>			
+								<th>Fecha de Nacimiento</th>
+								<th>expediente</th>
+								<th>ver Expediente</th>
+						
+
 
 						      </tr>
 						    </thead>
@@ -104,12 +118,21 @@ Expediente: 0001 ">
 						      <tr>
 						  		<td>{{$persona->primernombre}} {{$persona->segundonombre}}</td>
 						  		<td>{{$persona->primerapellido}} {{$persona->segundoapellido}} </td>
+						  		<td>{{$persona->fechanacimiento}} </td>
+						  		@if(count($persona->expediente)>0)
+								<td>{{$persona->expediente[0]->id}}</td>
+								@else
+								<td>No posee expediente</td>
+								@endif
+						  		<td></td>
 						  	
 						      </tr>
 						     @endforeach
 						    </tbody>
 						  </table>	
         			</div>
+					</section>
+
         			@endif()
         		
 					</div>

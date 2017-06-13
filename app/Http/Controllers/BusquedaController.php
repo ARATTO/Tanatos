@@ -8,6 +8,7 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
 
 use App\Persona;
+use App\Expediente;
 use DB;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Collection;
@@ -25,22 +26,23 @@ class BusquedaController extends Controller
 		$Personas=null;
 
 		$nuevaCadena ="";
+		//metodo que borra espacios de mas
 		for ($i=0; $i <strlen($busqueda) ; $i++) { 
 			$t = $i +1;
 			if( $t == strlen($busqueda)){
-				$ascii = ord ($busqueda[$i]);
-				$nuevaCadena = $nuevaCadena . $busqueda[$i];
+				$ascii = ord ($busqueda[$i]); //se obtiene el ascii de la cadena
+				$nuevaCadena = $nuevaCadena . $busqueda[$i]; 
 			}else{
-				$ascii = ord ($busqueda[$i]);
-				$asciiSiguiente = ord ($busqueda[$i+1]);
+				$ascii = ord ($busqueda[$i]); // se obtiene el ascii de la cadena
+				$asciiSiguiente = ord ($busqueda[$i+1]); // se obtiene el siguiente ascii
 
-				if($ascii == 32 && $asciiSiguiente == 32){
-						
+				if($ascii == 32 && $asciiSiguiente == 32){ //compara si el ascii actual es espacio, y el siguiente tambien
+									// si es cierto no pone el espacion en la nueva cadena
+					}else{//de lo contrario pregunta si el primer caracter de la cadena y tiene espacio
+					if ($i == 0 && $ascii==32) { 
+						//no pone el espacio en la nueva cadena
 					}else{
-					if ($i == 0 && $ascii==32) {
-						# code...
-					}else{
-						$nuevaCadena = $nuevaCadena . $busqueda[$i];
+						$nuevaCadena = $nuevaCadena . $busqueda[$i]; //pone el espacio en la cadena
 					}
 
 					
@@ -59,103 +61,39 @@ class BusquedaController extends Controller
 		
 
 		if($request->q == "" || $request->q == " " || $nuevaCadena == "" || $nuevaCadena == " ")	{
-			$Personas = null;		
-		}else{
-
+			$Personas = null;
 			$porciones = explode(" ", $nuevaCadena);
 			$sentencia = ""; 
 			
 
-			//dd($request->all());
+			//dd($porciones);
 
 
-			$valores = $request->criterio;
+			$valores = $request->criterio;		
+		}else{
 
-			$sentencia = "select *from persona ";
-
-			for ($i=0; $i <count($valores) ; $i++) { 
-				if($valores[$i] == 6){
-					$sentencia = $sentencia . "inner join  expediente on persona.id = expediente.idpersona where ";
-				}
-			}
-
-			if(strlen($sentencia) < 25){
-				$sentencia = $sentencia . " where ";
-			}
-
-
-			for ($i=0; $i <count($valores) ; $i++) { 
-				
-				switch ($valores[$i]) {
-					case 1:
-					for ($k=0; $k <count($porciones);  $k++) { 
-						$sentencia = $sentencia ." (primernombre like '%$porciones[$k]%' ) ";
-
-						if(($k+1) < count($porciones)){
-							$sentencia = $sentencia . " OR";
-						}
-					}
-						
-					break;
-					case 2:
-					
-					for ($k=0; $k <count($porciones);  $k++) { 
-
-						if(($k+1) <= count($porciones)){
-							$sentencia = $sentencia . " OR";
-						}
-
-						$sentencia = $sentencia ." (segundonombre like '%$porciones[$k]%' ) ";
-					}
-
-					break;
-					case 3:
-				
-					for ($k=0; $k <count($porciones);  $k++) { 
-
-						if(($k+1) <= count($porciones)){
-							$sentencia = $sentencia . " OR";
-						}
-
-						$sentencia = $sentencia ." (primerapellido like '%$porciones[$k]%' ) ";
-					}
-
-
-					break;
-					case 4:
-					for ($k=0; $k <count($porciones);  $k++) { 
-
-						if(($k+1) <= count($porciones)){
-							$sentencia = $sentencia . " OR";
-						}
-
-						$sentencia = $sentencia ." (segundoapellido like '%$porciones[$k]%' ) ";
-					}
-					break;
-
-					case 5:
-					for ($k=0; $k <count($porciones);  $k++) { 
-
-						if(($k+1) <= count($porciones)){
-							$sentencia = $sentencia . " OR";
-						}
-
-						$sentencia = $sentencia ." (fechanacimiento = '$porciones[$k]' ) ";
-
-
-					$sentencia = $sentencia ." OR ( extract(year from  timestamp '$porciones[$k]') = extract(year from fechanacimiento))";
-					}
-
-					break;					
-
-				}
-			}
-
+			$porciones = explode(" ", $nuevaCadena); // divide la cadena por palabras
+			$sentencia = ""; 
 			
 
-			//dd($sentencia);
+			//dd($porciones);
+
+
+			$valores = $request->criterio; //obtiene los criterios
+
 			try{
-				$persona = DB::select($sentencia);
+				//$persona = Persona::select($sentencia); //DB::select($sentencia);
+
+				$Personas = Persona::primernombre($nuevaCadena,$valores,$porciones)->paginate(10); //ejecuta la sentencia sql
+
+				//dd($Personas);
+				
+		        $Personas->each(function($Personas){   
+		            $Personas->expediente;
+		            
+		        });
+
+		      // dd($Personas);
 			} catch(\Illuminate\Database\QueryException $ex){ //si hay un error en la sentncia entonces no envia nada
 
 				Flash::danger("Se ingreso datos incorrectos, vea el ejemplo al final en el icono (i) ");
@@ -163,23 +101,14 @@ class BusquedaController extends Controller
 
                 return redirect()->route('busqueda');
 			}
-			
 
-			dd($persona);
 
-			$currentPage = LengthAwarePaginator::resolveCurrentPage();
-			$col = new Collection($persona);
-			$perPage = 10;
+			}
 
-			$currentPageSearchResults = $col->slice(($currentPage - 1) * $perPage, $perPage)->all();
-
-			$Personas = new LengthAwarePaginator($currentPageSearchResults, count($col), $perPage, $currentPage,['path'=> LengthAwarePaginator::resolveCurrentPath()] );
-			//$Personas = new LengthAwarePaginator($currentPageSearchResults, count($col), $perPage);
-
-			//dd($Personas);
-		}
 
 		
+
+		//dd($Personas);
 
 	
 
