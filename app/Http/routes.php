@@ -93,6 +93,11 @@ Route::get('/doctores/json',[
 			'uses'	=>	'DoctorController@doctoresJSON'
 ]);
 
+
+
+//---------------------------Expediente
+Route::resource('expediente','ExpedienteController');
+
 /*
 *
 * FIN RUTAS ELIAS
@@ -121,7 +126,7 @@ Route::get('/doctores/json',[
 	        ]);*/
 
 	
-	Route::resource('expediente','expedienteController');
+	
 
 	Route::get('mostrarExpedientes/{expediente}/vista', [
 	    'uses' => 'expedienteController@verExpedientes', 

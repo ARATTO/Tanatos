@@ -58,7 +58,7 @@ class Persona extends Model
          return $this->belongsTo('App\EstadoCivil');
      }
      public function telefonos(){
-         return $this->belongsTo('App\Telefono');
+         return $this->belongsTo('App\Telefono','idtelefono');
      }
      public function detallesDirecciones(){
          return $this->belongsTo('App\DetalleDireccion');
@@ -76,7 +76,7 @@ class Persona extends Model
          return $this->hasMany('App\Doctor');
      }
      public function expediente(){
-         return $this->hasMany('App\Expediente');
+         return $this->hasMany('App\Expediente','idpersona');
      }
      
      //////////////////////////////////////////////////////

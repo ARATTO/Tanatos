@@ -55,7 +55,7 @@ class Telefono extends Model
 
      
      public function persona(){
-         return $this->hasMany('App\Persona');
+         return $this->hasMany('App\Persona','idpersona');
      }
      
      //////////////////////////////////////////////////////

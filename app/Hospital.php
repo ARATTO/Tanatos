@@ -56,7 +56,7 @@ class Hospital extends Model
 
      
      public function expediente(){
-         return $this->hasMany('App\Expediente');
+         return $this->hasMany('App\Expediente','idhospital');
      }
      
      //////////////////////////////////////////////////////

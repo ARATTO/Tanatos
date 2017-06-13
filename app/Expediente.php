@@ -44,13 +44,13 @@ class Expediente extends Model
 
      
      public function personas(){
-         return $this->belongsTo('App\Persona');
+         return $this->belongsTo('App\Persona','idpersona');
      }
      public function historialesClinicos(){
          return $this->belongsTo('App\HistorialClinico');
      }
      public function hospitales(){
-         return $this->belongsTo('App\Hospital');
+         return $this->belongsTo('App\Hospital','idhospital');
      }
      
      //////////////////////////////////////////////////////

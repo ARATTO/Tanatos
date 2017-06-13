@@ -11,22 +11,39 @@ use App\Expediente;
 use App\Cita;
 use App\HistorialClinico;
 use App\User;
+use App\Municipio;
+use App\Rol;
+use App\Persona;
+use App\EstadoCivil;
 use App\Hospital;
 use DB;
 
 class expedienteController extends Controller
 {
     public function show(Request $request){
-        $expediente = DB::table('expediente')
+       /* $expediente = DB::table('expediente')
             ->join("persona","expediente.id","=","persona.id")
             ->get();
 
-        return view('expediente.index');
+        return view('expediente.index');*/
+
+        dd($request);
+        $estadoCivil = EstadoCivil::all();
+        $municipio = Municipio::all();
+
+        return view('user.paciente')->with([
+            'estadoCivil'=>$estadoCivil, 
+            'municipio'=>$municipio,
+        ]);
+
+
+
     }
 
     
 
     public function store(Request $request){
+        /*
         $historialClinico=new HistorialClinico;
         $historialClinico->nombremadre = $request->nombremadre;
         $historialClinico->nombrepadre = $request->nombrepadre;
@@ -42,28 +59,74 @@ class expedienteController extends Controller
         $expediente->save();
 
         Flash::success('Se guardo el expediente');
+        return view('/home');*/
+        
 
-        return view('/home');
+        try{
+            $persona= Persona::where('dui',$request->dui)->first();
+             if($persona){
+                $historialClinico = new HistorialClinico();
+                $historialClinico->fill($request->all());
+                $historialClinico->save();
+
+                $expediente= new Expediente(); 
+                $expediente->idpersona=$persona->id;
+                $expediente->idhistorialclinico= $historialClinico->id;
+                $expediente->idhospital=$request->idhospital;
+                $expediente->save();
+                
+                //dd($expediente);
+                Flash::success(trans('eetntmessage.ExpedienteCreado'));
+            }else{
+                 Flash::danger(trans('eetntmessage.UsuarioNoEncontrado'));
+                 return redirect()->route('expediente.create'); 
+            }
+
+        }catch(Exception $e){
+            Flash::danger($e->getMessage());
+        }
+
+        return redirect()->route('expediente.index'); 
     }
 
     public function create(){
-
+/*
         $usuario = USER::all()->lists('email','id');
         $hospital = Hospital::all()->lists('nombre','id');
+        $estadosciviles = EstadoCivil::orderBy('id')->lists('nombreestadocivil','id');
 
         return view('expediente.create')
-        ->with('usuarios',$usuario)
-        ->with('hospitales',$hospital);
+        ->with('estadosciviles',$estadosciviles)
 
+        ->with('hospitales',$hospital);*/
+
+
+        $hospitales = Hospital::all();
+        return view('expediente.create')->with('hospitales',$hospitales);
+        //dd($hospitales);
     }
 
 
     public function index(){
+        /*
         $expediente = DB::table('expediente')
             ->join("persona","expediente.id","=","persona.id")
             ->get();
 
         return view('expediente.index')->with('expedientes',$expediente);
+        */
+        
+        $expedientes = Expediente::orderBy('id','ASC')->paginate(1);
+
+        $expedientes->each(function($expedientes){
+            $expedientes->hospitales;
+            $expedientes->personas->telefonos;
+            
+        });
+        
+
+        //dd($expedientes);
+        return view('expediente.index')->with('expedientes',$expedientes);
 
     }
 
