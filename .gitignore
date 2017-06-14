@@ -3,4 +3,8 @@
 /public/storage
 Homestead.yaml
 Homestead.json
+<<<<<<< HEAD
 
+=======
+.env
+>>>>>>> origin/Rodrigo
