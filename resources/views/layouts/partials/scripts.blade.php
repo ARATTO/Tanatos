@@ -113,6 +113,14 @@
              no_results_text: "Oops, No encontramos nada como:  ",
              width: "100%",
       });
+      $("#chosen_camilla").chosen({
+             no_results_text: "Oops, No encontramos nada como:  ",
+             width: "100%",
+      });
+      $("#chosen_sala").chosen({
+             no_results_text: "Oops, No encontramos nada como:  ",
+             width: "100%",
+      });            
 </script>
 
 

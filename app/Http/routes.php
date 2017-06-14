@@ -141,6 +141,11 @@ Route::get('/doctores/json',[
 
 	Route::resource('diagnostico','ConsultaController');
 
+	Route::get('citasdehoy',[
+	        'uses' => 'ConsultaController@index',
+	        'as' => 'citasdehoy'
+	        ]);
+
 	Route::get('examenespendientes', [
 	    'uses' => 'ConsultaController@VerExamenesPendientes', 
 	    'as'    => 'consulta.examenesexpedientes'

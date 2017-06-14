@@ -14,6 +14,9 @@ use App\Hospital;
 use App\Doctor;
 use App\Camilla;
 use App\Sala;
+use App\Ingreso;
+use DateTime;
+use DB;
 
 class IngresoController extends Controller
 {
@@ -45,7 +48,34 @@ class IngresoController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        $ingreso =  new Ingreso();
+
+        $ingreso->iddoctor = $request->iddoctor;
+        $ingreso->idexpediente = $request->idexpediente;
+        $ingreso->idcamilla = $request->idcamilla;
+        $ingreso->idsala = $request->idsala;
+
+         $fechaInicio=$request->fechaingreso;
+         $time = new DateTime($fechaInicio);        
+         $fechaingreso = $time->format('Y-m-d H:i');
+
+         $fechaSalida=$request->fechasalida;
+         $time = new DateTime($fechaSalida);
+         $fechasalida = $time->format('Y-m-d H:i');
+
+    
+
+        $ingreso->fechaingreso = $fechaingreso;
+        $ingreso->fechasalida = $fechasalida;
+
+        $ingreso->save();
+
+                $dia=date("d");
+        $day= (string) $dia;
+        //dd($consultamedica);
+        
+        
+        return redirect()->route('citasdehoy');
     }
 
     /**
@@ -80,7 +110,7 @@ class IngresoController extends Controller
 
         //dd(Auth::user());
        
-        //dd($hospital); 
+        //dd($sala); 
         
         return view('ingreso.create',compact('expediente','hospital','doctor','camilla','sala'));
         

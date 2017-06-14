@@ -31,6 +31,9 @@
                         <button style=" position: absolute; right: 30px; background:#638cb5; font: bold;" type="button" onclick="ocultar()" class="btn">Ocultar Expediente </button>
 {!! Form::open(['action' =>'IngresoController@store','class'=>'form-center' ]) !!}
 <section style="display: none" id="bloqueExpediente">
+<div style="display: none;">
+    <input type="number" name="idexpediente" value="{{$expediente[0]->id}}">
+</div>
                          @foreach($expediente as $exp)
 <br>
         <div class="col-xs-6">
@@ -244,7 +247,7 @@
                          <div class="form-group">     
                                 {!!Form::label('ingreso', trans('Fecha de ingreso'))!!}
                                 <div class='input-group date' id='datetimepicker1'>
-                                    <input type='text' class="form-control" name='fechaIngreso' id='fechaIngreso' required />
+                                    <input type='text' class="form-control" name='fechaingreso' id='fechaIngreso' required />
                                     <span class="input-group-addon">
                                         <span class="glyphicon glyphicon-calendar"></span>
                                     </span>
@@ -254,15 +257,50 @@
 
 
                          <div class="form-group">     
-                                {!!Form::label('ingreso', trans('Fecha de alta'))!!}
+                                {!!Form::label('alta', trans('Fecha de alta'))!!}
                                 <div class='input-group date' id='datetimepicker2'>
-                                    <input type='text' class="form-control" name='fechaalta' id='fechaalta' required />
+                                    <input type='text' class="form-control" name='fechasalida' id='fechaalta' />
                                     <span class="input-group-addon">
                                         <span class="glyphicon glyphicon-calendar"></span>
                                     </span>
                                 </div>
+                                
+
                                 <br><br>
                         </div>
+
+
+                        <div class="form-group">    
+                                <h4><span for="chosen-select" class="label label-info">Sala</span><h4>
+                                @if($sala != null)
+                                    <select name="idsala" id="chosen_sala" data-placeholder="Seleccione la sala...">
+                                        @foreach ($sala as $doc)
+                                            <option value="{{ $doc->id }}">{{$doc->numerosala}}</option>
+                                        @endforeach
+                                    </select>
+                                @else
+                                    {!! form::label('#','No existen doctores') !!}
+                                @endif  
+                                <hr>  
+                        </div> 
+
+
+                        <div class="form-group">    
+                                <h4><span for="chosen-select" class="label label-info">Camilla</span><h4>
+                                @if($camilla != null)
+                                    <select name="idcamilla" id="chosen_camilla" data-placeholder="Seleccione la camilla...">
+                                        @foreach ($camilla as $doc)
+                                            <option value="{{ $doc->id }}">{{$doc->numerocamilla}}</option>
+                                        @endforeach
+                                    </select>
+                                @else
+                                    {!! form::label('#','No existen doctores') !!}
+                                @endif  
+                                <hr>  
+                        </div> 
+
+
+
                 
                 <div class="form-group form-inline">
                     <h3><span class="label label-danger">{{ trans('Guardar Datos') }}</span><h3>
