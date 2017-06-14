@@ -12,6 +12,8 @@ use GeneaLabs\Bones\Flash\Flash;
 use View;
 use App\Hospital;
 use App\Doctor;
+use App\Camilla;
+use App\Sala;
 
 class IngresoController extends Controller
 {
@@ -43,7 +45,7 @@ class IngresoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->all());
     }
 
     /**
@@ -73,12 +75,14 @@ class IngresoController extends Controller
             //$hospital  = Hospital::where('id',$expediente[0]->idhospital )->get();
             $hospital  = Hospital::all();
             $doctor  = Doctor::all();
+            $camilla = Camilla::all();
+            $sala = Sala::all();
 
         //dd(Auth::user());
        
         //dd($hospital); 
         
-        return view('ingreso.create',compact('expediente','hospital','doctor'));
+        return view('ingreso.create',compact('expediente','hospital','doctor','camilla','sala'));
         
     }
 
