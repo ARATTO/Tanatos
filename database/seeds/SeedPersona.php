@@ -13,14 +13,14 @@ class SeedPersona extends Seeder
     {
         //MOTTO
         DB::table('persona')->insert([
-
+            'dui'                   => '12345671',
             'primernombre'          => 'Dario',
             'segundonombre'         => 'Roman',
             'primerapellido'        => 'Araya',
             'segundoapellido'       => 'Motto',
             'genero'                => 'M',
             'fechanacimiento'       => '1993/06/21',
-            'dui'                   => '05177882-6',
+        
             /*FK*/
             'iduser'                => 1,
             'idestadocivil'         => 1,
@@ -32,13 +32,14 @@ class SeedPersona extends Seeder
         //ALAM
         DB::table('persona')->insert([
 
+            'dui'                   => '12345672',
             'primernombre'          => 'Alam',
             'segundonombre'         => 'Alam',
             'primerapellido'        => 'Lopez',
             'segundoapellido'       => 'Lopez',
             'genero'                => 'M',
             'fechanacimiento'       => '1995/01/01',
-            'dui'                   => '05177882-7',
+        
             /*FK*/
             'iduser'                => 2,
             'idestadocivil'         => 1,
@@ -49,13 +50,14 @@ class SeedPersona extends Seeder
         //LOBO
         DB::table('persona')->insert([
 
+            'dui'                   => '12345673',
             'primernombre'          => 'Bryan',
             'segundonombre'         => 'Erick',
             'primerapellido'        => 'Lobos',
             'segundoapellido'       => 'Cruz',
             'genero'                => 'M',
             'fechanacimiento'       => '1995/01/01',
-            'dui'                   => '05177882-8',
+        
             /*FK*/
             'iduser'                => 3,
             'idestadocivil'         => 1,
@@ -66,13 +68,14 @@ class SeedPersona extends Seeder
         //ELIAS
         DB::table('persona')->insert([
 
+            'dui'                   => '12345674',
             'primernombre'          => 'Elias',
             'segundonombre'         => 'Ernesto',
             'primerapellido'        => 'Barrera',
             'segundoapellido'       => 'Barrera',
             'genero'                => 'M',
             'fechanacimiento'       => '1995/02/01',
-            'dui'                   => '05177882-9',
+        
             /*FK*/
             'iduser'                => 4,
             'idestadocivil'         => 1,
@@ -83,13 +86,14 @@ class SeedPersona extends Seeder
         //RODRIGO
         DB::table('persona')->insert([
 
+            'dui'                   => '12345675',
             'primernombre'          => 'Rodrigo',
             'segundonombre'         => 'Daniel',
             'primerapellido'        => 'Romero',
             'segundoapellido'       => 'Segovia',
             'genero'                => 'M',
             'fechanacimiento'       => '1995/01/11',
-            'dui'                   => '05177882-0',
+        
             /*FK*/
             'iduser'                => 5,
             'idestadocivil'         => 1,

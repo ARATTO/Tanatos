@@ -64,6 +64,10 @@ Route::get('/admin', 'HomeController@index');
 */
 	Route::resource('medicamentos','MedicamentosController');
 
+	Route::resource('cobro','CobroController');
+		Route::resource('ingreso','IngresoController');
+	Route::resource('bitacoraIngreso','BitacoraIngresoController');
+
 	Route::get('busqueda',[
 		'uses' => 'BusquedaController@index',
 		'as' => 'busqueda'
@@ -80,12 +84,19 @@ Route::get('/admin', 'HomeController@index');
 * RUTAS ELIAS
 *
 */
-Route::get('/calendar', function () {
-    return view('citas/calendar');
-})->name('calendar');
-
+//----------------------------Calendario
+Route::get('/calendar', [
+            'as' => 'calendar',
+            'uses' => 'CitaController@mostrar'
+        ]);
 
 Route::resource('citas','CitaController');
+
+Route::get('/doctores/json',[
+			'as'	=> 	'doctores.json',
+			'uses'	=>	'DoctorController@doctoresJSON'
+]);
+
 /*
 *
 * FIN RUTAS ELIAS
@@ -155,6 +166,8 @@ Route::resource('citas','CitaController');
 *
 */
 	Route::resource('doctores','DoctorController');
+	Route::post('send', ['as' => 'send', 'uses' => 'CorreoController@send'] );
+	Route::get('contact', ['as' => 'contact', 'uses' => 'CorreoController@index'] );
 /*
 *
 * FIN RUTAS ALAM

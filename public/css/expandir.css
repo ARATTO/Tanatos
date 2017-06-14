@@ -1,0 +1,13 @@
+#titulo{
+  background:#479E49;
+  padding:5px;
+}
+#contenido{
+  background:#8BD76A;
+  padding:20px 10px;
+}
+.imgcolexp{
+  float:right;
+  width:16px;
+        cursor:pointer;
+}

@@ -140,9 +140,13 @@
       
 </script>
 
-<script type="text/javascript">
-      function redireccionar(){
-            //window.location.replace("");
-            alert('hola');
-      } 
-</script>
+
+<!-- ELIAS CALENDAR SCRIPTS                      -->
+
+<!-- Scripts Rodrigo -->
+
+
+
+
+
+<!-- Scripts Rodrigo -->

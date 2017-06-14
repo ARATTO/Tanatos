@@ -7,8 +7,12 @@ use App\Cita;
 use App\Http\Requests;
 use DateTime;
 use DateInterval;
+use App\Especialidad;
 use App\Expediente;
+use App\Doctor;
+use App\Horario;
 use GeneaLabs\Bones\Flash\Flash;
+use View;
 
 class CitaController extends Controller
 {
@@ -19,7 +23,7 @@ class CitaController extends Controller
      */
     public function index()
     {
-        $citas = Cita::select('id','title','start','color','idexpediente')->get();
+        $citas = Cita::select('id','title','start','color','idexpediente','iddoctor')->get();
         return Response()->json($citas);
     }
 
@@ -33,7 +37,22 @@ class CitaController extends Controller
         //
     }
 
-    
+     public function mostrar()
+    {
+        $especialidades = Especialidad::orderBy('id')->lists('nombreespecialidad','id');
+        
+        $doctores = Doctor::orderBy('id')->lists('nombredoctor','id');
+       /*
+        $doctores->each(function($doctores){
+            $doctores->horario;
+        });*/
+        //dd($doctores);
+        
+        return View::make('citas/calendar')->with('especialidades',$especialidades)->with('doctores',$doctores);
+       
+    }
+
+ 
     /**
      * Store a newly created resource in storage.
      *
@@ -43,6 +62,7 @@ class CitaController extends Controller
     public function store(Request $request)
     {
         //dd($request->all());
+
         $expe = Expediente::find($request->idexpediente);
         //dd($expe);
         if ($expe !=null) {//codigo si encuentra el expediente
@@ -65,12 +85,19 @@ class CitaController extends Controller
                     Flash::danger(trans('eetntmessage.ErrorAlGuardar'));
                     
                  }else{
-                    try{
-                        $cita->fin=$fechaFin;
-                        $cita->save();
-                        Flash::success(trans('eetntmessage.CitaGuardada'));
-                    }catch(Exception $e){
-                        Flash::danger($e->getMessage());
+
+                    if(CitaController::verificarHorarioDoctor($request)){
+                        try{
+                            $cita->fin=$fechaFin;
+                            $cita->title=Especialidad::find($request->idespecialidad)->nombreespecialidad;
+                            $cita->save();
+                            Flash::success(trans('eetntmessage.CitaGuardada'));
+                        }catch(Exception $e){
+                            Flash::danger($e->getMessage());
+                        }
+                    }else{
+                        Flash::danger(trans('eetntmessage.DoctorNoDisponible'));
+                        
                     }
                  }
             }
@@ -82,6 +109,39 @@ class CitaController extends Controller
         }
        
     }
+
+
+
+
+
+    public  function verificarHorarioDoctor(Request $request){
+            //Obtencion del horario del doctor segun el request
+            $iddoctor=$request->iddoctor;
+            $horario=Horario::where('iddoctor',$iddoctor)->first();
+            //Horarios en los que esta disponible el doctor
+            $timestartdoctor=$horario->horainicio;
+            $timeendtdoctor=$horario->horafin;
+        // dd($timeendtdoctor);
+            
+            //Horarios en que se solicita la cita
+            $fechaInicio=$request->start;
+            $minutes_to_add = 30;
+            $time = new DateTime($fechaInicio);
+            $timestart=$time->format('H:i:s');
+            $timeend=$time->add(new DateInterval('PT' . $minutes_to_add . 'M'))->format('H:i:s');
+            
+            //Verificacion de horarios segun disponibilidad del doctor
+            
+            if($timestart>=$timestartdoctor&&$timeend<=$timeendtdoctor){  
+                return true;
+
+            }else{
+                return false;
+                        
+            }
+        }
+    
+   
 
     /**
      * Display the specified resource.
@@ -125,6 +185,8 @@ class CitaController extends Controller
      */
     public function destroy($id)
     {
+
+        
         try{
            $cita = Cita::find($id);
             $cita->delete();
