@@ -20,7 +20,7 @@
                     <div class="panel-body">
                         @include('bones-flash::bones.flash')
                         @include('layouts.partials.flash')
-
+                        
                         <form action="/foo/bar" method="POST">
                             <input type="hidden" name="_method" value="PUT">
                             @foreach($consulta as $con)
@@ -29,10 +29,10 @@
                                   <div class="input-group col-md-12">
                                     <div class="form-group">
                                         <label for="nombres">Nombres:</label>
-                                        <div>
+                                        <div class="form-group form-inline">
                                           <input type="text" name="nombre" id="nombre" value="{{ $con->primernombre }} " readonly="readonly" style="width: 300px;">
                                         </div>
-                                        <div>
+                                        <div class="form-group form-inline">
                                           <input type="text" name="nombre" id="nombre" value="{{ $con->segundonombre }} " readonly="readonly" style="width: 300px;">
                                         </div>
                                     </div>
@@ -43,10 +43,10 @@
                                   <div class="input-group col-xs-12">
                                     <div class="form-group">
                                         <label for="apellidos">Apellidos:</label>
-                                        <div>
+                                        <div class="form-group form-inline">
                                         <input type="text" name="nombre" id="nombre" value="{{ $con->primerapellido }} " readonly="readonly">
                                         </div>
-                                        <div>
+                                        <div class="form-group form-inline">
                                         <input type="text" name="nombre" id="nombre" value="{{ $con->segundoapellido }} " readonly="readonly">
                                         </div>
                                     </div>
@@ -57,7 +57,7 @@
                                   <div class="input-group col-xs-12">
                                     <div class="form-group">
                                         <label for="genero">DUI:</label>
-                                        <div>
+                                        <div >
                                         <input type="text" name="nombre" id="nombre" value="{{ $con->dui }} " readonly="readonly" style="width: 300px;">
                                         </div>
                                     </div>
