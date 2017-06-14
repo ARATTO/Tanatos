@@ -4,10 +4,16 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Rol;
+use App\EstadoCivil;
+use App\Municipio;
+use App\Telefono;
+use App\DetalleDireccion;
+use App\Persona;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
 {
@@ -61,8 +67,69 @@ class AuthController extends Controller
      * @param  array  $data
      * @return User
      */
-    protected function create(array $data)
+    public function create(array $data)
     {
         //no hace nada papu
+        //dd($request->all());
+        $RolPaciente = DB::table('rol')->where('nombrerol', 'Paciente')->first();
+        //dd($RolPaciente->id);
+
+        if($data['genero'] == 1){
+            $genero = 'M';
+        }else{
+            $genero = 'F';
+        }
+
+        //Fill de User
+        $user = new User();
+        
+        $user->email = $data['email'];
+        $user->idrol = $RolPaciente->id;
+        $user->estado = 1;
+        $user->usuario = $data['primernombre'] . ' ' . $data['primerapellido'];
+        $user->password = bcrypt($data['password']);
+        
+        $user->save();
+
+        //Fill de Telefono
+        $telefono = new Telefono();
+        $telefono->casatelefono = $data['casatelefono'];
+        $telefono->trabajotelefono = $data['trabajotelefono'];
+        $telefono->celulartelefono = $data['celulartelefono'];
+
+        $telefono->save();
+
+        //Fill de DetalleDireccion
+        $detalleDireccion = new DetalleDireccion();
+        $detalleDireccion->idmunicipio = $data['idmunicipio'];
+        $detalleDireccion->calle = $data['calle'];
+        $detalleDireccion->pasaje = $data['pasaje'];
+        $detalleDireccion->casa = $data['casa'];
+        $detalleDireccion->apartamento = $data['apartamento'];
+        $detalleDireccion->colonia = $data['colonia'];
+
+        $detalleDireccion->save();
+
+        //Fill Persona
+        $persona = new Persona();
+        
+        $persona->iduser = $user->id;
+        $persona->idestadocivil = $data['idestadocivil'];
+        $persona->idtelefono = $telefono->id;
+        $persona->iddetalledireccion = $detalleDireccion->id;
+        $persona->dui = $data['dui'];
+        $persona->primernombre = $data['primernombre'];
+        $persona->segundonombre = $data['segundonombre'];
+        $persona->primerapellido = $data['primerapellido'];
+        $persona->segundoapellido = $data['segundoapellido'];
+        $persona->genero = $genero;
+        $persona->fechanacimiento = $data['fechanacimiento'];
+        
+        $persona->save();
+
+
+        //dd($request);
+
+        //return view('home');
     }
 }
