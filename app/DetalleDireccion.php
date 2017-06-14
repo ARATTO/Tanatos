@@ -48,7 +48,7 @@ class DetalleDireccion extends Model
 
      
      public function municipios(){
-         return $this->belongsTo('App\Municipio');
+         return $this->belongsTo('App\Municipio', 'idmunicipio');
      }
      
      //////////////////////////////////////////////////////

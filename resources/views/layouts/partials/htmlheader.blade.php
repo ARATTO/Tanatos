@@ -65,4 +65,7 @@
     <!--CSS RODRIGO PARA POP UP -->
     <link href="{{ asset('/css/popup.css') }}" rel="stylesheet" type="text/css" />
 
+    <!--CSS RODRIGO PARA expandir DIV -->
+     <link href="{{ asset('/css/expandir.css') }}" rel="stylesheet" type="text/css" />
+
 </head>

@@ -64,6 +64,8 @@ Expediente: 0001' ])  !!}
 			    	    </div>
 
 			    	    <section>
+			    	    @if (Auth::guest())
+        					@else
 							<div style="padding: 5px; float: left; width: 45%; text-align: justify;">
 
         						<div style = "display: none">
@@ -79,13 +81,12 @@ Expediente: 0001' ])  !!}
         					</div>
 
         					<div style=" float: right; width: 45%; text-align: justify;">
-        					@if (Auth::guest())
-        					@else
-	        					 @if(Auth::user()->idrol == 1 || Auth::user()->idrol == 3 || Auth::user()->idrol == 4 || Auth::user()->idrol == 6)
+        					
+	        					 
 	       							{{Form::checkbox('criterio[]', '6')}} Numero de Expediente<br>
-					    	    <!--	{{Form::checkbox('criterio[]', '5')}} Diagnostico<br>
-					    	    	{{Form::checkbox('criterio[]', '6')}} Fecha de expedicion<br>-->
-					    	    @endif	
+					    	    	{{Form::checkbox('criterio[]', '7')}} Diagnostico<br>
+					    	    	<!-- {{Form::checkbox('criterio[]', '6')}} Fecha de expedicion<br>-->
+					    	    
 					    	@endif
         					</div>
 			    	    </section>
@@ -115,18 +116,43 @@ Expediente: 0001' ])  !!}
 						    </thead>
 						    <tbody>
 							@foreach($Personas as $persona)
-						      <tr>
-						  		<td>{{$persona->primernombre}} {{$persona->segundonombre}}</td>
-						  		<td>{{$persona->primerapellido}} {{$persona->segundoapellido}} </td>
-						  		<td>{{$persona->fechanacimiento}} </td>
-						  		@if(count($persona->expediente)>0)
-								<td>{{$persona->expediente[0]->id}}</td>
-								@else
-								<td>No posee expediente</td>
-								@endif
-						  		<td></td>
-						  	
-						      </tr>
+								 @if (Auth::guest())
+        						 @else
+        						 	@if(Auth::user()->id == $persona->iduser && Auth::user()->idrol ==6)
+							     		<tr>
+							  				<td>{{$persona->primernombre}} {{$persona->segundonombre}}</td>
+							  				<td>{{$persona->primerapellido}} {{$persona->segundoapellido}} </td>
+							  				<td>{{$persona->fechanacimiento}} </td>
+							  				@if(count($persona->expediente)>0)
+												<td>{{$persona->expediente[0]->id}}</td>
+												<td>
+							          				 <a href="" onclick="return confirm('¿Seguro que deseas eliminarlo?')" class="btn btn-success"><font color="black" size="2"> <b>Ver Expediente</b></font></a>
+												</td>
+											@else
+												<td>No posee expediente</td>
+												<td></td>
+											@endif
+										</tr>
+							  		@else
+							  			 @if(Auth::user()->idrol !=6)
+							  			 <tr>
+							  				<td>{{$persona->primernombre}} {{$persona->segundonombre}}</td>
+							  				<td>{{$persona->primerapellido}} {{$persona->segundoapellido}} </td>
+							  				<td>{{$persona->fechanacimiento}} </td>
+							  				@if(count($persona->expediente)>0)
+												<td>{{$persona->expediente[0]->id}}</td>
+												<td>
+							          				 <a style="" href=" {{}}" onclick="return confirm('¿Seguro que deseas eliminarlo?')" class="btn btn-success"><font color="black" size="2"> <b>Ver Expediente</b></font></a>
+												</td>
+											@else
+												<td>No posee expediente</td>
+												<td></td>
+											@endif
+										  </tr>
+							  			 @endif
+							  		@endif
+							     		
+							      @endif
 						     @endforeach
 						    </tbody>
 						  </table>	

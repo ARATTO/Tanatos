@@ -27,7 +27,7 @@
                 <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
               </span>
    
-              <input type="text" name="" value=" Busqueda" onClick=" window.location.href='busqueda' " > 
+              <input type="text" name="" value=" Busqueda" onClick=" window.location.href='{{ route('busqueda') }}' " > 
             </div>
         </form>
         <!-- /.search form -->

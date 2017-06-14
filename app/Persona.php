@@ -54,16 +54,16 @@ class Persona extends Model
 
      
      public function users(){
-         return $this->belongsTo('App\User');
+         return $this->belongsTo('App\User', 'iduser');
      }
      public function estadosCiviles(){
-         return $this->belongsTo('App\EstadoCivil');
+         return $this->belongsTo('App\EstadoCivil', 'idestadocivil');
      }
      public function telefonos(){
-         return $this->belongsTo('App\Telefono');
+         return $this->belongsTo('App\Telefono', 'idtelefono');
      }
      public function detallesDirecciones(){
-         return $this->belongsTo('App\DetalleDireccion');
+         return $this->belongsTo('App\DetalleDireccion','iddetalledireccion');
      }
 
 
