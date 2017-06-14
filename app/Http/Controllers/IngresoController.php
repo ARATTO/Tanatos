@@ -15,8 +15,11 @@ use App\Doctor;
 use App\Camilla;
 use App\Sala;
 use App\Ingreso;
+use App\Persona;
+use App\User;
 use DateTime;
 use DB;
+use Illuminate\Support\Facades\Auth;  
 
 class IngresoController extends Controller
 {
@@ -26,8 +29,23 @@ class IngresoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
+    {   
+        
+
+        $user = User::where('id',6)->get();
+
+        $persona = Persona::where('iduser',$user[0]->id)->get();
+
+        $doctor = Doctor::where('idpersona',$persona[0]->id)->get();
+
+
+        $ingreso = Ingreso::where('iddoctor',$doctor[0]->id)->get();
+
+        dd($ingreso);
+
+        //dd($ingreso);
+
+        return view('ingreso.index');
     }
 
     /**
