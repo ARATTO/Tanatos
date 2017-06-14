@@ -1,52 +1,27 @@
 @extends('layouts.app')
-
+<!-- TEXTO DEL HEADER -->
 @section('htmlheader_title')
- Creacion de Expediente
+  INICIO
 @endsection
 
 
 @section('main-content')
- <!-- Content Wrapper. Contains page content -->
-      <div class="content-wrapper" style="min-height:2000px !important;">
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
-          <h1>
-            Expediente
-            <small> nuevo</small>
-          </h1>
-          <ol class="breadcrumb">
-            
-            <li class="active">Nuevo</li>
-          </ol>
-
-        </section>
-
-        <!--     -->
-
-        <!-- contenido principal -->
-        <section class="content"  id="contenido_principal">
-
-          <div class="box box-primary">
-
-            <div class="box-body">
-
-              <div class="col-xs-12">
-                <div class="panel panel-info">
-                  <!-- Default panel contents -->
-                  <div class="panel-heading">Formulario Nuevo Expediente</div>
-                  </div>
-
-                  @include('bones-flash::bones.flash')
-                  @include('flash::message')
-	
-
-              </div>
-
-          </div>
-
+    <!-- AQUI DEBEN LLAMAR EL HEADER PARA CADA VIEW CREADO EN "CONTENTHEADER"" -->
+  @include('layouts.partials.contentheader.consulta.create_head')
+    <!-- Main content -->
+        <section class="content">
+            <!-- Your Page Content Here -->
+  <div class="container spark-screen">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <div class="panel panel-default">
+                    <!-- AQUI DEBEN AGREGAR EL MENSAJE QUE QUIERAN EN EL PANEL HEAD -->
+          <div class="panel-heading"> TITULO DEL PANEL </div>
           <div class="panel-body">
-   			{!! Form::open(['action' => 'expedienteController@store']) !!}
-   			
+            @include('bones-flash::bones.flash')
+            @include('layouts.partials.flash')     
+            {!! Form::open(['action' => 'expedienteController@store']) !!}
+        
         <div class="col-xs-6">
           <div class="input-group col-md-12">
             <div class="form-group">
@@ -92,10 +67,12 @@
           </div><!-- /input-group -->
         </div><!-- /.col-lg-6 -->
 
-          {!! Form::close()!!}
-
+          {!! Form::close()!!}       
+            
+          </div>
+        </div>
       </div>
-
-         </div>
-       </section>
+    </div>
+  </div>
+  </section><!-- /.content -->
 @endsection

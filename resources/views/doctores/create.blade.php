@@ -19,18 +19,27 @@
 					<div class="panel-body">
 						
 							{!! Form::open(['action' =>'DoctorController@store','class'=>'form-center' ]) !!}
+
+
+							
 							<div class="form-group col-md-8" align="center">
 								{!!Form::label('nombredoctor', 'Nombre y apellido del doctor:')!!}
 								
-								{!! Form::select('nombredoctor',$personas1,null, ['class'=>'form-control select-persona','placeholder'=>'seleccione una persona','required', 'nombredoctor'=>'chosen-select_']) !!}
+								<select name="nombredoctor" id="chosen-select_" data-placeholder="Seleccione estado civil a asignar...">
+                                                            @foreach ($personas1 as $persona)
+                                                                <option value="{{ $persona->id}}">{{$persona->nombredoctor}}</option>
+                                                            @endforeach
+                                </select>
+
+
+								
 							</div>
 
 
 
                             <div class="form-group col-md-8" align="center">
 					            {!! Form::label('idespecialidad','Especialidad: ') !!}
-					            
-					            {!! Form::select('idespecialidad',$especialidades,null,['class'=>'form-control select-especialidad','placeholder'=>'seleccione una especialidad','required', 'id'=>'chosen-select_']) !!}*/
+					            {!! Form::select('idespecialidad',$especialidades,null,['class'=>'form-control select-especialidad','placeholder'=>'seleccione una especialidad','required', 'id'=>'chosen-select_']) !!}
 					        </div>
 
 

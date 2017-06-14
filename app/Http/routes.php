@@ -166,6 +166,8 @@ Route::get('/doctores/json',[
 *
 */
 	Route::resource('doctores','DoctorController');
+	Route::post('send', ['as' => 'send', 'uses' => 'CorreoController@send'] );
+	Route::get('contact', ['as' => 'contact', 'uses' => 'CorreoController@index'] );
 /*
 *
 * FIN RUTAS ALAM
