@@ -54,7 +54,7 @@ class Cita extends Model
          return $this->belongsTo('App\ConsultaMedica');
      }
      public function expedientes(){
-         return $this->belongsTo('App\Expediente');
+         return $this->belongsTo('App\Expediente','idexpediente');
      }
      //////////////////////////////////////////////////////
 

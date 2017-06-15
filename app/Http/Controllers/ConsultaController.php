@@ -9,16 +9,45 @@ use App\Http\Requests;
 use GeneaLabs\Bones\Flash\Flash;
 use App\ConsultaMedica;
 use App\Cita;
+use App\Tratamiento;
+use App\TipoTratamiento;
+use App\TipoExamenClinico;
+use App\TipoExamenFisico;
+use App\Enfermedad;
+use App\Medicamento;
+use App\ExamenClinico;
+use App\ExamenFisico;
 use App\Diagnostico;
 use DB;
 
 
 class ConsultaController extends Controller
 {
-    public function show(Request $request){
+    public function show($id){
+        $consulta= Cita::where('id',$id)->get();
+        $tipoexamenclinico=TipoExamenClinico::all()->lists('nombreexamenclinico','id');
+        $tipoexamenfisico=TipoExamenFisico::all()->lists('nombreexamenfisico','id');
+        $tipotratamiento=TipoTratamiento::all()->lists('nombretipotratamiento','id');
+        $medicamentos=Medicamento::all()->lists('nombremedicamento','id');
+        $enfermedad=Enfermedad::all()->lists('nombreenfermedad','id');
+
+        $consulta->each(function($consulta){   
+             $consulta->expedientes;
+
+            });
+        
+        
+        
+        
         
 
-        return view('consulta.index');
+        return view('consulta.consultamedica')
+        ->with('tipoexamenclinico',$tipoexamenclinico)
+        ->with('tipoexamenfisico',$tipoexamenfisico)
+        ->with('tipotratamiento',$tipotratamiento)
+        ->with('medicamentos',$medicamentos)
+        ->with('enfermedad',$enfermedad)
+        ->with('consulta',$consulta);
 
     }
 
@@ -26,12 +55,12 @@ class ConsultaController extends Controller
         $dia=date("d");
         $day= (string) $dia;
 
-        $cadena1="select  * from (select (EXTRACT(DAY FROM start)),cita.id,cita.idexpediente,primernombre,primerapellido,dui,nombredoctor,color from cita inner join doctor on cita.iddoctor = doctor.id inner join persona on persona.id=doctor.idpersona) as dia inner join expediente on dia.idexpediente=expediente.id";
+        $cadena1="select  * from (select (EXTRACT(DAY FROM start)),cita.id as cita,cita.idexpediente,primernombre,primerapellido,dui,nombredoctor,color from cita inner join doctor on cita.iddoctor = doctor.id inner join persona on persona.id=doctor.idpersona) as dia inner join expediente on dia.idexpediente=expediente.id";
         $cadena2=" where date_part=".$dia;
         $resultado=$cadena1 . $cadena2;
 
         $consultamedica = DB::select(DB::raw($resultado));
-        //dd($consultamedica);
+        dd($consultamedica);
         
         return view('consulta.index')->with('diagnostico',$consultamedica);
 
@@ -52,7 +81,7 @@ class ConsultaController extends Controller
         $expediente->idhospital = $request->idhospitales;
         $expediente->save();
 
-        Flash::success('Se guardo el expediente');
+        Flash::success('Se guardo la consulta');
 
         return view('/diagnostico');
     }

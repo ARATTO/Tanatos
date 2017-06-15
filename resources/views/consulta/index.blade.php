@@ -33,7 +33,7 @@
               <tbody>
                 @foreach($diagnostico as $diagnostico)
                   <tr>
-                    <td>{{$diagnostico->id}} </td>
+                    <td><a href="{{route('consultas',$diagnostico->cita)}}">{{$diagnostico->cita}} </a></td>
                     <td>{{$diagnostico->dui}} </td>
                     <td>{{$diagnostico->primernombre}} </td>
                     <td>{{$diagnostico->primerapellido}} </td>

@@ -16,17 +16,28 @@
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
                     <!-- AQUI DEBEN AGREGAR EL MENSAJE QUE QUIERAN EN EL PANEL HEAD -->
-                    <div class="panel-heading"> TITULO DEL PANEL </div>
+                    <div class="panel-heading"> TITULO DEL PANEL
+
+                    <div class="panel-body" disabled="false" >
+                          {!! Form::submit('Guardar', ['class'=> 'pull-right btn btn-success btn-lg'  ]) !!}  
+                    </div>
+                                            
+                     </div>
                     <div class="panel-body">
                         @include('bones-flash::bones.flash')
                         @include('layouts.partials.flash')  
-
+                        {!! Form::open(['action' => 'ConsultaController@store']) !!}
                 <form action="/foo/bar" method="POST">
                         <input type="hidden" name="_method" value="PUT">
 
                 <!--//////////////////////////////////////////////////////////////////////////////////////////////////////////-->
 
-                        
+                    <div>
+                    <label for=""># Expediente:</label>
+                    <input type="text" name="idexpediente" id="nombre" value="{{$consulta[0]->expedientes->id}}">
+                    <label for=""># Cita:</label>
+                    <input type="text" name="idcita" id="nombre" value="{{$consulta[0]->id}}">
+                    </div>
 
                                         <div role="tabpanel">
                                             <!-- Nav tabs -->
@@ -35,7 +46,6 @@
                                             <li role="presentation"><a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">Consulta</a></li>
                                             <li role="presentation"><a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">Examenes</a></li>
                                             <li role="presentation"><a href="#tab4" aria-controls="tab4" role="tab" data-toggle="tab">Tratamiento</a></li>
-                                            <li role="presentation"><a href="#tab5" aria-controls="tab5" role="tab" data-toggle="tab">Ingreso</a></li>
                                             </ul>
 
                                             <!-- Tab panes -->
@@ -46,9 +56,9 @@
                                     <div class="col-xs-6">
                                       <div class="input-group col-xs-12">
                                         <div class="form-group">
-                                            <label for="fechanacimiento">Peso:</label>
-                                            <div>
-                                            <input type="text" name="nombre" id="nombre" value="" >
+                                            <div class="form-group form-inline">
+                                                  {!! form::label('Peso','Peso:') !!}
+                                                  {!! form::text('peso', null, ['class' => 'form-control ', 'placeholder'=> 'EN KG ejem:40.5', 'required']) !!}
                                             </div>
                                         </div>
                                       </div><!-- /input-group -->
@@ -57,9 +67,9 @@
                                     <div class="col-xs-6">
                                       <div class="input-group col-xs-12">
                                         <div class="form-group">
-                                            <label for="direccion">Temperatura:</label>
-                                            <div>
-                                            <input type="textarea" name="nombre" id="nombre" value=""  style="width: 300px;">
+                                            <div class="form-group form-inline">
+                                                  {!! form::label('Temperatura','Temperatura:') !!}
+                                                  {!! form::text('temperatura', null, ['class' => 'form-control ', 'placeholder'=> 'EN ºC ejem:30', 'required']) !!}
                                             </div>
                                         </div>
                                       </div><!-- /input-group -->
@@ -68,9 +78,9 @@
                                     <div class="col-xs-6">
                                       <div class="input-group col-xs-12">
                                         <div class="form-group">
-                                            <label for="telefono">Estatura :</label>
-                                            <div>
-                                            <input type="text" name="nombre" id="nombre" value=""  >
+                                            <div class="form-group form-inline">
+                                                  {!! form::label('Estatura','Estatura:') !!}
+                                                  {!! form::text('estatura', null, ['class' => 'form-control ', 'placeholder'=> 'EN METROS ejem:1.65', 'required']) !!}
                                             </div>
                                         </div>
                                       </div><!-- /input-group -->
@@ -79,9 +89,9 @@
                                     <div class="col-xs-6">
                                       <div class="input-group col-xs-12">
                                         <div class="form-group">
-                                            <label for="email">Presion Arterial :</label>
-                                            <div>
-                                            <input type="text" name="nombre" id="nombre" value=""  style="width: 300px;">
+                                            <div class="form-group form-inline">
+                                                  {!! form::label('PresionArterial','Presion Arterial:') !!}
+                                                  {!! form::text('presionarterial', null, ['class' => 'form-control ', 'placeholder'=> 'EN mmHG ejem:90', 'required']) !!}
                                             </div>
                                         </div>
                                       </div><!-- /input-group -->
@@ -90,9 +100,9 @@
                                     <div class="col-xs-6">
                                       <div class="input-group col-xs-12">
                                         <div class="form-group">
-                                            <label for="telfonoresponsable">Ritmo Cardiaco:</label>
-                                            <div>
-                                            <input type="text" name="nombre" id="nombre" value=""    >
+                                            <div class="form-group form-inline">
+                                                  {!! form::label('RitmoCardiaco','Ritmo cardiaco:') !!}
+                                                  {!! form::text('ritmocardiaco', null, ['class' => 'form-control ', 'placeholder'=> 'Veces por minuto ejem:70', 'required']) !!}
                                             </div>
                                         </div>
                                       </div><!-- /input-group -->
@@ -103,11 +113,11 @@
                                 <div class="panel-heading"  style="font-size: 24pt; ">Consulta Medica</div>  
 
                                     <div class="col-xs-6">
-                                      <div class="input-group col-md-12">
+                                      <div class="input-group col-xs-12">
                                         <div class="form-group">
-                                            <label for="nombres">Nombres:</label>
-                                            <div>
-                                              <input type="text" name="nombre" id="nombre" value=""  style="width: 300px;">
+                                            <div class="form-group form-inline">
+                                                  {!! form::label('DescripcionDeSintomas','Descripcion de sintomas:') !!}
+                                                  {!! form::text('descripciondesintomas', null, ['class' => 'form-control ', 'placeholder'=> 'TOS', 'required']) !!}
                                             </div>
                                         </div>
                                       </div><!-- /input-group -->
@@ -116,20 +126,9 @@
                                     <div class="col-xs-6">
                                       <div class="input-group col-xs-12">
                                         <div class="form-group">
-                                            <label for="apellidos">Descripcion de sintomas:</label>
-                                            <div>
-                                            <input type="text" name="nombre" id="nombre" value="" >
-                                            </div>
-                                        </div>
-                                      </div><!-- /input-group -->
-                                    </div><!-- /.col-lg-6 -->
-
-                                    <div class="col-xs-6">
-                                      <div class="input-group col-xs-12">
-                                        <div class="form-group">
-                                            <label for="genero">Descripcion de diagnostico:</label>
-                                            <div>
-                                            <input type="text" name="nombre" id="nombre" value=""  style="width: 300px;">
+                                            <div class="form-group form-inline">
+                                                  {!! form::label('DescripcionDeDiagnostico','Descripcion de Diagnostico:') !!}
+                                                  {!! form::text('descripciondediagnostico', null, ['class' => 'form-control ', 'placeholder'=> 'PORTADORA DEL VIRUS H1N1', 'required']) !!}
                                             </div>
                                         </div>
                                       </div><!-- /input-group -->
@@ -139,29 +138,47 @@
                             <div role="tabpanel" class="tab-pane" id="tab3">
                                 <div class="panel-heading"  style="font-size: 24pt; ">Examenes</div>
 
-                                    <div class="col-xs-6">
-                                      <div class="input-group col-xs-12">
-                                        <div class="form-group">
-                                            <label for="apellidos">Examen Fisico:</label>
-                                            <div>
-                                            <input type="text" name="nombre" id="nombre" value="" >
-                                            </div>
-                                        </div>
-                                      </div><!-- /input-group -->
-                                    </div><!-- /.col-lg-6 -->
 
                                     <div class="col-xs-6">
                                       <div class="input-group col-xs-12">
                                         <div class="form-group">
-                                            <label for="apellidos">Examen Clinico:</label>
-                                            <div class="checkbox">
-                                            <label>HECES</label>
-                                            <input type="checkbox" value="paracetamol">
-                                            
-                                            </div>
+
+                                            <h4><span  for="chosen-select" class="label label-info">Tipo Examen Fisico</span></h4>
+                                                    @if($tipoexamenfisico != null)
+                                                        <select class="form-inline" name="idtipoexamenfisico" id="chosen-select" data-placeholder="Seleccione el tipo de examen fisico...">
+                                                            @foreach ($tipoexamenfisico as $tipf)
+                                                                <option value="{{ $tipf->id }}">{{$tipf->nombreexamenfisico}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        <hr>
+                                                    @else
+                                                        {!! form::label('#','No hay tipos de examenes fisicos') !!}
+                                                    @endif 
                                         </div>
                                       </div><!-- /input-group -->
                                     </div><!-- /.col-lg-6 -->
+
+                                    
+                                    <div class="col-xs-6">
+                                      <div class="input-group col-xs-12">
+
+                                        <div class="form-group">
+
+                                            <h4><span  for="chosen-select" class="label label-info">Tipo de Examen Clinico</span></h4>
+                                                    @if($tipoexamenclinico != null)
+                                                        <select class="form-inline" name="idtipoexamenclinico" id="chosen-select" data-placeholder="Seleccione el tipo de examen clinico...">
+                                                            @foreach ($tipoexamenclinico as $tipc)
+                                                                <option value="{{ $tipc->id }}">{{$tipc->nombreexamenclinico}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        <hr>
+                                                    @else
+                                                        {!! form::label('#','No hay tipos de examenes clinicos') !!}
+                                                    @endif 
+                                     </div>
+                                                          </div><!-- /input-group -->
+                                                        </div>
+                                                    <!-- /.col-lg-6 -->
                             </div>
 
                             <div role="tabpanel" class="tab-pane" id="tab4">
@@ -170,45 +187,47 @@
                                     <div class="col-xs-6">
                                       <div class="input-group col-xs-12">
                                         <div class="form-group">
-                                            <label for="apellidos">Tipo de tratamiento:</label>
-                                            <div class="btn-group" role="group">
-                                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"aria-haspopup="true" aria-expanded="false">
-                                                Seleccione una opción
-                                                <span class="caret"></span>
-                                                </button>
-                                            <ul class="dropdown-menu">
-                                                <li>Si</li>
-                                                <li>No</li>
-                                            </ul>
-                                        </div>
-                                        </div>
+
+                                            <h4><span  for="chosen-select" class="label label-info">Tipo de Tratamiento</span></h4>
+                                                    @if($tipotratamiento != null)
+                                                        <select class="form-inline" name="idtratamiento" id="chosen-select" data-placeholder="Seleccione el tratamiento...">
+                                                            @foreach ($tipotratamiento as $tipt)
+                                                                <option value="{{ $tipt->id }}">{{$tipt->nombretipotratamiento}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        <hr>
+                                                    @else
+                                                        {!! form::label('#','No hay tipos de tratamientos') !!}
+                                                    @endif 
+                                     </div>
                                       </div><!-- /input-group -->
                                     </div><!-- /.col-lg-6 -->
 
                                     <div class="col-xs-6">
                                       <div class="input-group col-xs-12">
                                         <div class="form-group">
-                                            <label for="apellidos">Enfermedad:</label>
-                                            <div class="btn-group" role="group">
-                                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"aria-haspopup="true" aria-expanded="false">
-                                                Seleccione una opción
-                                                <span class="caret"></span>
-                                                </button>
-                                            <ul class="dropdown-menu">
-                                                <li>Si</li>
-                                                <li>No</li>
-                                            </ul>
-                                        </div>
-                                        </div>
+
+                                            <h4><span  for="chosen-select" class="label label-info">Enfermedad</span></h4>
+                                                    @if($enfermedad != null)
+                                                        <select class="form-inline" name="idenfermedad" id="chosen-select" data-placeholder="Seleccione la enfermedad...">
+                                                            @foreach ($enfermedad as $enf)
+                                                                <option value="{{ $enf->id }}">{{$enf->nombreenfermedad}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        <hr>
+                                                    @else
+                                                        {!! form::label('#','No hay enfermedades') !!}
+                                                    @endif 
+                                     </div>
                                       </div><!-- /input-group -->
                                     </div><!-- /.col-lg-6 -->
 
                                     <div class="col-xs-6">
                                       <div class="input-group col-xs-12">
                                         <div class="form-group">
-                                            <label for="apellidos">Dosis:</label>
-                                            <div>
-                                            <input type="text" name="nombre" id="nombre" value="" >
+                                            <div class="form-group form-inline">
+                                                  {!! form::label('Dosis','Dosis:') !!}
+                                                  {!! form::text('dosis', null, ['class' => 'form-control ', 'placeholder'=> 'Pedro', 'required']) !!}
                                             </div>
                                         </div>
                                       </div><!-- /input-group -->
@@ -217,9 +236,9 @@
                                     <div class="col-xs-6">
                                       <div class="input-group col-xs-12">
                                         <div class="form-group">
-                                            <label for="apellidos">Frecuencia:</label>
-                                            <div>
-                                            <input type="text" name="nombre" id="nombre" value="" >
+                                            <div class="form-group form-inline">
+                                                  {!! form::label('Frecuencia','Frecuencia:') !!}
+                                                  {!! form::text('frecuencia', null, ['class' => 'form-control ', 'placeholder'=> 'Pedro', 'required']) !!}
                                             </div>
                                         </div>
                                       </div><!-- /input-group -->
@@ -228,111 +247,42 @@
                                     <div class="col-xs-6">
                                       <div class="input-group col-xs-12">
                                         <div class="form-group">
-                                            <label for="apellidos">Medicamentos:</label>
-                                            <div class="checkbox">
-                                            <label>PARACETAMOL</label>
-                                            <input type="checkbox" value="paracetamol">
-                                            
-                                            </div>
-                                        </div>
+
+                                            <h4><span  for="chosen-select" class="label label-info">Medicamento</span></h4>
+                                                    @if($medicamentos != null)
+                                                        <select class="form-inline" name="idmedicamento" id="chosen-select" data-placeholder="Seleccione la enfermedad...">
+                                                            @foreach ($medicamentos as $med)
+                                                                <option value="{{ $med->id }}">{{$med->nombremedicamento}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        <hr>
+                                                    @else
+                                                        {!! form::label('#','No hay medicamento') !!}
+                                                    @endif 
+                                     </div>
                                       </div><!-- /input-group -->
                                     </div><!-- /.col-lg-6 -->
                                     
                                     <div class="col-xs-6">
                                       <div class="input-group col-xs-12">
                                         <div class="form-group">
-                                            <label for="apellidos">Necesita operacion:</label>
-                                            <div class="btn-group" role="group">
-                                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"aria-haspopup="true" aria-expanded="false">
-                                                Seleccione una opción
-                                                <span class="caret"></span>
-                                                </button>
-                                            <ul class="dropdown-menu">
-                                                <li>Si</li>
-                                                <li>No</li>
-                                            </ul>
-                                        </div>
-                                        </div>
+
+                                            <h4><span  for="chosen-select" class="label label-info">Necesita Operacion</span></h4>
+                                                    
+                                                        <select class="form-inline" name="operacion" id="chosen-select" data-placeholder="Verifique ...">
+                                                                <option value="true">Si</option>
+                                                                <option value="false">No</option>
+                                                            
+                                                        </select>
+                                                        <hr>
+                                                    
+                                     </div>
                                         
                                       </div><!-- /input-group -->
                                     </div><!-- /.col-lg-6 -->
                             </div>
 
-                            <div role="tabpanel" class="tab-pane" id="tab5">
-                                <div class="panel-heading"  style="font-size: 24pt; ">Ingreso</div>
-
-                                    <div class="col-xs-6">
-                                      <div class="input-group col-xs-12">
-                                        <div class="form-group">
-                                            <label for="apellidos">Necesita ser ingresado:</label>
-                                            <div class="btn-group" role="group">
-                                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"aria-haspopup="true" aria-expanded="false">
-                                                Seleccione una opción
-                                                <span class="caret"></span>
-                                                </button>
-                                            <ul class="dropdown-menu">
-                                                <li>Si</li>
-                                                <li>No</li>
-                                            </ul>
-                                        </div>
-                                        </div>
-                                      </div><!-- /input-group -->
-                                    </div><!-- /.col-lg-6 -->
-
-                                    <div class="col-xs-6">
-                                      <div class="input-group col-xs-12">
-                                        <div class="form-group">
-                                            <label for="apellidos">Camilla:</label>
-                                            <div class="btn-group" role="group">
-                                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"aria-haspopup="true" aria-expanded="false">
-                                                Seleccione una opción
-                                                <span class="caret"></span>
-                                                </button>
-                                            <ul class="dropdown-menu">
-                                                <li>Si</li>
-                                                <li>No</li>
-                                            </ul>
-                                        </div>
-                                        </div>
-                                      </div><!-- /input-group -->
-                                    </div><!-- /.col-lg-6 -->
-
-                                    <div class="col-xs-6">
-                                      <div class="input-group col-xs-12">
-                                        <div class="form-group">
-                                            <label for="apellidos">Sala:</label>
-                                            <div class="btn-group" role="group">
-                                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"aria-haspopup="true" aria-expanded="false">
-                                                Seleccione una opción
-                                                <span class="caret"></span>
-                                                </button>
-                                            <ul class="dropdown-menu">
-                                                <li>Si</li>
-                                                <li>No</li>
-                                            </ul>
-                                        </div>
-                                        </div>
-                                      </div><!-- /input-group -->
-                                    </div><!-- /.col-lg-6 -->
-
-                                    <div class="col-xs-6">
-                                      <div class="input-group col-xs-12">
-                                        <div class="form-group">
-                                            <label for="apellidos">Doctor:</label>
-                                            <div class="btn-group" role="group">
-                                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"aria-haspopup="true" aria-expanded="false">
-                                                Seleccione una opción
-                                                <span class="caret"></span>
-                                                </button>
-                                            <ul class="dropdown-menu">
-                                                <li>Si</li>
-                                                <li>No</li>
-                                            </ul>
-                                        </div>
-                                        </div>
-                                      </div><!-- /input-group -->
-                                    </div><!-- /.col-lg-6 -->
-                            </div>
+                            
 
                         </div>
                                                 </div>
@@ -340,7 +290,7 @@
 
                 <!--//////////////////////////////////////////////////////////////////////////////////////////////////////////-->
                 </form>                    
-                        
+                        {!! Form::close()!!}
                     </div>
                 </div>
             </div>
