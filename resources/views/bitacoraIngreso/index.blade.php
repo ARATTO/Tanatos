@@ -20,51 +20,38 @@
 			<div class="col-md-10 col-md-offset-1">
 				<div class="panel panel-default">
                     <!-- AQUI DEBEN AGREGAR EL MENSAJE QUE QUIERAN EN EL PANEL HEAD -->
-					<div class="panel-heading"> Buscar expediente </div>
+					<div class="panel-heading"> Bitacoras </div>
 					<div class="panel-body">
 						@include('bones-flash::bones.flash')
 						@include('layouts.partials.flash')						
 
 
-
-						{!! Form::open(['route' =>'bitacoraIngreso.index', 'method'=>'GET','class'=>'form-center', 'role'=>'search' ]) !!}
-							<div class="input-group">
-					 			<span class="input-group-addon">@</span>
-					 			{!!Form::number('expediente',null,['class'=>'form-control','placeholder'=>'Busqueda'])!!}
-					
-							</div>
-					{!! Form::close() !!}
-
 					<br>
-        			<table class="table table-striped">
+
+					<table class="table table-striped">
 						    <thead>
 						      <tr>
-						      	<th>Expediente</th>
-						      	<th>Numero de ingreso</th>
-						        <th>Nombre</th>
-								<th>Apellidos</th>			
-								<th>Ingresar Bitacora</th>
-						
-
+						      	<th>Numero Bitacora</th>
+						      	<th>Descripcion</th>
+						        <th>Fecha</th>
+								<th>Hora</th>
+								<th>Editar</th>			
 						      </tr>
 						    </thead>
 						    <tbody>
-						    @if($expediente != null)
-							@foreach($expediente as $exp)
+						    @if($bitacora!= null)
+							@foreach($bitacora as $exp)
 								 @if (Auth::guest())
         						 @else
         						 	
 							     		<tr>
 							     			<td>{{$exp->id}}</td>
-							     			@if(count($exp->ingreso)>0)
-							     				<td>{{$exp->ingreso->id}} </td>
-							     			@else
-							     				<td>No esta ingresado</td>
-							     			@endif
-							  				<td>{{$exp->personas->primernombre}} {{$exp->personas->segundonombre}}</td>
-							  				<td>{{$exp->personas->primerapellido}} {{$exp->personas->segundoapellido}} </td>
+							     			<td>{{$exp->descripcionbitacora}}</td>
+							     
+							  				<td>{{$exp->fechabitacora}}</td>
+							  				<td>{{$exp->horabitacora}}</td>
 											<td>
-							          			<a href="" class="btn btn-success"><font color="black" size="2"> <b>Ingresar Bitacora</b></font></a>
+							          			<a href="{{route('bitacoraIngreso.edit',$exp->id)}}" class="btn btn-warning"><font color="black" size="2"> <b>Editar</b></font></a>
 											</td>
 
 										</tr>
@@ -72,14 +59,16 @@
 						     @endforeach
 						     @endif
 						    </tbody>
-						  </table>	
+						  </table>
+        			
 						
 					</div>
 				</div>
 			</div>
 		</div>
-			@if($expediente != null)
-			{!! $expediente->appends(Request::all())->render() !!}
+
+			@if($bitacora != null)
+			{!! $bitacora->appends(Request::all())->render() !!}
 			@endif
 	</div>
 	</section><!-- /.content -->

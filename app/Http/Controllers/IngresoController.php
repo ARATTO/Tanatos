@@ -75,30 +75,67 @@ class IngresoController extends Controller
      */
     public function store(Request $request)
     {
-        $ingreso =  new Ingreso();
 
+        $expediente =Expediente::find($request->idexpediente);
+
+        $Ingresos = Ingreso::where('idexpediente',$expediente->id)->get();
+        $ingresado = 0;
+        /*verficia que el paciente no este ingresado actualmente*/
+        foreach ($Ingresos as $key => $value) {
+            $fecha_actual = strtotime(date("d-m-Y H:i:00",time()));
+            $fecha_salida = strtotime($request->fechasalida);
+            
+            
+            if($fecha_salida>$fecha_actual || $fecha_salida==false){
+                $ingresado = $ingresado+1;
+            }
+        }
+        /*verficia que el paciente no este ingresado actualmente*/
+
+        if($ingresado==0){
+        $ingreso =  new Ingreso();
+        /*obtiene todo los datos*/
         $ingreso->iddoctor = $request->iddoctor;
         $ingreso->idexpediente = $request->idexpediente;
         $ingreso->idcamilla = $request->idcamilla;
         $ingreso->idsala = $request->idsala;
+        
+        /*combierte la cadena fecha, en tipos date*/
 
          $fechaInicio=$request->fechaingreso;
          $time = new DateTime($fechaInicio);        
          $fechaingreso = $time->format('Y-m-d H:i');
+         $ingreso->fechaingreso = $fechaingreso;
 
-         $fechaSalida=$request->fechasalida;
-         $time = new DateTime($fechaSalida);
-         $fechasalida = $time->format('Y-m-d H:i');
+         
+         if($request->fechasalida != ""){
+             $fechaSalida=$request->fechasalida;
+             $time = new DateTime($fechaSalida);
+             $fechasalida = $time->format('Y-m-d H:i');
 
-    
+             $ingreso->fechasalida = $fechasalida;
+         }
+         /*combierte la cadena fecha, en tipos date*/
 
-        $ingreso->fechaingreso = $fechaingreso;
-        $ingreso->fechasalida = $fechasalida;
 
         $ingreso->save();
 
-                $dia=date("d");
-        $day= (string) $dia;
+        /*obtiene todo los datos*/
+
+        //busca la camilla
+        $camilla = Camilla::find($request->idcamilla);
+
+        //cambia el estado a esta en uso
+        $camilla->estaenuso = true;
+
+        $camilla->save();
+
+        Flash::success("Se ha guardado los datos de ingreso con exito");
+        }else{
+        Flash::warning("El paciente ya esta ingresado");
+        }
+
+
         //dd($consultamedica);
         
         
