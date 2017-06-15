@@ -6,6 +6,7 @@ use App\Scope\AgeScope;
 use Illuminate\Database\Eloquent\Model;
 use DB;
 use DateTime;
+use App\Expediente;
 
 class Persona extends Model
 {
@@ -97,7 +98,55 @@ class Persona extends Model
 
     public function scopePrimerNombre($query,$cadena,$criterios,$porciones){
 
-            //dd($cadena);    
+            //dd($cadena);
+        $validador =0;
+        for ($i=0; $i <count($criterios) ; $i++) { 
+            if($criterios[$i] == 6){
+                for ($k=0; $k <count($porciones);  $k++){ 
+                    $t = $porciones[$k];
+                    
+
+                    for ($i=0; $i <strlen($t) ; $i++) { 
+                        $ascii = ord ($t[$i]);   
+                        if ($ascii== 48 || $ascii== 49 || $ascii== 50 || $ascii== 51 || $ascii== 52  || $ascii== 53  || $ascii== 54 || $ascii== 55  || $ascii== 56  || $ascii== 57) {
+                
+                        }else{
+                            $validador = $validador +1;
+                            }
+                    }
+            
+                }
+
+
+                if($validador == 0){
+                       $intermedio = Expediente::where('id',$porciones[0])->get();
+                        
+                       if(count($intermedio)>0){
+                            $query->orwhere('id',$intermedio[0]->idpersona);
+
+                           if(count($query) ){
+                            return;
+                           }
+                       }                        
+                    }
+
+                } //final if si es 6               
+            }//final for
+        
+            if(count($criterios) == 2){
+                if ($criterios[0] == 1 && $criterios[1] == 2) {
+                    if(count($porciones) == 2){
+                        $query->orwhereRAW(" (primernombre || ' ' || segundonombre) = '$cadena' ");            
+
+                        if(count($query->get()) !=0 ){
+                            return;     
+                        }
+                       
+                    }
+                    
+                }
+            }
+
 
             if(count($criterios) == 2){
                 if ($criterios[0] == 1 && $criterios[1] == 2) {
