@@ -8,8 +8,12 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;    
 use App\Expediente;
 use App\CatalogoPrecio;
+use App\bitacora;
 use GeneaLabs\Bones\Flash\Flash;
 use View;
+use DateTime;
+use DB;
+
 
 class BitacoraIngresoController extends Controller
 {
@@ -61,7 +65,25 @@ class BitacoraIngresoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $tiempo = explode(" ", $request->fechaingreso);
+
+
+        $time = new DateTime($tiempo[0]);        
+        $fecha = $time->format('Y-m-d');
+
+        $time = new DateTime($tiempo[1]);        
+        $hora = $time->format('H:m');
+
+        $bitacora = new Bitacora();
+
+        $bitacora->idingreso = $request->idingreso;
+        $bitacora->descripcionbitacora = $request->descripcionbitacora;
+        $bitacora->fechabitacora = $fecha;
+        $bitacora->horabitacora = $hora;
+
+        $bitacora->save();
+
+        return redirect()->route('ingreso.index');
     }
 
     /**
@@ -72,7 +94,7 @@ class BitacoraIngresoController extends Controller
      */
     public function show($id)
     {
-        return view('bitacoraIngreso.create');
+        return view('bitacoraIngreso.create',compact('id'));
     }
 
     /**
