@@ -83,6 +83,8 @@ class BitacoraIngresoController extends Controller
 
         $bitacora->save();
 
+        Flash::success("Se ha ingresado la bitacora con exito");
+
         return redirect()->route('ingreso.index');
     }
 
