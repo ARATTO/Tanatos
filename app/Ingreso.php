@@ -50,7 +50,7 @@ class Ingreso extends Model
          return $this->belongsTo('App\Doctor');
      }
      public function expedientes(){
-         return $this->belongsTo('App\Expediente');
+         return $this->belongsTo('App\Expediente','idexpediente');
      }
      public function camillas(){
          return $this->belongsTo('App\Camilla');
@@ -72,4 +72,14 @@ class Ingreso extends Model
      }
      
      //////////////////////////////////////////////////////
+
+          /*SCOPE*/
+    public function scopeIngreso($query,$ingreso){
+        if($ingreso != ""){
+            
+            $query->where('id', "$ingreso");
+            }else{
+                $query=null;
+            }
+     }//final del scope
 }

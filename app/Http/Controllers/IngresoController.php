@@ -28,24 +28,33 @@ class IngresoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {   
-        
+        //dd($request->ingreso);
+        $ingreso=null;
 
-        $user = User::where('id',6)->get();
+        $user = User::where('id',Auth::user()->id)->get();
 
-        $persona = Persona::where('iduser',$user[0]->id)->get();
+        if(count($user)>0){
+            $persona = Persona::where('iduser',$user[0]->id)->get();
 
-        $doctor = Doctor::where('idpersona',$persona[0]->id)->get();
+            if (count($persona)>0) {
+                $doctor = Doctor::where('idpersona',$persona[0]->id)->get();
 
+                if (count($doctor)>0) {
+                    $ingreso = Ingreso::ingreso($request->ingreso)->where('iddoctor',$doctor[0]->id)->paginate(10);
 
-        $ingreso = Ingreso::where('iddoctor',$doctor[0]->id)->get();
+                    $ingreso->each(function($ingreso){   
+                     $ingreso->expedientes->personas;
+                    });                     
+                }
+            }
+        }
 
-        dd($ingreso);
 
         //dd($ingreso);
 
-        return view('ingreso.index');
+        return view('ingreso.index',compact('ingreso'));
     }
 
     /**
@@ -123,7 +132,7 @@ class IngresoController extends Controller
             //$hospital  = Hospital::where('id',$expediente[0]->idhospital )->get();
             $hospital  = Hospital::all();
             $doctor  = Doctor::all();
-            $camilla = Camilla::all();
+            $camilla = Camilla::where('estaenuso',FALSE)->get();
             $sala = Sala::all();
 
         //dd(Auth::user());

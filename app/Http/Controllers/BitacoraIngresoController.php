@@ -34,9 +34,6 @@ class BitacoraIngresoController extends Controller
         }
         
 
-        
-
-
         //dd(Auth::user());
        
         //dd($expediente); 
@@ -53,7 +50,7 @@ class BitacoraIngresoController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -75,7 +72,7 @@ class BitacoraIngresoController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('bitacoraIngreso.create');
     }
 
     /**

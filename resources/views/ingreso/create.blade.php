@@ -32,7 +32,9 @@
 {!! Form::open(['action' =>'IngresoController@store','class'=>'form-center' ]) !!}
 <section style="display: none" id="bloqueExpediente">
 <div style="display: none;">
+@if(count($expediente)>0)
     <input type="number" name="idexpediente" value="{{$expediente[0]->id}}">
+@endif
 </div>
                          @foreach($expediente as $exp)
 <br>

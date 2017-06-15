@@ -65,7 +65,7 @@ Route::get('/admin', 'HomeController@index');
 	Route::resource('medicamentos','MedicamentosController');
 
 	Route::resource('cobro','CobroController');
-		Route::resource('ingreso','IngresoController');
+	Route::resource('ingreso','IngresoController');
 	Route::resource('bitacoraIngreso','BitacoraIngresoController');
 
 	Route::get('busqueda',[
