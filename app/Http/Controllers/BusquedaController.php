@@ -93,7 +93,9 @@ class BusquedaController extends Controller
 		            
 		        });
 
-		      // dd($Personas);
+
+
+		       //dd($Personas);
 			} catch(\Illuminate\Database\QueryException $ex){ //si hay un error en la sentncia entonces no envia nada
 
 				Flash::danger("Se ingreso datos incorrectos, vea el ejemplo al final en el icono (i) ");

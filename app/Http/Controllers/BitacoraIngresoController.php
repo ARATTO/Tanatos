@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-
+use Illuminate\Support\Facades\Auth;    
 use App\Expediente;
 use App\CatalogoPrecio;
 use GeneaLabs\Bones\Flash\Flash;
@@ -34,9 +34,6 @@ class BitacoraIngresoController extends Controller
         }
         
 
-        
-
-
         //dd(Auth::user());
        
         //dd($expediente); 
@@ -53,7 +50,7 @@ class BitacoraIngresoController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -75,7 +72,7 @@ class BitacoraIngresoController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('bitacoraIngreso.create');
     }
 
     /**
