@@ -16,6 +16,7 @@ class Camilla extends Model
     protected $fillable = [
         'id',
         'numerocamilla',
+        'estaensuso',
         
         
         /*FK*/

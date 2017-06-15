@@ -22,7 +22,6 @@ class Cita extends Model
 
         /*FK*/
         'iddoctor',
-        'idconsultamedica',
         'idexpediente',
     ];
 

@@ -63,7 +63,7 @@ class expedienteController extends Controller
             ->join("persona","expediente.id","=","persona.id")
             ->get();
 
-        dd($expediente);
+        
         return view('expediente.index')->with('expedientes',$expediente);
 
     }

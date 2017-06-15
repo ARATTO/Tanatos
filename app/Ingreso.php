@@ -21,6 +21,8 @@ class Ingreso extends Model
         'idexpediente',
         'idcamilla',
         'idsala',
+        'fechaingreso',
+        'fechasalida',
     ];
 
     /**

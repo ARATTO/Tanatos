@@ -84,8 +84,8 @@ Expediente: 0001' ])  !!}
         					
 	        					 
 	       							{{Form::checkbox('criterio[]', '6')}} Numero de Expediente<br>
-					    	    	{{Form::checkbox('criterio[]', '7')}} Diagnostico<br>
-					    	    	<!-- {{Form::checkbox('criterio[]', '6')}} Fecha de expedicion<br>-->
+					    	    	<!--{{Form::checkbox('criterio[]', '7')}} Diagnostico<br>
+					    	    	 {{Form::checkbox('criterio[]', '6')}} Fecha de expedicion<br>-->
 					    	    
 					    	@endif
         					</div>
@@ -142,7 +142,7 @@ Expediente: 0001' ])  !!}
 							  				@if(count($persona->expediente)>0)
 												<td>{{$persona->expediente[0]->id}}</td>
 												<td>
-							          				 <a style="" href=" {{}}" onclick="return confirm('¿Seguro que deseas eliminarlo?')" class="btn btn-success"><font color="black" size="2"> <b>Ver Expediente</b></font></a>
+							          				 <a style="" href=" {{route('expediente.vista',$persona->expediente[0]->id)}}" 	class="btn btn-success"><font color="black" size="2"> <b>Ver Expediente</b></font></a>
 												</td>
 											@else
 												<td>No posee expediente</td>
