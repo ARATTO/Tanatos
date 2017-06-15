@@ -84,8 +84,8 @@ Expediente: 0001' ])  !!}
         					
 	        					 
 	       							{{Form::checkbox('criterio[]', '6')}} Numero de Expediente<br>
-					    	    	{{Form::checkbox('criterio[]', '7')}} Diagnostico<br>
-					    	    	<!-- {{Form::checkbox('criterio[]', '6')}} Fecha de expedicion<br>-->
+					    	    	<!--{{Form::checkbox('criterio[]', '7')}} Diagnostico<br>
+					    	    	 {{Form::checkbox('criterio[]', '6')}} Fecha de expedicion<br>-->
 					    	    
 					    	@endif
         					</div>

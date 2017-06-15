@@ -103,8 +103,11 @@ class Persona extends Model
                 if ($criterios[0] == 1 && $criterios[1] == 2) {
                     if(count($porciones) == 2){
                         $query->orwhereRAW(" (primernombre || ' ' || segundonombre) = '$cadena' ");            
-                        
-                       return;
+
+                        if(count($query->get()) !=0 ){
+                            return;     
+                        }
+                       
                     }
                     
                 }
@@ -113,7 +116,10 @@ class Persona extends Model
                     if ($criterios[0] == 1 && $criterios[1] == 2 && $criterios[2] == 3) {
                         if(count($porciones) == 3){
                             $query->orwhereRAW(" (primernombre || ' ' || segundonombre || ' ' || primerapellido) = '$cadena' ");           
-                           return;
+                           
+                           if(count($query->get()) !=0 ){
+                            return;     
+                            }
                         }
                         
                     }
@@ -122,7 +128,10 @@ class Persona extends Model
                         if ($criterios[0] == 1 && $criterios[1] == 2 && $criterios[2] == 3 && $criterios[3] == 4) {
                             if(count($porciones) == 4){
                                 $query->orwhereRAW(" (primernombre || ' ' || segundonombre || ' ' || primerapellido || ' ' || segundoapellido) = '$cadena' ");           
-                               return;
+
+                                if(count($query->get()) !=0 ){
+                                    return;     
+                                }
                             }
                             
                         }   
@@ -132,10 +141,6 @@ class Persona extends Model
 
             }
 
-
-            
-
-            
 
      
             for ($i=0; $i <count($criterios); $i++) { 
@@ -198,6 +203,10 @@ class Persona extends Model
 
 
 
+                break;
+                case 6://busqueda de expediente
+          
+                    
                 break;                  
                 
 

@@ -21,6 +21,7 @@ class ConsultaMedica extends Model
         
         /*FK*/
         'idcostoservicio',
+        'idcita',
     ];
 
     /**

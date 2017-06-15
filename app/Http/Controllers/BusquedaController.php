@@ -93,6 +93,9 @@ class BusquedaController extends Controller
 		            
 		        });
 
+
+
+
 		      // dd($Personas);
 			} catch(\Illuminate\Database\QueryException $ex){ //si hay un error en la sentncia entonces no envia nada
 
