@@ -231,7 +231,58 @@ class IngresoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd($id);
+           // dd($request->all())   ;
+
+            $ingreso = Ingreso::find($id);
+
+            //dd($ingreso);
+            /*obtiene todo los datos*/
+            $ingreso->iddoctor = $request->iddoctor;
+            $ingreso->idexpediente = $request->idexpediente;
+            if($ingreso->idcamilla == $request->idcamilla){
+                $ingreso->idcamilla = $request->idcamilla;    
+            }else{
+                $ingreso->idcamilla = $request->idcamilla; 
+                //busca la camilla nueva
+                $camilla = Camilla::find($request->idcamilla);
+                //cambia el estado a esta en uso
+                $camilla->estaenuso = true;
+
+                //busca la camilla anterior
+                $camilla = Camilla::find($ingreso->idcamilla);
+                //cambia el estado a esta en uso
+                $camilla->estaenuso = false;
+                $camilla->save();
+            }
+            
+            $ingreso->idsala = $request->idsala;
+            
+            /*combierte la cadena fecha, en tipos date*/
+
+             $fechaInicio=$request->fechaingreso;
+             $time = new DateTime($fechaInicio);        
+             $fechaingreso = $time->format('Y-m-d H:i');
+             $ingreso->fechaingreso = $fechaingreso;
+
+             
+             if($request->fechasalida != ""){
+                 $fechaSalida=$request->fechasalida;
+                 $time = new DateTime($fechaSalida);
+                 $fechasalida = $time->format('Y-m-d H:i');
+
+                 $ingreso->fechasalida = $fechasalida;
+             }
+             /*combierte la cadena fecha, en tipos date*/
+
+
+            $ingreso->save();
+
+            /*obtiene todo los datos*/
+
+
+        Flash::success("Se ha actualizado el ingreso :".$id. "con exito");
+
+        return redirect()->route('ingreso.index');
     }
 
     /**
