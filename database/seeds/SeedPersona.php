@@ -102,8 +102,4 @@ class SeedPersona extends Seeder
         ]);
         ////////////////////////////////////////
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 16cec7cc1465ed6279a5a0b6b81e434a7e9b0f5c

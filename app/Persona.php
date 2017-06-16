@@ -2,15 +2,11 @@
 
 namespace App;
 
-<<<<<<< HEAD
-use Illuminate\Database\Eloquent\Model;
-=======
 use App\Scope\AgeScope;
 use Illuminate\Database\Eloquent\Model;
 use DB;
 use DateTime;
 use App\Expediente;
->>>>>>> 16cec7cc1465ed6279a5a0b6b81e434a7e9b0f5c
 
 class Persona extends Model
 {
@@ -59,20 +55,6 @@ class Persona extends Model
 
      
      public function users(){
-<<<<<<< HEAD
-         return $this->belongsTo('App\User');
-     }
-     public function estadosCiviles(){
-         return $this->belongsTo('App\EstadoCivil');
-     }
-     public function telefonos(){
-         return $this->belongsTo('App\Telefono');
-     }
-     public function detallesDirecciones(){
-         return $this->belongsTo('App\DetalleDireccion');
-     }
-     
-=======
          return $this->belongsTo('App\User', 'iduser');
      }
      public function estadosCiviles(){
@@ -86,7 +68,6 @@ class Persona extends Model
      }
 
 
->>>>>>> 16cec7cc1465ed6279a5a0b6b81e434a7e9b0f5c
      //////////////////////////////////////////////////////
 
      /**
@@ -98,13 +79,6 @@ class Persona extends Model
      public function doctor(){
          return $this->hasMany('App\Doctor');
      }
-<<<<<<< HEAD
-     public function expediente(){
-         return $this->hasMany('App\Expediente');
-     }
-     
-     //////////////////////////////////////////////////////
-=======
 
      public function expediente(){
          return $this->hasMany('App\Expediente', 'idpersona');
@@ -292,5 +266,4 @@ class Persona extends Model
 
 
 
->>>>>>> 16cec7cc1465ed6279a5a0b6b81e434a7e9b0f5c
 }

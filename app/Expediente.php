@@ -44,11 +44,7 @@ class Expediente extends Model
 
      
      public function personas(){
-<<<<<<< HEAD
-         return $this->belongsTo('App\Persona');
-=======
          return $this->belongsTo('App\Persona', 'idpersona');
->>>>>>> 16cec7cc1465ed6279a5a0b6b81e434a7e9b0f5c
      }
      public function historialesClinicos(){
          return $this->belongsTo('App\HistorialClinico', 'idhistorialclinico');
@@ -71,10 +67,6 @@ class Expediente extends Model
      public function ingreso(){
          return $this->hasMany('App\Ingreso','idexpediente');
      }
-<<<<<<< HEAD
-     
-     //////////////////////////////////////////////////////
-=======
 
      
      //////////////////////////////////////////////////////
@@ -92,5 +84,4 @@ class Expediente extends Model
 
 
 
->>>>>>> 16cec7cc1465ed6279a5a0b6b81e434a7e9b0f5c
 }

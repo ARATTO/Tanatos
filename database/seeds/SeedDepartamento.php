@@ -11,19 +11,12 @@ class SeedDepartamento extends Seeder
      */
     public function run()
     {
-<<<<<<< HEAD
-=======
         //
 
->>>>>>> 16cec7cc1465ed6279a5a0b6b81e434a7e9b0f5c
         DB::table('departamento')->insert([
             'idpais' => 1,
             'nombredepartamento' => 'San Salvador',
         ]);
-<<<<<<< HEAD
-    }
-}
-=======
 
         DB::table('departamento')->insert([
             'idpais' => 1,
@@ -92,4 +85,3 @@ class SeedDepartamento extends Seeder
     }
 }
 
->>>>>>> 16cec7cc1465ed6279a5a0b6b81e434a7e9b0f5c

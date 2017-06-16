@@ -104,6 +104,9 @@ return [
     'Imagen'                 =>'Imagen',
     'DatosGenerales'         =>'Datos Generales',
     'Direccion'              =>'Direccion',
+    'Telefono'               =>'Telefono',
+    'Contacto'               =>'Contacto',
+    'Sistema'                =>'Sistema',
     /*
     *  Fin FORM
     */
