@@ -44,14 +44,19 @@ class Diagnostico extends Model
      */
 
      public function consultasMedicas(){
-         return $this->belongsTo('App\ConsultaMedica');
+         return $this->belongsTo('App\ConsultaMedica','idconsultamedica');
      }
      public function enfermedades(){
-         return $this->belongsTo('App\Enfermedad');
+         return $this->belongsTo('App\Enfermedad','idenfermedad');
+     }
+     public function tratamientos(){
+         return $this->belongsTo('App\Tratamiento','idtratamiento');
      }
      public function tratamientos(){
          return $this->belongsTo('App\Tratamiento');
      }
+
+     //////////////////////////////////////////////////////
 
      //////////////////////////////////////////////////////
 

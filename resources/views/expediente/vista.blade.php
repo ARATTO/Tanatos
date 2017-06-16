@@ -16,183 +16,191 @@
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
                     <!-- AQUI DEBEN AGREGAR EL MENSAJE QUE QUIERAN EN EL PANEL HEAD -->
-                    <div class="panel-heading"> TITULO DEL PANEL </div>
+                    <div class="panel-heading"> EXPEDIENTE </div>
                     <div class="panel-body">
                         @include('bones-flash::bones.flash')
                         @include('layouts.partials.flash')
+                        {!! Form::open(['action' => 'ConsultaController@store']) !!}
                         
-                        <form action="/foo/bar" method="POST">
-                            <input type="hidden" name="_method" value="PUT">
-                            @foreach($consulta as $con)
+                        
+                            @foreach($consulta as $exp)
+<br>
+        <div class="col-xs-6">
 
-                                <div class="col-xs-6">
-                                  <div class="input-group col-md-12">
-                                    <div class="form-group">
-                                        <label for="nombres">Nombres:</label>
-                                        <div class="form-group form-inline">
-                                          <input type="text" name="nombre" id="nombre" value="{{ $con->primernombre }} " readonly="readonly" style="width: 300px;">
-                                        </div>
-                                        <div class="form-group form-inline">
-                                          <input type="text" name="nombre" id="nombre" value="{{ $con->segundonombre }} " readonly="readonly" style="width: 300px;">
-                                        </div>
-                                    </div>
-                                  </div><!-- /input-group -->
-                                </div><!-- /.col-lg-6 -->
+          <div class="input-group col-md-12">
+            <div class="form-group">
+                <div class="form-group form-inline">
+                      {!! form::label('PrimerNombre','Nombres:') !!}
+                      {!! form::text('primernombre', $exp->personas->primernombre , ['class' => 'form-control ' ,'readonly' => 'true']) !!}
+                      {!! form::text('segundonombre',$exp->personas->segundonombre, ['class' => 'form-control ' ,'readonly' => 'true']) !!}
+                </div>
+            </div>
+          </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
 
-                                <div class="col-xs-6">
-                                  <div class="input-group col-xs-12">
-                                    <div class="form-group">
-                                        <label for="apellidos">Apellidos:</label>
-                                        <div class="form-group form-inline">
-                                        <input type="text" name="nombre" id="nombre" value="{{ $con->primerapellido }} " readonly="readonly">
-                                        </div>
-                                        <div class="form-group form-inline">
-                                        <input type="text" name="nombre" id="nombre" value="{{ $con->segundoapellido }} " readonly="readonly">
-                                        </div>
-                                    </div>
-                                  </div><!-- /input-group -->
-                                </div><!-- /.col-lg-6 -->
+        <div class="col-xs-6">
+          <div class="input-group col-xs-12">
+            <div class="form-group">
+                
+                <div class="form-group form-inline">
+                      {!! form::label('PrimerNombre','Apellidos:') !!}
+                      {!! form::text('primerapellido', $exp->personas->primerapellido , ['class' => 'form-control ' ,'readonly' => 'true']) !!}
+                      {!! form::text('segundoapellido',$exp->personas->segundoapellido, ['class' => 'form-control ' ,'readonly' => 'true']) !!}
+                </div>
+            </div>
+          </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
 
-                                <div class="col-xs-6">
-                                  <div class="input-group col-xs-12">
-                                    <div class="form-group">
-                                        <label for="genero">DUI:</label>
-                                        <div >
-                                        <input type="text" name="nombre" id="nombre" value="{{ $con->dui }} " readonly="readonly" style="width: 300px;">
-                                        </div>
-                                    </div>
-                                  </div><!-- /input-group -->
-                                </div><!-- /.col-lg-6 -->
+        <div class="col-xs-6">
+          <div class="input-group col-xs-12">
+            <div class="form-group">
+                <div class="form-group form-inline">
+                      {!! form::label('Dui','D.U.I:') !!}
+                      {!! form::text('dui', $exp->personas->dui , ['class' => 'form-control ' ,'readonly' => 'true']) !!}
+                      
+                </div>
+            </div>
+          </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
 
-                                <div class="col-xs-6">
-                                  <div class="input-group col-xs-12">
-                                    <div class="form-group">
-                                        <label for="genero">Genero:</label>
-                                        <div>
-                                        <input type="text" name="nombre" id="nombre" value="{{ $con->genero }} " readonly="readonly" style="width: 300px;">
-                                        </div>
-                                    </div>
-                                  </div><!-- /input-group -->
-                                </div><!-- /.col-lg-6 -->
+        <div class="col-xs-6">
+          <div class="input-group col-xs-12">
+            <div class="form-group">
+                <div class="form-group form-inline">
+                      {!! form::label('Genero','Genero:') !!}
+                      {!! form::text('genero', $exp->personas->genero  , ['class' => 'form-control ' ,'readonly' => 'true']) !!}
+                </div>
+            </div>
+          </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
 
 
-                                <div class="col-xs-6">
-                                  <div class="input-group col-xs-12">
-                                    <div class="form-group">
-                                        <label for="fechanacimiento">Fecha de Nacimiento:</label>
-                                        <div>
-                                        <input type="text" name="nombre" id="nombre" value="{{ $con->fechanacimiento }} " readonly="readonly">
-                                        </div>
-                                    </div>
-                                  </div><!-- /input-group -->
-                                </div><!-- /.col-lg-6 -->
+        <div class="col-xs-6">
+          <div class="input-group col-xs-12">
+            <div class="form-group">
+                <div class="form-group form-inline">
+                      {!! form::label('FechaNacimiento','Fecha de Nacimiento:') !!}
+                      {!! form::text('fechanacimiento', $exp->personas->fechanacimiento  , ['class' => 'form-control ' ,'readonly' => 'true']) !!}
+                </div>
+            </div>
+          </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
+        
 
-                                <div class="col-xs-6">
-                                  <div class="input-group col-xs-12">
-                                    <div class="form-group">
-                                        <label for="direccion">Direccion:</label>
-                                        <div>
-                                        <input type="textarea" name="nombre" id="nombre" value="{{ $con->calle }} " readonly="readonly" style="width: 300px;">
-                                        </div>
-                                        <div>
-                                        <input type="textarea" name="nombre" id="nombre" value="{{ $con->colonia }} " readonly="readonly" style="width: 300px;">
-                                        </div>
-                                        <div>
-                                        <input type="textarea" name="nombre" id="nombre" value="{{ $con->pasaje }} " readonly="readonly" style="width: 300px;">
-                                        </div>
-                                        <div>
-                                        <input type="textarea" name="nombre" id="nombre" value="{{ $con->casa }} " readonly="readonly" style="width: 300px;">
-                                        </div>
-                                        <div>
-                                        <input type="textarea" name="nombre" id="nombre" value="{{ $con->nombremunicipio }}" readonly="readonly" style="width: 300px;">
-                                        </div>
+        <div class="col-xs-6">
+          <div class="input-group col-xs-12">
+            <div class="form-group">
 
-                                    </div>
-                                  </div><!-- /input-group -->
-                                </div><!-- /.col-lg-6 -->
+                <table class="table table-striped" > 
+                    <caption>Telefonos</caption>
+                  <tr>
+                    <th>{!! form::label('TelfCasa','Telefono de Casa:') !!}</th>
+                    <th>{!! form::text('casatelefono', $exp->personas->telefonos->casatelefono  , ['class' => 'form-control ' ,'readonly' => 'true']) !!}</th>
+                  </tr>
+                  <tr>
+                    <td>{!! form::label('TelfTra','Telefono de Trabajo:') !!}</td>
+                    <td>{!! form::text('trabajotelefono', $exp->personas->telefonos->trabajotelefono  , ['class' => 'form-control ' ,'readonly' => 'true']) !!}</td>
+                  </tr>
+                  <tr>
+                    <td>{!! form::label('Celular','Celular:') !!}</td>
+                    <td>{!! form::text('celulartelefono',  $exp->personas->telefonos->celulartelefono , ['class' => 'form-control ' ,'readonly' => 'true']) !!}</td>
+                  </tr>
+                  
+              </table> 
+            </div>
+          </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
 
-                                <div class="col-xs-6">
-                                  <div class="input-group col-xs-12">
-                                    <div class="form-group">
-                                        <label for="telefono">Telefonos:</label>
-                                        <div>
-                                        <input type="text" name="nombre" id="nombre" value="{{ $con->casatelefono }} " readonly="readonly" >
-                                        </div>
-                                        <div>
-                                        <input type="text" name="nombre" id="nombre" value="{{ $con->trabajotelefono }} " readonly="readonly" >
-                                        </div>
-                                        <div>
-                                        <input type="text" name="nombre" id="nombre" value="{{ $con->celulartelefono }} " readonly="readonly" >
-                                        </div>
-                                    </div>
-                                  </div><!-- /input-group -->
-                                </div><!-- /.col-lg-6 -->
+        <div>
+        <div class="col-xs-6">
+          <div class="input-group col-xs-12">
+            <div class="form-group">
+                <table class="table table-striped" > 
+                    <caption>Direccion</caption>
+                  <tr>
+                    <th>{!! form::label('Calle','Calle:') !!}</th>
+                    <th>{!! form::text('calle', $exp->personas->detallesDirecciones->calle  , ['class' => 'form-control ' ,'readonly' => 'true']) !!}
+                    </th>
+                  </tr>
+                  <tr>
+                    <td>{!! form::label('Colonia','Colonia:') !!}</td>
+                    <td>{!! form::text('colonia', $exp->personas->detallesDirecciones->colonia  , ['class' => 'form-control ' ,'readonly' => 'true']) !!}</td>
+                  </tr>
+                  <tr>
+                    <td>{!! form::label('Pasaje','Pasaje:') !!}</td>
+                    <td>{!! form::text('pasaje', $exp->personas->detallesDirecciones->pasaje   , ['class' => 'form-control ' ,'readonly' => 'true']) !!}</td>
+                  </tr>
+                  <tr>
+                    <td>{!! form::label('Casa','Casa:') !!}</td>
+                    <td>{!! form::text('casa',  $exp->personas->detallesDirecciones->casa  , ['class' => 'form-control ' ,'readonly' => 'true']) !!}</td>
+                  </tr>
+                  <tr>
+                    <td>{!! form::label('Municipio','Municipio:') !!}</td>
+                    <td>{!! form::text('nombremunicipio', $exp->personas->detallesDirecciones->municipios->nombremunicipio  , ['class' => 'form-control ' ,'readonly' => 'true']) !!}</td>
+                  </tr>
+              </table> 
+            </div>
+        </div>
+          </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
 
-                                <div class="col-xs-6">
-                                  <div class="input-group col-xs-12">
-                                    <div class="form-group">
-                                        <label for="email">Email:</label>
-                                        <div>
-                                        <input type="text" name="nombre" id="nombre" value="{{ $con->email }}" readonly="readonly" style="width: 300px;">
-                                        </div>
-                                    </div>
-                                  </div><!-- /input-group -->
-                                </div><!-- /.col-lg-6 -->  
+        <div class="col-xs-6">
+          <div class="input-group col-xs-12">
+            <div class="form-group">
+                <div class="form-group form-inline">
+                      {!! form::label('Email','Email:') !!}
+                      {!! form::email('email', $exp->personas->users->email , ['class' => 'form-control ' ,'readonly' => 'true']) !!}
+                </div>
+            </div>
+          </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->  
 
-                                 
-                                <div class="col-xs-6">
-                                  <div class="input-group col-xs-12">
-                                    <div class="form-group">
-                                        <label for="telfonoresponsable">Estado Civil:</label>
-                                        <div>
-                                        <input type="text" name="nombre" id="nombre" value="{{ $con->nombreestadocivil }}" readonly="readonly"  style="width: 300px;" >
-                                        </div>
-                                    </div>
-                                  </div><!-- /input-group -->
-                                </div><!-- /.col-lg-6 --> 
+         
+        <div class="col-xs-6">
+          <div class="input-group col-xs-12">
+            <div class="form-group">
+                <div class="form-group form-inline">
+                      {!! form::label('EstadoCivil','Estado Civil:') !!}
+                      {!! form::text('nombreestadocivil', $exp->personas->estadosCiviles->nombreestadocivil  , ['class' => 'form-control ' ,'readonly' => 'true']) !!}
+                </div>
+            </div>
+          </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 --> 
 
 
-                                @foreach($consulta2 as $con2)
-                                <div class="col-xs-6">
-                                  <div class="input-group col-xs-12">
-                                    <div class="form-group">
-                                        <label for="telfonoresponsable">Madre:</label>
-                                        <div>
-                                        <input type="text" name="nombre" id="nombre" value="{{ $con2->nombremadre }}" readonly="readonly"  style="width: 300px;" >
-                                        </div>
-                                    </div>
-                                  </div><!-- /input-group -->
-                                </div><!-- /.col-lg-6 -->  
+        <div class="col-xs-6">
+          <div class="input-group col-xs-12">
+            <div class="form-group">
+                <div class="form-group form-inline">
+                      {!! form::label('NombreMadre','Nombre de Madre:') !!}
+                      {!! form::text('nombremadre', $exp->historialesClinicos->nombremadre   , ['class' => 'form-control ' ,'readonly' => 'true']) !!}
+                </div>
+            </div>
+          </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->  
 
-                                <div class="col-xs-6">
-                                  <div class="input-group col-xs-12">
-                                    <div class="form-group">
-                                        <label for="telfonoresponsable">Padre:</label>
-                                        <div>
-                                        <input type="text" name="nombre" id="nombre" value="{{ $con2->nombrepadre }}" readonly="readonly"   >
-                                        </div>
-                                    </div>
-                                  </div><!-- /input-group -->
-                                </div><!-- /.col-lg-6 -->  
+        <div class="col-xs-6">
+          <div class="input-group col-xs-12">
+            <div class="form-group">
+                <div class="form-group form-inline">
+                      {!! form::label('NombrePadre','Nombre de Padre:') !!}
+                      {!! form::text('nombrepadre', $exp->historialesClinicos->nombrepadre  , ['class' => 'form-control ' ,'readonly' => 'true']) !!}
+                </div>
+            </div>
+          </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->  
 
-                                <div class="col-xs-6">
-                                  <div class="input-group col-xs-12">
-                                    <div class="form-group">
-                                        <label for="telfonoresponsable">Antecedentes:</label>
-                                        <div>
-                                        <input type="text" name="nombre" id="nombre" value="{{ $con2->antesedentes }}" readonly="readonly"  style="width: 300px;" >
-                                        </div>
-                                    </div>
-                                  </div><!-- /input-group -->
-                                </div><!-- /.col-lg-6 --> 
-                                @endforeach
-
-                                
-                            @endforeach
-                            
-                          </form>
-
-                          <table class="table table-striped" > 
+        <div class="col-xs-6">
+          <div class="input-group col-xs-12">
+            <div class="form-group">
+                <div class="form-group form-inline">
+                      {!! form::label('Antecedentes','Antecedentes:') !!}
+                      {!! form::text('antesedentes', $exp->historialesClinicos->antesedentes , ['class' => 'form-control ' ,'readonly' => 'true']) !!}
+                </div>
+            </div>
+          </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 --> 
+                          <div><table class="table table-striped" > 
                             <thead>
                               <th>Cita</th>
                               <th>Motivo</th>
@@ -200,17 +208,48 @@
                               <th>Fin</th>
                             </thead>
                             <tbody>
-                              @foreach($expedientes as $expediente)
+                              
+                              @if(count($exp->cita)>0)
+                              @foreach($exp->cita as $ci)
                                 <tr>
-                                <td>{{$expediente->id}} </td>
-                                <td>{{$expediente->title}} </td>
-                                <td>{{$expediente->start}} </td>
-                                <td>{{$expediente->fin}} </td>
+                                <td>{{$ci->id}} </td>
+                                <td>{{$ci->title}} </td>
+                                <td>{{$ci->start}} </td>
+                                <td>{{$ci->fin}} </td>
                                 </tr>
                               @endforeach
+                              @endif 
+                            
                             </tbody>
-                          </table>                      
-                        
+                          </table>               
+                         
+                          </div> 
+
+                          <div><table class="table table-striped" > 
+                            <thead>
+                              <th>Ingreso</th>
+                              <th>Sala</th>
+                              <th>Camilla</th>
+                              <th>Dui de Doctor</th>
+                            </thead>
+                            <tbody>
+                              
+                              @if(count($exp->ingreso)>0)
+                              @foreach($exp->ingreso as $ci)
+
+                                <tr>
+                                <td>{{$ci->id}} </td>
+                                <td>{{$ci->salas->numerosala}} </td>
+                                <td>{{$ci->camillas->numerocamilla}} </td>
+                                <td>{{$ci->doctores->personas['dui']}} </td>
+                                </tr>
+                              @endforeach
+                              @endif 
+                            
+                            </tbody>
+                          </table>               
+                          @endforeach
+                          </div>
                     </div>
                 </div>
             </div>

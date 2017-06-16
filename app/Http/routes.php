@@ -49,6 +49,14 @@ Route::get('/admin', 'HomeController@index');
         /*
         * Fin Rutas para User
         */
+
+		/*
+		* Inicio Rutas para DEMO
+        */
+		Route::resource('demos','DemoController');
+		/*
+        * Fin Rutas para DEMO
+        */
 /*
 *
 * FIN RUTAS MOTTO
@@ -65,7 +73,7 @@ Route::get('/admin', 'HomeController@index');
 	Route::resource('medicamentos','MedicamentosController');
 
 	Route::resource('cobro','CobroController');
-		Route::resource('ingreso','IngresoController');
+	Route::resource('ingreso','IngresoController');
 	Route::resource('bitacoraIngreso','BitacoraIngresoController');
 
 	Route::get('busqueda',[
@@ -147,14 +155,20 @@ Route::get('/doctores/json',[
 	        ]);
 
 	Route::get('examenespendientes', [
-	    'uses' => 'ConsultaController@VerExamenesPendientes', 
-	    'as'    => 'consulta.examenesexpedientes'
+	    'uses' => 'ConsultaController@VerCitasFinalizadas', 
+	    'as'    => 'consulta.citasdelpaciente'
 	    ]);
 
-	Route::get('resultadosexamenes',[
-	        'uses' => 'ConsultaController@RegistrarResultadosExamenes',
-	        'as' => 'consulta.resultadosexamenes'
+	Route::get('examenespendientes/{id}',[
+	        'uses' => 'ConsultaController@VerExamenesPendientes',
+	        'as' => 'examenespendientes'
 	        ]);
+
+	Route::get('consultas/{id}', [
+	    'uses' => 'ConsultaController@show', 
+	    'as'    => 'consultas'
+	    ]);
+
 
 
 

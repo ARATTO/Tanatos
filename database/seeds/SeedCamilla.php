@@ -18,11 +18,6 @@ class SeedCamilla extends Seeder
         ]);
 
         DB::table('camilla')->insert([
-            'numerocamilla' => 101,
-            'estaenuso' => false,
-        ]);
-
-        DB::table('camilla')->insert([
             'numerocamilla' => 102,
             'estaenuso' => false,
         ]);

@@ -23,8 +23,8 @@ $(document).ready(function() {
                                     var currentToken = $('meta[name="csrf-token"]').attr('content');
                               //MENSAJE PARA SOLICITAR LA ELIMINACION DE UNA CITA METODO AJAX DENTRO DE EL!
                                     swal({
-                                          title: '¿Está seguro?',
-                                          text: "No será posible reestaurarlo",
+                                          title: 'Â¿EstÃ¡ seguro?',
+                                          text: "No serÃ¡ posible reestaurarlo",
                                           type: 'warning',
                                           showCancelButton: true,
                                           confirmButtonColor: '#3085d6',
@@ -53,7 +53,7 @@ $(document).ready(function() {
                                                       },
                                                       error:function(){
                                                             swal(
-                                                            'FallÓ!',
+                                                            'FallÃ“!',
                                                             'Algo ha salido mal, la cita no se a podido eliminar.',
                                                             'error'
                                                             )
@@ -70,8 +70,8 @@ $(document).ready(function() {
                       /* var currentToken = $('meta[name="csrf-token"]').attr('content');
                         //MENSAJE PARA SOLICITAR LA ELIMINACION DE UNA CITA METODO AJAX DENTRO DE EL!
                         swal({
-                              title: '¿Está seguro?',
-                              text: "No será posible reestaurarlo",
+                              title: 'Â¿EstÃ¡ seguro?',
+                              text: "No serÃ¡ posible reestaurarlo",
                               type: 'warning',
                               showCancelButton: true,
                               confirmButtonColor: '#3085d6',
@@ -100,7 +100,7 @@ $(document).ready(function() {
                                           },
                                           error:function(){
                                                 swal(
-                                                'FallÓ!',
+                                                'FallÃ“!',
                                                 'Algo ha salido mal, la cita no se a podido eliminar.',
                                                 'error'
                                                 )
@@ -111,7 +111,27 @@ $(document).ready(function() {
                                    
                               })*/
                   },
+                  eventClick: function(event){
+                       var doctorestxt ='<?php echo$doctores;?>';
+                       var doctores= JSON.parse(doctorestxt);
+                       var d = new Date(event.start); 
+                       // alert(event.start);
 
+                       var start = d.getDate()+"/"+d.getMonth()+"/"+d.getFullYear();
+                       var hora =  d.getUTCHours()+":"+d.getMinutes();
+                      
+                       var texto="Doctor:             <b>"+doctores[event.iddoctor]+'</b><br/>' 
+                              +"Numero expediente:    <b>"+event.idexpediente+'</b><br/>'
+                              +"Fecha cita:           <b>"+start+'</b><br/>'
+                              +"Hora de la cita:      <b>"+hora;
+
+                      swal({
+                        title: event.title,
+                        html: texto,
+                        animation: false,
+                        customClass: 'animated tada'
+                        })
+                  }
                   
             });            
 });

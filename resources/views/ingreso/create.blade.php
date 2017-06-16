@@ -17,7 +17,7 @@
             <!-- Your Page Content Here -->
 
 
-	<div class="container spark-screen">
+	<div class="container spark-screen" onmouseover="compararFechas()">
 		<div class="row" >
 			<div class="col-md-10 col-md-offset-1"  >
 				<div class="panel panel-default">
@@ -32,7 +32,9 @@
 {!! Form::open(['action' =>'IngresoController@store','class'=>'form-center' ]) !!}
 <section style="display: none" id="bloqueExpediente">
 <div style="display: none;">
+@if(count($expediente)>0)
     <input type="number" name="idexpediente" value="{{$expediente[0]->id}}">
+@endif
 </div>
                          @foreach($expediente as $exp)
 <br>
@@ -206,8 +208,8 @@
 <br>
 
 
-<section>
-        <div class=" form-center">
+<section onmouseover="compararFechas()">
+        <div class=" form-center" onmouseover="compararFechas()">
             <h3>
             
                 <span class="label label-primary">{{ trans('Datos de Ingreso') }}</span>
@@ -218,7 +220,7 @@
 
                         <h4><span  for="chosen-select" class="label label-info">Hospitales</span></h4>
                                 @if($hospital != null)
-                                    <select class="form-inline" name="idhospital" id="chosen-select" data-placeholder="Seleccione el hospital...">
+                                    <select class="form-inline" name="idhospital" id="chosen-select" data-placeholder="Seleccione el hospital..." onmouseover="compararFechas()">
                                         @foreach ($hospital as $mun)
                                             <option value="{{ $mun->id }}">{{$mun->nombre}}</option>
                                         @endforeach
@@ -229,10 +231,10 @@
                                 @endif 
                  </div>
 
-                        <div class="form-group">    
+                        <div class="form-group" onmouseover="compararFechas()">    
                                 <h4><span for="chosen-select" class="label label-info">Doctores</span><h4>
                                 @if($doctor != null)
-                                    <select name="iddoctor" id="chosen-select_" data-placeholder="Seleccione el doctor a cargo...">
+                                    <select name="iddoctor" id="chosen-select_" data-placeholder="Seleccione el doctor a cargo..." onmouseover="compararFechas()">
                                         @foreach ($doctor as $doc)
                                             <option value="{{ $doc->id }}">{{$doc->nombredoctor}}</option>
                                         @endforeach
@@ -244,24 +246,24 @@
                         </div>
 
                          <h4><span for="chosen-select" class="label label-info">Fechas</span><h4>
-                         <div class="form-group">     
+                         <div class="form-group" onmouseover="compararFechas()">     
                                 {!!Form::label('ingreso', trans('Fecha de ingreso'))!!}
                                 <div class='input-group date' id='datetimepicker1'>
-                                    <input type='text' class="form-control" name='fechaingreso' id='fechaIngreso' required />
+                                    <input type='text' class="form-control" name='fechaingreso' id='fechaIngreso' required onchange="compararFechas()" onclick="compararFechas()" onmouseover="compararFechas()"/>
                                     <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-calendar"></span>
+                                        <span class="glyphicon glyphicon-calendar" onclick="compararFechas()" onmouseover="compararFechas()"></span>
                                     </span>
                                 </div>
                                 <br><br>
                             </div>
 
 
-                         <div class="form-group">     
+                         <div class="form-group" onmouseover="compararFechas()">     
                                 {!!Form::label('alta', trans('Fecha de alta'))!!}
                                 <div class='input-group date' id='datetimepicker2'>
-                                    <input type='text' class="form-control" name='fechasalida' id='fechaalta' />
+                                    <input type='text' class="form-control" name='fechasalida' id='fechaalta' onchange="compararFechas()" onclick="compararFechas()" onmouseover="compararFechas()" />
                                     <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-calendar"></span>
+                                        <span class="glyphicon glyphicon-calendar" onclick="compararFechas()" onmouseover="compararFechas()"></span>
                                     </span>
                                 </div>
                                 
@@ -270,31 +272,31 @@
                         </div>
 
 
-                        <div class="form-group">    
+                        <div class="form-group" onmouseover="compararFechas()">    
                                 <h4><span for="chosen-select" class="label label-info">Sala</span><h4>
                                 @if($sala != null)
-                                    <select name="idsala" id="chosen_sala" data-placeholder="Seleccione la sala...">
+                                    <select name="idsala" id="chosen_sala" data-placeholder="Seleccione la sala..." onmouseover="compararFechas()">
                                         @foreach ($sala as $doc)
                                             <option value="{{ $doc->id }}">{{$doc->numerosala}}</option>
                                         @endforeach
                                     </select>
                                 @else
-                                    {!! form::label('#','No existen doctores') !!}
+                                    {!! form::label('#','No existen salas') !!}
                                 @endif  
                                 <hr>  
                         </div> 
 
 
-                        <div class="form-group">    
+                        <div class="form-group" onmouseover="compararFechas()">    
                                 <h4><span for="chosen-select" class="label label-info">Camilla</span><h4>
                                 @if($camilla != null)
-                                    <select name="idcamilla" id="chosen_camilla" data-placeholder="Seleccione la camilla...">
+                                    <select name="idcamilla" id="chosen_camilla" data-placeholder="Seleccione la camilla..." onmouseover="compararFechas()">
                                         @foreach ($camilla as $doc)
                                             <option value="{{ $doc->id }}">{{$doc->numerocamilla}}</option>
                                         @endforeach
                                     </select>
                                 @else
-                                    {!! form::label('#','No existen doctores') !!}
+                                    {!! form::label('#','No existen camillas') !!}
                                 @endif  
                                 <hr>  
                         </div> 
@@ -302,7 +304,7 @@
 
 
                 
-                <div class="form-group form-inline">
+                <div class="form-group form-inline" id="crear" style="display: none">
                     <h3><span class="label label-danger">{{ trans('Guardar Datos') }}</span><h3>
                     <button type="submit" class="btn btn-success btn-lg"> {{trans('tntmessage.Crear')}} </button>
                 </div> 
@@ -338,6 +340,29 @@
    document.getElementById('bloqueExpediente').style.display = 'none'; 
     
   }
+        function compararFechas() {
+        
 
+            var finicio = document.getElementById('fechaIngreso').value;
+            var ffin= document.getElementById('fechaalta').value;
+              
+                var fecha1 = new Date(finicio);
+                var fecha2 = new Date(ffin);
+
+                var fecha3 = fecha2 - fecha1;
+
+               
+
+                var fecha = (((fecha3/1000.0)/60.0)/60)/24.0;
+                
+                 
+                if (fecha>0.04) {
+                    document.getElementById('crear').style.display = 'block';
+                    
+                }else{
+                    document.getElementById('crear').style.display = 'none';
+                }
+                
+        }
 
   </script>
