@@ -47,16 +47,16 @@ class Ingreso extends Model
 
      
      public function doctores(){
-         return $this->belongsTo('App\Doctor');
+         return $this->belongsTo('App\Doctor','iddoctor');
      }
      public function expedientes(){
          return $this->belongsTo('App\Expediente','idexpediente');
      }
      public function camillas(){
-         return $this->belongsTo('App\Camilla');
+         return $this->belongsTo('App\Camilla','idcamilla');
      }
      public function salas(){
-         return $this->belongsTo('App\Sala');
+         return $this->belongsTo('App\Sala','idsala');
      }
      
      //////////////////////////////////////////////////////

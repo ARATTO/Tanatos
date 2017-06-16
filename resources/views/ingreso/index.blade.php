@@ -42,7 +42,10 @@
 						      	<th>Expediente</th>
 						      	<th>Numero de ingreso</th>
 						        <th>Nombre</th>
-								<th>Apellidos</th>			
+								<th>Apellidos</th>
+								<th>Dado de alta</th>
+								<th>Editar Ingreso</th>			
+								<th>Ver Bitacoras </th>
 								<th>Ingresar Bitacora</th>
 						
 
@@ -59,6 +62,24 @@
 							     			<td>{{$ing->id}} </td>						     	
 							  				<td>{{$ing->expedientes->personas->primernombre}} {{$ing->expedientes->personas->segundonombre}}</td>
 							  				<td>{{$ing->expedientes->personas->primerapellido}} {{$ing->expedientes->personas->segundoapellido}}</td>
+							  				@if(strtotime($ing->fechasalida) > strtotime(date("d-m-Y H:i:00",time())) || strtotime($ing->fechasalida)==false)
+							  			
+							  						<td> No</td>
+							  				@else
+							  						<td> Si</td>
+							  				@endif
+							  			
+							  				<td>
+							          			<a href="{{route('ingreso.edit',$ing->id)}}" class="btn btn-warning"><font color="black" size="2"> <b>Editar Ingreso</b></font></a>
+							  				</td>
+											<td>
+											{!! Form::open(['route' =>'bitacoraIngreso.index', 'method'=>'GET','class'=>'form-center', 'role'=>'search' ]) !!}
+												<input type="number" name="idingreso" value="{{$ing->id}}" style="display: none">
+												<button type="submit" class="btn btn-primary"> <font color="black" size="2"> <b>Ver Bitacoras</b></font></button>
+							          			
+							          		{!!Form::close()!!}
+
+											</td>							  				
 											<td>
 							          			<a href="{{route('bitacoraIngreso.show',$ing->id)}}" class="btn btn-success"><font color="black" size="2"> <b>Ingresar Bitacora</b></font></a>
 											</td>

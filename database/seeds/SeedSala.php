@@ -17,10 +17,6 @@ class SeedSala extends Seeder
         ]);
 
         DB::table('sala')->insert([
-            'numerosala' => 101,
-        ]);
-
-        DB::table('sala')->insert([
             'numerosala' => 102,
         ]);
 

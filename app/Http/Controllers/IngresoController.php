@@ -75,30 +75,67 @@ class IngresoController extends Controller
      */
     public function store(Request $request)
     {
-        $ingreso =  new Ingreso();
 
-        $ingreso->iddoctor = $request->iddoctor;
-        $ingreso->idexpediente = $request->idexpediente;
-        $ingreso->idcamilla = $request->idcamilla;
-        $ingreso->idsala = $request->idsala;
+        $expediente =Expediente::find($request->idexpediente);
 
-         $fechaInicio=$request->fechaingreso;
-         $time = new DateTime($fechaInicio);        
-         $fechaingreso = $time->format('Y-m-d H:i');
+        $Ingresos = Ingreso::where('idexpediente',$expediente->id)->get();
+        $ingresado = 0;
+        /*verficia que el paciente no este ingresado actualmente*/
+        foreach ($Ingresos as $key => $value) {
+            $fecha_actual = strtotime(date("d-m-Y H:i:00",time()));
+            $fecha_salida = strtotime($request->fechasalida);
 
-         $fechaSalida=$request->fechasalida;
-         $time = new DateTime($fechaSalida);
-         $fechasalida = $time->format('Y-m-d H:i');
+            if($fecha_salida>$fecha_actual || $fecha_salida==false){
+                $ingresado = $ingresado+1;
+            }
+        }
 
-    
+        /*verficia que el paciente no este ingresado actualmente*/
 
-        $ingreso->fechaingreso = $fechaingreso;
-        $ingreso->fechasalida = $fechasalida;
+        if($ingresado==0){
+            $ingreso =  new Ingreso();
+            /*obtiene todo los datos*/
+            $ingreso->iddoctor = $request->iddoctor;
+            $ingreso->idexpediente = $request->idexpediente;
+            $ingreso->idcamilla = $request->idcamilla;
+            $ingreso->idsala = $request->idsala;
+            
+            /*combierte la cadena fecha, en tipos date*/
 
-        $ingreso->save();
+             $fechaInicio=$request->fechaingreso;
+             $time = new DateTime($fechaInicio);        
+             $fechaingreso = $time->format('Y-m-d H:i');
+             $ingreso->fechaingreso = $fechaingreso;
 
-                $dia=date("d");
-        $day= (string) $dia;
+             
+             if($request->fechasalida != ""){
+                 $fechaSalida=$request->fechasalida;
+                 $time = new DateTime($fechaSalida);
+                 $fechasalida = $time->format('Y-m-d H:i');
+
+                 $ingreso->fechasalida = $fechasalida;
+             }
+             /*combierte la cadena fecha, en tipos date*/
+
+
+            $ingreso->save();
+
+            /*obtiene todo los datos*/
+
+            //busca la camilla
+            $camilla = Camilla::find($request->idcamilla);
+
+            //cambia el estado a esta en uso
+            $camilla->estaenuso = true;
+
+            $camilla->save();
+
+        Flash::success("Se ha guardado los datos de ingreso con exito");
+        }else{
+            Flash::warning("El paciente ya esta ingresado");
+        }
+
+
         //dd($consultamedica);
         
         
@@ -113,9 +150,7 @@ class IngresoController extends Controller
      */
     public function show($id)
     {
-                
-
-        
+                   
             $expediente = Expediente::where('id',$id)->paginate(1);
 
             $expediente->each(function($expediente){   
@@ -151,7 +186,40 @@ class IngresoController extends Controller
      */
     public function edit($id)
     {
-        //
+
+            $ingreso = Ingreso::where('id',$id)->paginate(1);
+
+            
+
+            $ingreso->each(function($ingreso){  
+                $ingreso->doctores;             
+                $ingreso->camillas;
+                $ingreso->salas;
+                $ingreso->expedientes;
+                $ingreso->expedientes->personas->detallesDirecciones->municipios;
+                $ingreso->expedientes->personas->telefonos;
+                $ingreso->expedientes->personas->users;
+                $ingreso->expedientes->personas->estadosCiviles;
+                $ingreso->expedientes->historialesClinicos;
+            });
+
+            //dd($ingreso);
+
+
+
+            //$hospital  = Hospital::where('id',$expediente[0]->idhospital )->get();
+            $hospital  = Hospital::all();
+            $doctor  = Doctor::all();
+            $camilla = Camilla::where('estaenuso',FALSE)->get();
+            $sala = Sala::all();
+
+        //dd(Auth::user());
+       
+        //dd($sala); 
+        
+        return view('ingreso.edit',compact('ingreso','hospital','doctor','camilla','sala'));
+
+       //dd($id);
     }
 
     /**
@@ -163,7 +231,58 @@ class IngresoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+           // dd($request->all())   ;
+
+            $ingreso = Ingreso::find($id);
+
+            //dd($ingreso);
+            /*obtiene todo los datos*/
+            $ingreso->iddoctor = $request->iddoctor;
+            $ingreso->idexpediente = $request->idexpediente;
+            if($ingreso->idcamilla == $request->idcamilla){
+                $ingreso->idcamilla = $request->idcamilla;    
+            }else{
+                $ingreso->idcamilla = $request->idcamilla; 
+                //busca la camilla nueva
+                $camilla = Camilla::find($request->idcamilla);
+                //cambia el estado a esta en uso
+                $camilla->estaenuso = true;
+
+                //busca la camilla anterior
+                $camilla = Camilla::find($ingreso->idcamilla);
+                //cambia el estado a esta en uso
+                $camilla->estaenuso = false;
+                $camilla->save();
+            }
+            
+            $ingreso->idsala = $request->idsala;
+            
+            /*combierte la cadena fecha, en tipos date*/
+
+             $fechaInicio=$request->fechaingreso;
+             $time = new DateTime($fechaInicio);        
+             $fechaingreso = $time->format('Y-m-d H:i');
+             $ingreso->fechaingreso = $fechaingreso;
+
+             
+             if($request->fechasalida != ""){
+                 $fechaSalida=$request->fechasalida;
+                 $time = new DateTime($fechaSalida);
+                 $fechasalida = $time->format('Y-m-d H:i');
+
+                 $ingreso->fechasalida = $fechasalida;
+             }
+             /*combierte la cadena fecha, en tipos date*/
+
+
+            $ingreso->save();
+
+            /*obtiene todo los datos*/
+
+
+        Flash::success("Se ha actualizado el ingreso :".$id. "con exito");
+
+        return redirect()->route('ingreso.index');
     }
 
     /**

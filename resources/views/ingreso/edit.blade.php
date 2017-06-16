@@ -5,7 +5,7 @@
 @extends('layouts.app')
 <!-- TEXTO DEL HEADER -->
 @section('htmlheader_title')
-	Ingresar paciente
+	Actualizar Ingreso
 @endsection
 
 
@@ -22,21 +22,21 @@
 			<div class="col-md-10 col-md-offset-1"  >
 				<div class="panel panel-default">
                     <!-- AQUI DEBEN AGREGAR EL MENSAJE QUE QUIERAN EN EL PANEL HEAD -->
-					<div class="panel-heading"> Ingresar paciente </div>
+					<div class="panel-heading"> Actualizar Ingreso</div>
 					<div class="panel-body">
 						@include('bones-flash::bones.flash')
 						@include('layouts.partials.flash')
 
                         <button style="background: #58D3F7; font: bold;" type="button" onclick="mostrar()" class="btn">Mostrar Expediente </button>
                         <button style=" position: absolute; right: 30px; background:#638cb5; font: bold;" type="button" onclick="ocultar()" class="btn">Ocultar Expediente </button>
-{!! Form::open(['action' =>'IngresoController@store','class'=>'form-center' ]) !!}
+            {!! Form::open(['route' => ['ingreso.update',$ingreso[0]->id],'method'=>'PUT']) !!}   
 <section style="display: none" id="bloqueExpediente">
 <div style="display: none;">
-@if(count($expediente)>0)
-    <input type="number" name="idexpediente" value="{{$expediente[0]->id}}">
+@if(count($ingreso)>0)
+    <input type="number" name="idexpediente" value="{{$ingreso[0]->expedientes->id}}">
 @endif
 </div>
-                         @foreach($expediente as $exp)
+                         @foreach($ingreso as $exp)
 <br>
         <div class="col-xs-6">
 
@@ -44,10 +44,10 @@
             <div class="form-group">
                 <label for="nombres">Nombres:</label>
                 <div>
-                  <input type="text" name="primernombre" id="primernombre" value="{{ $exp->personas->primernombre }} " readonly="readonly" style="width: 300px;">
+                  <input type="text" name="primernombre" id="primernombre" value="{{ $exp->expedientes->personas->primernombre }} " readonly="readonly" style="width: 300px;">
                 </div>
                 <div>
-                  <input type="text" name="segundonombre" id="segundonombre}" value="{{  $exp->personas->segundonombre}} " readonly="readonly" style="width: 300px;">
+                  <input type="text" name="segundonombre" id="segundonombre}" value="{{  $exp->expedientes->personas->segundonombre}} " readonly="readonly" style="width: 300px;">
                 </div>
             </div>
           </div><!-- /input-group -->
@@ -58,10 +58,10 @@
             <div class="form-group">
                 <label for="apellidos">Apellidos:</label>
                 <div>
-                <input type="text" name="primerapellido" id="primerapellido" value="{{  $exp->personas->primerapellido }} " readonly="readonly">
+                <input type="text" name="primerapellido" id="primerapellido" value="{{  $exp->expedientes->personas->primerapellido }} " readonly="readonly">
                 </div>
                 <div>
-                <input type="text" name="segundoapellido " id="segundoapellido " value="{{  $exp->personas->segundoapellido }} " readonly="readonly">
+                <input type="text" name="segundoapellido " id="segundoapellido " value="{{  $exp->expedientes->personas->segundoapellido }} " readonly="readonly">
                 </div>
             </div>
           </div><!-- /input-group -->
@@ -72,7 +72,7 @@
             <div class="form-group">
                 <label for="genero">DUI:</label>
                 <div>
-                <input type="text" name="dui id="dui" value="{{  $exp->personas->dui }} " readonly="readonly" style="width: 300px;">
+                <input type="text" name="dui id="dui" value="{{  $exp->expedientes->personas->dui }} " readonly="readonly" style="width: 300px;">
                 </div>
             </div>
           </div><!-- /input-group -->
@@ -83,7 +83,7 @@
             <div class="form-group">
                 <label for="genero">Genero:</label>
                 <div>
-                <input type="text" name="genero" id="genero" value="{{  $exp->personas->genero }} " readonly="readonly" style="width: 300px;">
+                <input type="text" name="genero" id="genero" value="{{  $exp->expedientes->personas->genero }} " readonly="readonly" style="width: 300px;">
                 </div>
             </div>
           </div><!-- /input-group -->
@@ -95,7 +95,7 @@
             <div class="form-group">
                 <label for="fechanacimiento">Fecha de Nacimiento:</label>
                 <div>
-                <input type="date" name="fechanacimiento id="fechanacimiento" value="{{  $exp->personas->fechanacimiento }} " readonly="readonly">
+                <input type="date" name="fechanacimiento id="fechanacimiento" value="{{  $exp->expedientes->personas->fechanacimiento }} " readonly="readonly">
                 </div>
             </div>
           </div><!-- /input-group -->
@@ -106,19 +106,19 @@
             <div class="form-group">
                 <label for="direccion">Direccion:</label>
                 <div>
-                <input type="textarea" name="calle" id="calle " value="{{ $exp->personas->detallesDirecciones->calle }} " readonly="readonly" style="width: 300px;">
+                <input type="textarea" name="calle" id="calle " value="{{ $exp->expedientes->personas->detallesDirecciones->calle }} " readonly="readonly" style="width: 300px;">
                 </div>
                 <div>
-                <input type="textarea" name="colonia" id="colonia" value="{{ $exp->personas->detallesDirecciones->colonia}} " readonly="readonly" style="width: 300px;">
+                <input type="textarea" name="colonia" id="colonia" value="{{ $exp->expedientes->personas->detallesDirecciones->colonia}} " readonly="readonly" style="width: 300px;">
                 </div>
                 <div>
-                <input type="textarea" name="pasaje" id="pasaje" value="{{ $exp->personas->detallesDirecciones->pasaje }} " readonly="readonly" style="width: 300px;">
+                <input type="textarea" name="pasaje" id="pasaje" value="{{ $exp->expedientes->personas->detallesDirecciones->pasaje }} " readonly="readonly" style="width: 300px;">
                 </div>
                 <div>
-                <input type="textarea" name="casa" id="casa" value="{{ $exp->personas->detallesDirecciones->casa }} " readonly="readonly" style="width: 300px;">
+                <input type="textarea" name="casa" id="casa" value="{{ $exp->expedientes->personas->detallesDirecciones->casa }} " readonly="readonly" style="width: 300px;">
                 </div>
                 <div>
-                <input type="textarea" name="nombremunicipio" id="nombremunicipio" value="{{ $exp->personas->detallesDirecciones->municipios->nombremunicipio }}" readonly="readonly" style="width: 300px;">
+                <input type="textarea" name="nombremunicipio" id="nombremunicipio" value="{{ $exp->expedientes->personas->detallesDirecciones->municipios->nombremunicipio }}" readonly="readonly" style="width: 300px;">
                 </div>
 
             </div>
@@ -130,13 +130,13 @@
             <div class="form-group">
                 <label for="telefono">Telefonos:</label>
                 <div>
-                <input type="text" name="casatelefono" id="casatelefono" value="{{ $exp->personas->telefonos->casatelefono}} " readonly="readonly" >
+                <input type="text" name="casatelefono" id="casatelefono" value="{{ $exp->expedientes->personas->telefonos->casatelefono}} " readonly="readonly" >
                 </div>
                 <div>
-                <input type="text" name="trabajotelefono " id="trabajotelefono " value="{{ $exp->personas->telefonos->trabajotelefono }} " readonly="readonly" >
+                <input type="text" name="trabajotelefono " id="trabajotelefono " value="{{ $exp->expedientes->personas->telefonos->trabajotelefono }} " readonly="readonly" >
                 </div>
                 <div>
-                <input type="text" name="celulartelefono" id="celulartelefono" value="{{ $exp->personas->telefonos->celulartelefono }} " readonly="readonly" >
+                <input type="text" name="celulartelefono" id="celulartelefono" value="{{ $exp->expedientes->personas->telefonos->celulartelefono }} " readonly="readonly" >
                 </div>
             </div>
           </div><!-- /input-group -->
@@ -147,7 +147,7 @@
             <div class="form-group">
                 <label for="email">Email:</label>
                 <div>
-                <input type="text" name="email id="email" value="{{ $exp->personas->users->email }}" readonly="readonly" style="width: 300px;">
+                <input type="text" name="email id="email" value="{{ $exp->expedientes->personas->users->email }}" readonly="readonly" style="width: 300px;">
                 </div>
             </div>
           </div><!-- /input-group -->
@@ -159,7 +159,7 @@
             <div class="form-group">
                 <label for="telfonoresponsable">Estado Civil:</label>
                 <div>
-                <input type="text" name="nombreestadocivil" id="nombreestadocivil" value="{{ $exp->personas->estadosCiviles->nombreestadocivil }}" readonly="readonly"  style="width: 300px;" >
+                <input type="text" name="nombreestadocivil" id="nombreestadocivil" value="{{ $exp->expedientes->personas->estadosCiviles->nombreestadocivil }}" readonly="readonly"  style="width: 300px;" >
                 </div>
             </div>
           </div><!-- /input-group -->
@@ -171,7 +171,7 @@
             <div class="form-group">
                 <label for="telfonoresponsable">Madre:</label>
                 <div>
-                <input type="text" name="nombremadre" id="nombremadre" value="{{ $exp->historialesClinicos->nombremadre }}" readonly="readonly"  style="width: 300px;" >
+                <input type="text" name="nombremadre" id="nombremadre" value="{{ $exp->expedientes->historialesClinicos->nombremadre }}" readonly="readonly"  style="width: 300px;" >
                 </div>
             </div>
           </div><!-- /input-group -->
@@ -182,7 +182,7 @@
             <div class="form-group">
                 <label for="telfonoresponsable">Padre:</label>
                 <div>
-                <input type="text" name="nombrepadre" id="nombrepadre" value="{{ $exp->historialesClinicos->nombrepadre }}" readonly="readonly"   >
+                <input type="text" name="nombrepadre" id="nombrepadre" value="{{ $exp->expedientes->historialesClinicos->nombrepadre }}" readonly="readonly"   >
                 </div>
             </div>
           </div><!-- /input-group -->
@@ -193,7 +193,7 @@
             <div class="form-group">
                 <label for="telfonoresponsable">Antecedentes:</label>
                 <div>
-                <input type="text" name="antesedentes" id="antesedentes" value="{{ $exp->historialesClinicos->antesedentes }}" readonly="readonly"  style="width: 300px;" >
+                <input type="text" name="antesedentes" id="antesedentes" value="{{ $exp->expedientes->historialesClinicos->antesedentes }}" readonly="readonly"  style="width: 300px;" >
                 </div>
             </div>
           </div><!-- /input-group -->
@@ -209,14 +209,14 @@
 
 
 <section onmouseover="compararFechas()">
-        <div class=" form-center" onmouseover="compararFechas()">
+        <div class=" form-center">
             <h3>
             
                 <span class="label label-primary">{{ trans('Datos de Ingreso') }}</span>
             </h3>
             <br>
                 <br>
-                <div class="form-group">
+                <div class="form-group" onmouseover="compararFechas()">
 
                         <h4><span  for="chosen-select" class="label label-info">Hospitales</span></h4>
                                 @if($hospital != null)
@@ -235,6 +235,7 @@
                                 <h4><span for="chosen-select" class="label label-info">Doctores</span><h4>
                                 @if($doctor != null)
                                     <select name="iddoctor" id="chosen-select_" data-placeholder="Seleccione el doctor a cargo..." onmouseover="compararFechas()">
+                                        <option value="{{$ingreso[0]->doctores->id}}">{{$ingreso[0]->doctores->nombredoctor}}</option>
                                         @foreach ($doctor as $doc)
                                             <option value="{{ $doc->id }}">{{$doc->nombredoctor}}</option>
                                         @endforeach
@@ -249,9 +250,9 @@
                          <div class="form-group" onmouseover="compararFechas()">     
                                 {!!Form::label('ingreso', trans('Fecha de ingreso'))!!}
                                 <div class='input-group date' id='datetimepicker1'>
-                                    <input type='text' class="form-control" name='fechaingreso' id='fechaIngreso' required onchange="compararFechas()" onclick="compararFechas()" onmouseover="compararFechas()"/>
+                                    <input type='text' class="form-control" name='fechaingreso' id='fechaIngreso' required value="{{$ingreso[0]->fechaingreso}}" onmouseover="compararFechas()"/>
                                     <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-calendar" onclick="compararFechas()" onmouseover="compararFechas()"></span>
+                                        <span class="glyphicon glyphicon-calendar"></span>
                                     </span>
                                 </div>
                                 <br><br>
@@ -261,9 +262,9 @@
                          <div class="form-group" onmouseover="compararFechas()">     
                                 {!!Form::label('alta', trans('Fecha de alta'))!!}
                                 <div class='input-group date' id='datetimepicker2'>
-                                    <input type='text' class="form-control" name='fechasalida' id='fechaalta' onchange="compararFechas()" onclick="compararFechas()" onmouseover="compararFechas()" />
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-calendar" onclick="compararFechas()" onmouseover="compararFechas()"></span>
+                                    <input type='text' class="form-control" name='fechasalida' id='fechaalta' value="{{$ingreso[0]->fechasalida}}" onmouseover="compararFechas()"/>
+                                    <span class="input-group-addon" >
+                                        <span class="glyphicon glyphicon-calendar"></span>
                                     </span>
                                 </div>
                                 
@@ -276,6 +277,7 @@
                                 <h4><span for="chosen-select" class="label label-info">Sala</span><h4>
                                 @if($sala != null)
                                     <select name="idsala" id="chosen_sala" data-placeholder="Seleccione la sala..." onmouseover="compararFechas()">
+                                        <option value="{{$ingreso[0]->salas->id}}">{{$ingreso[0]->salas->numerosala}}</option>                                    
                                         @foreach ($sala as $doc)
                                             <option value="{{ $doc->id }}">{{$doc->numerosala}}</option>
                                         @endforeach
@@ -291,6 +293,7 @@
                                 <h4><span for="chosen-select" class="label label-info">Camilla</span><h4>
                                 @if($camilla != null)
                                     <select name="idcamilla" id="chosen_camilla" data-placeholder="Seleccione la camilla..." onmouseover="compararFechas()">
+                                        <option value="{{$ingreso[0]->camillas->id}}">{{$ingreso[0]->camillas->numerocamilla}}</option>                                    
                                         @foreach ($camilla as $doc)
                                             <option value="{{ $doc->id }}">{{$doc->numerocamilla}}</option>
                                         @endforeach
@@ -305,8 +308,8 @@
 
                 
                 <div class="form-group form-inline" id="crear" style="display: none">
-                    <h3><span class="label label-danger">{{ trans('Guardar Datos') }}</span><h3>
-                    <button type="submit" class="btn btn-success btn-lg"> {{trans('tntmessage.Crear')}} </button>
+                    <h3><span class="label label-danger">{{ trans('Actualizar Datos') }}</span><h3>
+                    <button type="submit" class="btn btn-success btn-lg"> {{trans('tntmessage.Actualizar')}} </button>
                 </div> 
 
      </div>
@@ -340,7 +343,8 @@
    document.getElementById('bloqueExpediente').style.display = 'none'; 
     
   }
-        function compararFechas() {
+
+          function compararFechas() {
         
 
             var finicio = document.getElementById('fechaIngreso').value;
@@ -364,5 +368,6 @@
                 }
                 
         }
+
 
   </script>
