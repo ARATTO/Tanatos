@@ -157,6 +157,7 @@
                                                     @endif    
                                             </div>
                                             <hr>  
+                                            
                                             <div class="form-group form-inline">
                                                 <h3><span class="label label-danger">{{ trans('tntmessage.MensajePassword') }}</span><h3>
                                                 <button type="submit" class="btn btn-success btn-lg"> {{trans('tntmessage.Crear')}} </button>

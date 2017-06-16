@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('htmlheader_title')
-	{{ trans('tntmessage.Inicio') }}
+	{{ trans('tntmessage.Tanatos') }}
 @endsection
 
 

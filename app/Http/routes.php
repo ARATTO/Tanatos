@@ -49,6 +49,14 @@ Route::get('/admin', 'HomeController@index');
         /*
         * Fin Rutas para User
         */
+
+		/*
+		* Inicio Rutas para DEMO
+        */
+		Route::resource('demos','DemoController');
+		/*
+        * Fin Rutas para DEMO
+        */
 /*
 *
 * FIN RUTAS MOTTO

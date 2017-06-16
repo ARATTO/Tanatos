@@ -93,8 +93,20 @@
 <!-- Include Plugin FileShido -->
 <script>
       // defaults
-      $("#input-id").fileinput({
+      $("#input-img").fileinput({
             showUpload: false,
+            maxFileCount: 10,
+            mainClass: "input-group-lg"
+      });  
+      $("#input-video").fileinput({
+            showUpload: false,
+            maxFileCount: 10,
+            mainClass: "input-group-lg"
+      });  
+      $("#input-audio").fileinput({
+            showUpload: false,
+            maxFileCount: 10,
+            mainClass: "input-group-lg"
       });       
 </script>
 
