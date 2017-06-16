@@ -23,6 +23,15 @@
                         </ul>
                     </li>
                 <!-- Fin Menu cita -->
+
+                <!--Menu realizar cobro -->
+                    <li class="treeview">
+                        <a href="#"><i class='fa fa-link'></i> <span>Cobros</span> <i class="fa fa-angle-left pull-right"></i></a>
+                        <ul class="treeview-menu">
+                            <li><a href="{{ route('cobro.index') }}">Cobrar Servicios</a></li>
+                        </ul>
+                    </li>
+                 <!-- Fin menu realizar cobro -->
                 </ul>
             </li>
 <!-- FIN MENU RECEPCCIONISTA -->

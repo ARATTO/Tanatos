@@ -21,19 +21,22 @@ class CobroController extends Controller
     public function index(Request $request)
     {
 
+        $expediente = null;
 
-        $expediente = Expediente::expediente($request->expediente)->paginate(20); 
+        if($request->expediente>0){
 
-        
-        $expediente->each(function($expediente){   
+            $expediente = Expediente::expediente($request->expediente)->paginate(20); 
             
-        });
-
+            $expediente->each(function($expediente){   
+                $expediente->personas;
+            });
+        }
         $precio = CatalogoPrecio::all();
-        //dd(Auth::user());
+       
+       //dd($expediente);
        
         
-        return view('cobro.index',compact('expediente','precio'));
+        return view('cobro.index',compact('expediente'));
         
     }
 
@@ -66,7 +69,11 @@ class CobroController extends Controller
      */
     public function show($id)
     {
-        //
+
+        
+              $precio = CatalogoPrecio::all();
+
+              return view('cobro.create',compact('precio'));
     }
 
     /**

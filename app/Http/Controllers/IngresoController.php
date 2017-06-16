@@ -30,6 +30,8 @@ class IngresoController extends Controller
      */
     public function index(Request $request)
     {   
+
+
         //dd($request->ingreso);
         $ingreso=null;
 
