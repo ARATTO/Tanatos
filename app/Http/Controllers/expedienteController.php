@@ -11,11 +11,21 @@ use App\Expediente;
 use App\Cita;
 use App\HistorialClinico;
 use App\User;
+use App\Sala;
+use App\Camilla;
+use App\Doctor;
+use App\Bitacora;
 use App\Hospital;
 use DB;
 
 class expedienteController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function show(Request $request){
         $expediente = DB::table('expediente')
             ->join("persona","expediente.idpersona","=","persona.id")
@@ -70,7 +80,7 @@ class expedienteController extends Controller
 
     public function verExpedientes($id){
         
-        $consulta= Expediente::where('idpersona',$id)->get();
+        $consulta= Expediente::where('idpersona',$id)->paginate(1);
             
 
             $consulta->each(function($consulta){   
@@ -81,9 +91,18 @@ class expedienteController extends Controller
              $consulta->historialesClinicos;
              $consulta->cita;
              $consulta->ingreso;
+             foreach ($consulta->ingreso as $ingresos => $value) {
+                 
+                 $value->salas;
+                 $value->camillas;
+                 $value->doctores->personas;
+                 
+             }
 
+
+             
             });
-
+            
             
 
         $consulta2 = DB::table('expediente')

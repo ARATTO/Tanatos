@@ -19,22 +19,50 @@
           <div class="panel-heading"> TITULO DEL PANEL </div>
           <div class="panel-body">
             @include('bones-flash::bones.flash')
-            @include('layouts.partials.flash')            
+            @include('layouts.partials.flash')  
+            @if($examenesclinicos!=null)
+             <h4><span  for="chosen-select1" class="label label-info">Examenes Fisicos</span></h4>          
             <table class="table table-striped" > 
-                                      <thead>
-                                        <th>Examenes Clinicos</th>
-                                        <th>Examenes Fisicos</th>      
-                                      </thead>
-                                      <tbody>
-                                        
-                                          <tr>
-                                            <a href=""><td></td></a>
-                                            <td> </td>
-                                          </tr>
-                                        
-                                      </tbody>
-                                    </table>
+              <thead>
+                <th>Nombre</th>
+                <th>Descripcion</th> 
+                <th>Precio</th>   
+              </thead>
+              <tbody>
+                @foreach($examenesfisicos as $ef)
+                  <tr>
+                    <td>{{$ef->nombreexamenfisico}}</td>
+                    <td>{{$ef->descripcionexamenfisico}}</td>
+                    <td>{{$ef->precioexamenfisico}}</td>
+                  </tr>
+                @endforeach
+              </tbody>
+            </table>
+            @else
+            <h4><span  for="chosen-select1" class="label label-warning">No Posee Examenes Fisicos</span></h4>
+            @endif
 
+            @if($examenesfisicos!=null)
+            <h4><span  for="chosen-select1" class="label label-info">Examenes Clinicos</span></h4>  
+            <table class="table table-striped" > 
+              <thead>
+                <th>Nombre</th>
+                <th>Descripcion</th> 
+                <th>Precio</th>   
+              </thead>
+              <tbody>
+                @foreach($examenesclinicos as $ec)
+                  <tr>
+                    <td>{{$ec->nombreexamenclinico}}</td>
+                    <td>{{$ec->descripcionexamenclinico}}</td>
+                    <td>{{$ec->precioexamenclinico}}</td>
+                  </tr>
+                @endforeach
+              </tbody>
+            </table>
+             @else
+            <h4><span  for="chosen-select1" class="label label-warning">No Posee Examenes Clinicos</span></h4>
+            @endif
           </div>
         </div>
       </div>

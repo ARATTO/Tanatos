@@ -200,13 +200,7 @@
             </div>
           </div><!-- /input-group -->
         </div><!-- /.col-lg-6 --> 
-
-
-        
-    
-                            
-
-                          <table class="table table-striped" > 
+                          <div><table class="table table-striped" > 
                             <thead>
                               <th>Cita</th>
                               <th>Motivo</th>
@@ -227,8 +221,35 @@
                               @endif 
                             
                             </tbody>
-                          </table>                      
-            @endforeach
+                          </table>               
+                         
+                          </div> 
+
+                          <div><table class="table table-striped" > 
+                            <thead>
+                              <th>Ingreso</th>
+                              <th>Sala</th>
+                              <th>Camilla</th>
+                              <th>Dui de Doctor</th>
+                            </thead>
+                            <tbody>
+                              
+                              @if(count($exp->ingreso)>0)
+                              @foreach($exp->ingreso as $ci)
+
+                                <tr>
+                                <td>{{$ci->id}} </td>
+                                <td>{{$ci->salas->numerosala}} </td>
+                                <td>{{$ci->camillas->numerocamilla}} </td>
+                                <td>{{$ci->doctores->personas['dui']}} </td>
+                                </tr>
+                              @endforeach
+                              @endif 
+                            
+                            </tbody>
+                          </table>               
+                          @endforeach
+                          </div>
                     </div>
                 </div>
             </div>
