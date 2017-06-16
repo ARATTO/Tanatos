@@ -269,7 +269,7 @@
                                       <div class="input-group col-xs-12">
                                         <div class="form-group">
 
-                                            <h4><span  for="chosen-select6" class="label label-info">Necesita Operacion</span></h4>
+                                            <h4><span  for="chosen-select6" class="label label-info">Ingreso</span></h4>
                                                 <input value="true" name="operacion" type="checkbox"></input>
                                           <hr>
                                                     

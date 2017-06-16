@@ -90,8 +90,16 @@ class CitaController extends Controller
                         try{
                             $cita->fin=$fechaFin;
                             $cita->title=Especialidad::find($request->idespecialidad)->nombreespecialidad;
-                            $cita->save();
-                            Flash::success(trans('eetntmessage.CitaGuardada'));
+                            try{
+                                $cita->save();
+                                Flash::success(trans('eetntmessage.CitaGuardada'));
+                            }catch(\Illuminate\Database\QueryException $e2){
+                                
+                                Flash::danger($e2->errorInfo[2]);
+
+                            }
+                            
+                            
                         }catch(Exception $e){
                             Flash::danger($e->getMessage());
                         }
