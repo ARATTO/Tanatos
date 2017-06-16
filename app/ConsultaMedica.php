@@ -50,7 +50,7 @@ class ConsultaMedica extends Model
      }
 
      public function citas(){
-         return $this->belongsTo('App\Cita');
+         return $this->belongsTo('App\Cita','idcita');
      }
      
      //////////////////////////////////////////////////////
@@ -62,13 +62,13 @@ class ConsultaMedica extends Model
 
      
      public function diagnostico(){
-         return $this->hasMany('App\Diagnostico');
+         return $this->hasMany('App\Diagnostico','idconsultamedica');
      }
      public function examenClinico(){
-         return $this->hasMany('App\ExamenClinico','idexamenclinico');
+         return $this->hasMany('App\ExamenClinico','idconsultamedica');
      }
      public function examenFisico(){
-         return $this->hasMany('App\ExamenFisico','idexamenfisico');
+         return $this->hasMany('App\ExamenFisico','idconsultamedica');
      }
      //////////////////////////////////////////////////////
 }

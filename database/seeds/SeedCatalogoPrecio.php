@@ -11,6 +11,8 @@ class SeedCatalogoPrecio extends Seeder
      */
     public function run()
     {
+
+         //
         DB::table('catalogoprecio')->insert([
             'nombreprecioespecial' => 'Medico General',
             'precioespecial' => 2.5,
@@ -228,11 +230,11 @@ class SeedCatalogoPrecio extends Seeder
             'descripcionprecioespecial' => 'Hospitalizacion por dia',
         ]);
 
-         //
+        
         DB::table('catalogoprecio')->insert([
 
             'nombreprecioespecial' => 'Topamac 200g 20 tabletas',
-            'preciomedicamento' => 1.5,
+            'precioespecial' => 1.5,
             'descripcionprecioespecial' => 'pastillas',
             
         ]);

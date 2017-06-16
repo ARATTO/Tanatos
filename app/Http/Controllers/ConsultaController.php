@@ -25,6 +25,7 @@ use App\ExamenClinico;
 use App\ExamenFisico;
 use App\Diagnostico;
 use App\CostoServicio;
+use App\SignoVital;
 use Carbon\Carbon;
 use DB;
 
@@ -111,9 +112,20 @@ class ConsultaController extends Controller
         $consulta->costosServicios()->associate($costo);
         $consulta->save();
 
+        $signoVital = new SignoVital();
+        $signoVital->idcita = $request->idcita;
+        $signoVital->peso = $request->peso;
+        $signoVital->estatura = $request->estatura;
+        $signoVital->temperatura = $request->temperatura;
+        $signoVital->presionarterial = $request->presionarterial;
+        $signoVital->ritmocardiaco = $request->ritmocardiaco;
+        $signoVital->momento = 1;
+
+        $signoVital->save();
         
 
         //Guardando examen clinico
+        if(count($request->idtipoexamenclinico)>0){
         foreach ($request->idtipoexamenclinico as $valor ) {
             $examenclinico = new ExamenClinico();
             $tipoexcamen =TipoExamenClinico::find($valor);
@@ -121,8 +133,10 @@ class ConsultaController extends Controller
             $examenclinico->consultasMedicas()->associate($consulta);
             $examenclinico->save();
         }
+        }
 
         //Guardando examen fisico
+        if(count($request->idtipoexamenfisico)>0){
         foreach ($request->idtipoexamenfisico as $valor ) {
             $examenfisico = new ExamenFisico();
             $tipoexcamen =TipoExamenFisico::find($valor);
@@ -130,6 +144,7 @@ class ConsultaController extends Controller
             $examenfisico->consultasMedicas()->associate($consulta);
             $examenfisico->save();
         }
+    }
 
         //Guardando en Tratamiento
         $tratamiento= new Tratamiento();

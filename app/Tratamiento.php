@@ -62,6 +62,6 @@ class Tratamiento extends Model
      public function tratamientoMedicamento(){
          return $this->belongsToMany('App\TratamientoMedicamento','tratamientomedicamento','idtratamiento','idmedicamento');
      }
-     
+
      //////////////////////////////////////////////////////
 }

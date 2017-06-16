@@ -8,6 +8,9 @@ use App\Http\Requests;
 
 use App\Expediente;
 use App\CatalogoPrecio;
+use App\ConsultaMedica;
+use App\TratamientoMedicamento;
+use App\Medicamento;
 use GeneaLabs\Bones\Flash\Flash;
 use View;
 
@@ -84,6 +87,56 @@ class CobroController extends Controller
             //dd($expediente);
             
               $precio = CatalogoPrecio::all();
+
+              return view('cobro.create',compact('expediente'));
+    }
+
+        public function servicios($id)
+    {
+
+            
+            $consultaMedica = consultaMedica::where('id',$id)->paginate(1);
+
+            $consultaMedica->each(function($consultaMedica){
+                $consultaMedica->citas;
+                $consultaMedica->citas->doctores;
+                $consultaMedica->citas->doctores->especialidad;
+                $consultaMedica->examenClinico;
+                $consultaMedica->examenClinico[0]->tipoExamenesClinico;
+                $consultaMedica->examenFisico;
+                $consultaMedica->diagnostico;
+                foreach ($consultaMedica->diagnostico as $diagnostico) {
+                    $diagnostico->tratamientos;
+                }
+                
+            });
+
+           dd($consultaMedica);
+           $tratamientos= TratamientoMedicamento::where('idtratamiento',$consultaMedica[0]->diagnostico[0]->tratamientos->id)->paginate(20);
+
+           //dd($tratamientos);
+           $medicamento;
+           $i=0;
+            foreach ($tratamientos as $key => $value) {
+                $medicamento[$i] = Medicamento::where('id',$value->idmedicamento)->get();
+                $i=$i+1;
+            }
+
+            $precio;
+            $k=0;
+           foreach ($medicamento as $medicina => $vector) {
+            foreach ($vector as $key => $value) {
+
+            $precio[$k] = CatalogoPrecio::where('nombreprecioespecial',$value->nombremedicamento)->get();
+               $k=$k+1;
+            }
+            
+           }
+
+           $precio[$k] = CatalogoPrecio::where('nombreprecioespecial',$consultaMedica[0]->citas->doctores->especialidad->nombreespecialidad)->get();
+           dd($precio);
+
+              
 
               return view('cobro.create',compact('expediente'));
     }

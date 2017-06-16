@@ -43,12 +43,14 @@
                                     <td>{{$exp->id}}</td>
                                     @if(count($exp->consultaMedica)>0)
                                         <td>{{$exp->consultaMedica[0]->id}}</td>
+                                         <td>
+                                        <a href="{{route('servicios',$exp->consultaMedica[0]->id)}}" class="btn btn-success"><font color="black" size="2"> <b>Crear Factura</b></font></a>
+                                    </td>
                                     @else
                                         <td>No ha realizado consulta</td>
+                                        <td>No hay Factura</td>
                                     @endif
-                                     <td>
-                                        <a href="" class="btn btn-success"><font color="black" size="2"> <b>Crear Factura</b></font></a>
-                                    </td>
+                                     
                                 </tr>
                                 @endforeach
                             @endif
