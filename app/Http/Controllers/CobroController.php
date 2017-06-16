@@ -63,7 +63,42 @@ class CobroController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request->all());
+
+        $i=0;
+        $k=0;
+        foreach ($request->all() as $valores) {
+            if($i==0){
+
+            }elseif ($i==1) {
+                $idCostoServicio = $valores;
+            }elseif ($i>1) {
+                $idCatalogo[$k] = $valores;
+                $k = $k+1;
+            }
+
+            $i = $i+1;
+        }
+
+        $total = 0;
+
+        $costoServicio = CostoServicio::find($idCostoServicio);
+
+        foreach ($idCatalogo as $valor ) {   
+            $idCatalogo =CatalogoPrecio::find($valor);
+            $costoServicio->servicioPrecio()->attach($idCatalogo);
+
+            $total = $total + $idCatalogo->precioespecial;
+        }
+
+        $costoServicio->preciocostoservicio = $total;
+        $costoServicio->save();
+
+        Flash::success("Se ha guardado la factura " .$idCostoServicio. " con exito" );
+        return redirect()->route('cobro.index');
+        //dd('resultado');
+        /*$pdf = PDF::loadView('cobro.servicio');
+        return $pdf->download('invoice.pdf');*/
     }
 
     /**
@@ -136,7 +171,7 @@ class CobroController extends Controller
                 }
                 
             });
-            
+
             $precio;
             $k=0;
 

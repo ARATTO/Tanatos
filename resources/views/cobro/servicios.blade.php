@@ -24,7 +24,7 @@
 					<div class="panel-body">
 						@include('bones-flash::bones.flash')
 						@include('layouts.partials.flash')	
-
+	{!! Form::open(['action' =>'CobroController@store','class'=>'form-center' ]) !!}			
 
                                         <div class="input-group has-info form-inline">
                                             <h3>
@@ -92,8 +92,23 @@
                                 </tr>
                             @endif
                             </tbody>
-                          </table>         
-						
+                          </table>     
+            @if($consultaMedica[0]->costosServicios->preciocostoservicio == 0)    
+                <div class="form-group form-inline" id="crear">
+                    <h3><span class="label label-danger">{{ trans('Guardar Factura') }}</span><h3>
+                    <button type="submit" class="btn btn-success btn-lg"> {{trans('Facturar')}} </button>
+                </div>
+            @endif
+
+                <div style="display: none;">
+                			
+					<input type="text" name="todo" value="{{$consultaMedica[0]->costosServicios->id}}">
+
+                @foreach($precio as $unitario)
+                <input type="number" name="{{$unitario[0]->nombreprecioespecial}}" value="{{$unitario[0]->id}}">
+                @endforeach					
+                </div>                           
+ {!!Form::close()!!}						
 					</div>
 				</div>
 			</div>
