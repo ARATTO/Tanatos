@@ -45,7 +45,7 @@ class Doctor extends Model
 
      
      public function personas(){
-         return $this->belongsTo('App\Persona');
+         return $this->belongsTo('App\Persona','idpersona');
      }
      public function especialidad(){
          return $this->belongsTo('App\Especialidad');

@@ -91,11 +91,18 @@ class expedienteController extends Controller
              $consulta->historialesClinicos;
              $consulta->cita;
              $consulta->ingreso;
-             $consulta->ingreso->salas;
-             $consulta->ingreso->camillas;
-             $consulta->ingreso->doctores->personas;
+             foreach ($consulta->ingreso as $ingresos => $value) {
+                 
+                 $value->salas;
+                 $value->camillas;
+                 $value->doctores->personas;
+                 
+             }
+
+
+             
             });
-            dd($consulta);
+            
             
 
         $consulta2 = DB::table('expediente')

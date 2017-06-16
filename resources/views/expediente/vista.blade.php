@@ -222,7 +222,7 @@
                             
                             </tbody>
                           </table>               
-                          @endforeach
+                         
                           </div> 
 
                           <div><table class="table table-striped" > 
@@ -236,11 +236,12 @@
                               
                               @if(count($exp->ingreso)>0)
                               @foreach($exp->ingreso as $ci)
+
                                 <tr>
                                 <td>{{$ci->id}} </td>
-                                <td>{{$ci->sala->numerosala}} </td>
-                                <td>{{$ci->camilla->numerocamilla}} </td>
-                                <td>{{$ci->doctor->persona->dui}} </td>
+                                <td>{{$ci->salas->numerosala}} </td>
+                                <td>{{$ci->camillas->numerocamilla}} </td>
+                                <td>{{$ci->doctores->personas['dui']}} </td>
                                 </tr>
                               @endforeach
                               @endif 

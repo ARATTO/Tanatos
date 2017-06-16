@@ -85,7 +85,7 @@ class ConsultaController extends Controller
             $resultado=$cadena1 . $cadena2;
 
             $consultamedica = DB::select(DB::raw($resultado));
-            dd($consultamedica);
+            
             }
 
            
@@ -96,12 +96,11 @@ class ConsultaController extends Controller
     public function store(Request $request){
 
        //dd($request->all());
-        /*$costo= new CostoServicio();
-
-        $costo->nombreservicio="Cita";
+        $costo= new CostoServicio();
+        $costo->nombreservicio='Cita';
         $costo->preciocostoservicio=0;
-        $costo->descripcionservicio="Facturacion";
-        $costo->save();*/
+        $costo->descripcionservicio='Facturacion';
+        $costo->save();
 
         //Guardando e consulta
         $consulta = new ConsultaMedica();
@@ -109,7 +108,7 @@ class ConsultaController extends Controller
         $consulta->descripcionsintomas=$request->descripciondesintomas;
         $consulta->sintomatologia=$request->descripciondesintomas;
         $consulta->idcita=$request->idcita;
-        $consulta->idcostoservicio=1;
+        $consulta->costosServicios()->associate($costo);
         $consulta->save();
 
         
@@ -220,7 +219,7 @@ class ConsultaController extends Controller
                 $expediente=Expediente::where('idpersona',$persona[0]->id)->get();
                 //dd($expediente);
                 if(count($expediente)>0){
-                    $cita=Cita::where('idexpediente',$expediente[0]->id)->Where('finalizada',true)->get();
+                    $cita=Cita::where('idexpediente',$expediente[0]->id)->where('finalizada',true)->get();
                     //dd($cita);
                     $cita->each(function($cita){
                         $cita->expedientes;

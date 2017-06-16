@@ -46,7 +46,7 @@ class ConsultaMedica extends Model
 
      
      public function costosServicios(){
-         return $this->belongsTo('App\CostoServicio');
+         return $this->belongsTo('App\CostoServicio','idcostoservicio');
      }
      
      //////////////////////////////////////////////////////
