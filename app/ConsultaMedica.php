@@ -48,6 +48,10 @@ class ConsultaMedica extends Model
      public function costosServicios(){
          return $this->belongsTo('App\CostoServicio','idcostoservicio');
      }
+
+     public function citas(){
+         return $this->belongsTo('App\Cita');
+     }
      
      //////////////////////////////////////////////////////
 
@@ -57,9 +61,6 @@ class ConsultaMedica extends Model
      */
 
      
-     public function cita(){
-         return $this->hasMany('App\Cita');
-     }
      public function diagnostico(){
          return $this->hasMany('App\Diagnostico');
      }

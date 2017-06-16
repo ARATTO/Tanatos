@@ -53,7 +53,7 @@
 						    		<td>{{$exp->personas->primernombre}} {{$exp->personas->segundonombre}}</td>
 						    		<td>{{$exp->personas->primerapellido}} {{$exp->personas->segundoapellido}}</td>
 						    		<td>
-					        			<a href="{{route('cobro.show',$exp->id)}}" class="btn btn-success"><font color="black" size="2"> <b>Crear Factura</b></font></a>
+					        			<a href="{{route('cobro.show',$exp->id)}}" class="btn btn-success"><font color="black" size="2"> <b>Ver Consultas</b></font></a>
 						    		</td>
 						    	@endforeach
 						    @endif

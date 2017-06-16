@@ -70,10 +70,22 @@ class CobroController extends Controller
     public function show($id)
     {
 
-        
+            $expediente = Expediente::where('id',$id)->paginate(10);
+
+            $expediente->each(function($expediente){
+                $expediente->cita;
+                foreach ($expediente->cita as $consulta => $value) {
+                  
+                    $value->consultaMedica;       
+                }
+                
+            });
+
+            //dd($expediente);
+            
               $precio = CatalogoPrecio::all();
 
-              return view('cobro.create',compact('precio'));
+              return view('cobro.create',compact('expediente'));
     }
 
     /**
