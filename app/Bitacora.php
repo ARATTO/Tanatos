@@ -45,7 +45,7 @@ class Bitacora extends Model
 
      
      public function ingresos(){
-         return $this->belongsTo('App\Ingreso');
+         return $this->belongsTo('App\Ingreso','idingreso');
      }
      
      //////////////////////////////////////////////////////
@@ -59,6 +59,18 @@ class Bitacora extends Model
      public function name_singular(){
          return $this->hasMany('App\Class');
      }
+
      */
      //////////////////////////////////////////////////////
+
+
+          /*SCOPE*/
+    public function scopeBitacora($query,$idingreso){
+        if($idingreso != ""){
+            
+            $query->where('idingreso', "$idingreso");
+            }
+     }//final del scope
+
+
 }

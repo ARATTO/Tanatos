@@ -6,8 +6,13 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Doctor;
-use GeneaLabs\Bones\Flash\Flash;
+use App\Especialidad;
+use App\Persona;
+
 use App\Http\Controllers\Controller;
+use Illuminate\Database\Eloquent\Collection;
+use Laracasts\Flash\Flash;
+
 use View;
 
 
@@ -22,24 +27,83 @@ class DoctorController extends Controller
      */
     public function index(Request $request)
     {
-        $doctores = Doctor::Nombre($request->name)->orderBy('id', 'ASC')->paginate(15);
-        
+        $doctores = Doctor::Nombre($request->name)->orderBy('id', 'ASC')->paginate(15); 
+
+        $doctores->each(function($doctores){
+            $doctores->especialidades = Especialidad::find($doctores->idespecialidad);
+            $doctores->personas = Persona::find($doctores->idpersona);
+        });
+
         return view('doctores.index')->with(['doctores'=>$doctores]);
     }
 
     //
     public function create()
     {
-        return view('doctores.create');
+        $especialidades = Especialidad::orderBy('id')->lists('nombreespecialidad','id');
+        //$personas1 = Persona::orderBy('id')->lists('primerapellido', 'id');
+        //$personas1 = Persona::selectRaw('CONCAT(primerapellido, " ", primernombre) as nombredoctor', 'id')->orderBy('id')->lists('nombredoctor', 'id');
+        //$personas1 = Persona::select(DB::raw('CONCAT(primernombre, segundonombre, primerapellido, segundoapellido) as nombredoctor', 'id'))->join("USER", "persona.iduser",'=', "USER.id")->where('idrol', 4)->orderBy('persona.id')->pluck('id');
+
+        $otro = '"USER"';
+        $otro2 = " ";
+        //dd($otro);
+
+        $variable = "select persona.id, CONCAT(primernombre, ' ', segundonombre, ' ',  primerapellido, ' ', segundoapellido) as nombredoctor
+from persona inner join public.". "$otro on persona.iduser = ". "$otro.id
+where". "$otro.idrol = 4 order by persona.id";
+
+        $personas1 = DB::select($variable);
+        //dd($personas1);
+        $personas1 = new Collection($personas1);
+       // $personas1 = (string) $personas1;
+        //dd($personas1);
+        //$personas1 = Persona::orderBy('id')->get();
+        //$personas1 = $personas1->lists('NombreCompletoDoctor', 'id');
+        //$personas1 = Persona::select('id', '')
+        //$personas2 = Persona::orderBy('id')->lists('primernombre', 'id');
+
+        return View::make('doctores.create')->with('especialidades',$especialidades)->with('personas1',$personas1);
     }
 
     public function store(Request $request)
     {
-       // dd($request->all());
+        //dd($request->all());
 
-        Doctor::create($request->all());
+        $nombre = Persona::find($request->nombredoctor); //datos del doctor
+       
 
-        $doctores = Doctor::orderBy('id','ASC')->paginate(20);  
+        //Doctor::create($request->all());
+
+        $doctor = new Doctor();
+
+        $doctor->idpersona = $nombre->id;
+        $doctor->idespecialidad = $request->idespecialidad;
+        $doctor->nombredoctor = $nombre->primernombre . " " . $nombre->segundonombre . " " . $nombre->primerapellido . " " . $nombre->segundoapellido;
+        $doctor->esemergencia = $request->esemergencia;
+
+        
+
+        $doctor->save();
+        
+        $doctores = Doctor::orderBy('id','ASC')->paginate(20);
+        //dd($doctores);
+        //$doctores = Doctor::first();
+
+        $doctores->each(function($doctores){   
+            $doctores->especialidades;
+            $doctores->personas1;
+        });
+
+        /*$doctores->idpersona = $request->idpersona;
+        $doctores->idespecialidad = $request->idespecialidad;
+        $doctores->nombredoctor = $request->nombredoctor;
+
+        $doctores->save();*/
+
+        //dd($doctores);
+
+
 
         Flash::success("Se ha guardado el doctor: ".$request->nombredoctor." con exito");
 

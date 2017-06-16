@@ -65,4 +65,12 @@ class Medicamento extends Model
      }
      
      //////////////////////////////////////////////////////
+
+
+     /*Scope metodos de busqueda*/
+     public function scopeName($query,$name){
+        if($name != ""){
+        $query->where('nombremedicamento',"LIKE", "%$name%");
+            }
+     }
 }

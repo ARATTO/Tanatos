@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('htmlheader_title')
-	{{ trans('tntmessage.Usuario') }}
+    {{ trans('tntmessage.Usuario') }}
 @endsection
         
 @section('main-content')

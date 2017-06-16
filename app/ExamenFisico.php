@@ -44,10 +44,10 @@ class ExamenFisico extends Model
 
      
      public function consultasMedicas(){
-         return $this->belongsTo('App\ConsultaMedica');
+         return $this->belongsTo('App\ConsultaMedica','idconsultamedica');
      }
      public function tipoExamenesFisicos(){
-         return $this->belongsTo('App\TipoExamenFisico');
+         return $this->belongsTo('App\TipoExamenFisico','idtipoexamenfisico');
      }
      public function resultadosExamenesFisicos(){
          return $this->belongsTo('App\ResExamenFisico');

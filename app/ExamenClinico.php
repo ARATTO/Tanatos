@@ -47,10 +47,10 @@ class ExamenClinico extends Model
          return $this->belongsTo('App\ResultadoExamenClinico');
      }
      public function tipoExamenesClinico(){
-         return $this->belongsTo('App\TipoExamenClinico');
+         return $this->belongsTo('App\TipoExamenClinico','idtipoexamenclinico');
      }
      public function consultasMedicas(){
-         return $this->belongsTo('App\ConsultaMedica');
+         return $this->belongsTo('App\ConsultaMedica','idconsultamedica');
      }
      
      //////////////////////////////////////////////////////

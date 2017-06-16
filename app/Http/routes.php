@@ -72,10 +72,14 @@ Route::get('/admin', 'HomeController@index');
 */
 	Route::resource('medicamentos','MedicamentosController');
 
-	/*Route::get('verMedicamentos',[
-		'uses' => 'MedicamentosController@index',
-		'as' => 'verMedicamentos'
-			]);*/
+	Route::resource('cobro','CobroController');
+	Route::resource('ingreso','IngresoController');
+	Route::resource('bitacoraIngreso','BitacoraIngresoController');
+
+	Route::get('busqueda',[
+		'uses' => 'BusquedaController@index',
+		'as' => 'busqueda'
+			]);
 /*
 *
 * FIN RUTAS RODRIGO
@@ -88,12 +92,19 @@ Route::get('/admin', 'HomeController@index');
 * RUTAS ELIAS
 *
 */
-Route::get('/calendar', function () {
-    return view('citas/calendar');
-})->name('calendar');
-
+//----------------------------Calendario
+Route::get('/calendar', [
+            'as' => 'calendar',
+            'uses' => 'CitaController@mostrar'
+        ]);
 
 Route::resource('citas','CitaController');
+
+Route::get('/doctores/json',[
+			'as'	=> 	'doctores.json',
+			'uses'	=>	'DoctorController@doctoresJSON'
+]);
+
 /*
 *
 * FIN RUTAS ELIAS
@@ -133,6 +144,32 @@ Route::resource('citas','CitaController');
 	        'uses' => 'expedienteController@destroy',
 	        'as' => 'expediente.destroy'
 	        ]);
+	
+	//consultas y diagnostico
+
+	Route::resource('diagnostico','ConsultaController');
+
+	Route::get('citasdehoy',[
+	        'uses' => 'ConsultaController@index',
+	        'as' => 'citasdehoy'
+	        ]);
+
+	Route::get('examenespendientes', [
+	    'uses' => 'ConsultaController@VerCitasFinalizadas', 
+	    'as'    => 'consulta.citasdelpaciente'
+	    ]);
+
+	Route::get('examenespendientes/{id}',[
+	        'uses' => 'ConsultaController@VerExamenesPendientes',
+	        'as' => 'examenespendientes'
+	        ]);
+
+	Route::get('consultas/{id}', [
+	    'uses' => 'ConsultaController@show', 
+	    'as'    => 'consultas'
+	    ]);
+
+
 
 
 /*
@@ -148,6 +185,8 @@ Route::resource('citas','CitaController');
 *
 */
 	Route::resource('doctores','DoctorController');
+	Route::post('send', ['as' => 'send', 'uses' => 'CorreoController@send'] );
+	Route::get('contact', ['as' => 'contact', 'uses' => 'CorreoController@index'] );
 /*
 *
 * FIN RUTAS ALAM

@@ -129,6 +129,41 @@
              no_results_text: "Oops, No encontramos nada como:  ",
              width: "100%",
       });
+      $("#chosen_camilla").chosen({
+             no_results_text: "Oops, No encontramos nada como:  ",
+             width: "100%",
+      });
+      $("#chosen_sala").chosen({
+             no_results_text: "Oops, No encontramos nada como:  ",
+             width: "100%",
+      }); 
+
+      <!--           chosen lobos       -->
+      $("#tipoexamenclinico").chosen({
+             no_results_text: "Oops, No encontramos nada como:  ",
+             width: "100%",
+      }); 
+             
+       $("#tipoexamenfisico").chosen({
+             no_results_text: "Oops, No encontramos nada como:  ",
+             width: "100%",
+      }); 
+
+        $("#enfermedad").chosen({
+             no_results_text: "Oops, No encontramos nada como:  ",
+             width: "100%",
+      }); 
+
+      $("#tipotratamiento").chosen({
+             no_results_text: "Oops, No encontramos nada como:  ",
+             width: "100%",
+      }); 
+
+       $("#medicamentos").chosen({
+             no_results_text: "Oops, No encontramos nada como:  ",
+             width: "100%",
+      }); 
+             
 </script>
 
 
@@ -146,12 +181,31 @@
 <script src="{{ asset('/plugins/sweetalert2/sweetalert2.min.js') }}" type="text/javascript"></script>
 
 <!-- Este archivo contiene la inicializacion del fullcalendar como la interaccion con este -->
-@include('citas.fullcalendarcitas')
+
 
 
 <script type="text/javascript">
       $(function () {
             $('#datetimepicker1').datetimepicker({format: "YYYY-MM-DD HH:mm"});
       });
+
+      $(function () {
+            $('#datetimepicker2').datetimepicker({format: "YYYY-MM-DD HH:mm"});
+      });
+      
+      $(function() { 
+            $(".chosen-slt").chosen();   
+      });
       
 </script>
+
+
+<!-- ELIAS CALENDAR SCRIPTS                      -->
+
+<!-- Scripts Rodrigo -->
+
+
+
+
+
+<!-- Scripts Rodrigo -->

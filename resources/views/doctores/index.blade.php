@@ -63,7 +63,7 @@
 						  		<td>{{$id = $doctor->id}}</td>
 						  		<td>{{$nombredoctor = $doctor->nombredoctor}}</td>
 
-						  		<td>{{$especialidad = $doctor->especialidad}}</td>
+						  		<td>{{$especialidad = $doctor->especialidades->nombreespecialidad}}</td>
 						  		@if($doctor->esemergencia == 1)
 						  		<td>Si</td>
 						  		@else

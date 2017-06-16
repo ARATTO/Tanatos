@@ -45,11 +45,13 @@ class Doctor extends Model
 
      
      public function personas(){
-         return $this->belongsTo('App\Personas');
+         return $this->belongsTo('App\Persona','idpersona');
      }
      public function especialidad(){
          return $this->belongsTo('App\Especialidad');
      }
+
+     
      
      //////////////////////////////////////////////////////
 
@@ -70,4 +72,11 @@ class Doctor extends Model
      }
      
      //////////////////////////////////////////////////////
+
+     /*Scope de busqueda*/
+     public function scopeNombre($query,$name){
+        if($name != ""){
+        $query->where('nombredoctor',"LIKE", "%$name%");
+            }
+     }
 }
