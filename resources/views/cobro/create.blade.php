@@ -32,7 +32,7 @@
                               <tr>
                                 <th>cita</th>
                                 <th>consulta</th>
-                                <th>Crear Factura</th>          
+                                <th>Factura</th>          
                  
                               </tr>
                             </thead>
@@ -43,9 +43,16 @@
                                     <td>{{$exp->id}}</td>
                                     @if(count($exp->consultaMedica)>0)
                                         <td>{{$exp->consultaMedica[0]->id}}</td>
-                                         <td>
-                                        <a href="{{route('servicios',$exp->consultaMedica[0]->id)}}" class="btn btn-success"><font color="black" size="2"> <b>Crear Factura</b></font></a>
-                                    </td>
+
+                                        @if($exp->consultaMedica[0]->costosServicios->preciocostoservicio>0)
+                                            <td>
+                                                Factura realizada
+                                            </td>
+                                        @else
+                                            <td>
+                                                <a href="{{route('servicios',$exp->consultaMedica[0]->id)}}" class="btn btn-success"><font color="black" size="2"> <b>Crear Factura</b></font></a>
+                                            </td>
+                                        @endif
                                     @else
                                         <td>No ha realizado consulta</td>
                                         <td>No hay Factura</td>

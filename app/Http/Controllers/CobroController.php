@@ -11,6 +11,7 @@ use App\CatalogoPrecio;
 use App\ConsultaMedica;
 use App\TratamientoMedicamento;
 use App\Medicamento;
+use App\CostoServicio;
 use GeneaLabs\Bones\Flash\Flash;
 use View;
 
@@ -79,7 +80,13 @@ class CobroController extends Controller
                 $expediente->cita;
                 foreach ($expediente->cita as $consulta => $value) {
                   
-                    $value->consultaMedica;       
+                    $value->consultaMedica;
+                    foreach ($value->consultaMedica as $costoTotal => $costo) {
+                       
+                           $costo->costosServicios; 
+
+                           }       
+                    
                 }
                 
             });
@@ -99,11 +106,26 @@ class CobroController extends Controller
 
             $consultaMedica->each(function($consultaMedica){
                 $consultaMedica->citas;
+                $consultaMedica->expedientes;
                 $consultaMedica->citas->doctores;
                 $consultaMedica->citas->doctores->especialidad;
+                $consultaMedica->costosServicios;
                 $consultaMedica->examenClinico;
-                $consultaMedica->examenClinico[0]->tipoExamenesClinico;
+                if(count($consultaMedica->examenClinico)>0){
+                    foreach ($consultaMedica->examenClinico as $examenClinico) {
+                        $examenClinico->tipoExamenesClinicos; 
+                    }
+                    
+                }
+
                 $consultaMedica->examenFisico;
+                if(count($consultaMedica->examenFisico)>0){
+                    foreach ($consultaMedica->examenFisico as $examenFisico) {
+                        $examenFisico->tipoExamenesFisicos; 
+                    }
+                    
+                }
+                
                 $consultaMedica->diagnostico;
                 foreach ($consultaMedica->diagnostico as $diagnostico) {
                     $diagnostico->tratamientos;
@@ -111,7 +133,8 @@ class CobroController extends Controller
                 
             });
 
-           dd($consultaMedica);
+            //dd($consultaMedica);
+           
            $tratamientos= TratamientoMedicamento::where('idtratamiento',$consultaMedica[0]->diagnostico[0]->tratamientos->id)->paginate(20);
 
            //dd($tratamientos);
@@ -133,12 +156,38 @@ class CobroController extends Controller
             
            }
 
+
+           if (count($consultaMedica[0]->examenFisico )>0) {
+
+                foreach ($consultaMedica[0]->examenFisico as $examenFisico) {
+                    $precio[$k] = CatalogoPrecio::where('nombreprecioespecial',$examenFisico->tipoExamenesFisicos->nombreexamenfisico)->get();
+           
+                   $k=$k+1;            
+                           }
+           }
+
+            if (count($consultaMedica[0]->examenClinico )>0) {
+
+                foreach ($consultaMedica[0]->examenClinico as $examenClinico) {
+                    $precio[$k] = CatalogoPrecio::where('nombreprecioespecial',$examenFisico->tipoExamenesClinicos->nombreexamenclinico)->get();
+           
+                   $k=$k+1;            
+                           }
+           }
+           
+
            $precio[$k] = CatalogoPrecio::where('nombreprecioespecial',$consultaMedica[0]->citas->doctores->especialidad->nombreespecialidad)->get();
-           dd($precio);
 
-              
+           $totalSinIVA = 0;
+           foreach ($precio as $unitario) {
+                $totalSinIVA = $totalSinIVA + $unitario[0]->precioespecial;
+           }
+           //dd($precio);
 
-              return view('cobro.create',compact('expediente'));
+            $IVA = $totalSinIVA *0.13;
+            $total = $totalSinIVA + $IVA;
+
+            return view('cobro.servicios',compact('precio','consultaMedica','totalSinIVA','IVA','total'));
     }
 
     /**
