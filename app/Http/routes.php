@@ -151,6 +151,11 @@ Route::get('/doctores/json',[
 	    'as'    => 'consulta.examenesexpedientes'
 	    ]);
 
+	Route::get('consultas/{id}', [
+	    'uses' => 'ConsultaController@show', 
+	    'as'    => 'consultas'
+	    ]);
+
 	Route::get('resultadosexamenes',[
 	        'uses' => 'ConsultaController@RegistrarResultadosExamenes',
 	        'as' => 'consulta.resultadosexamenes'

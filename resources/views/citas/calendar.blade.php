@@ -112,3 +112,6 @@
 </script>
 @endsection
 
+@section('script-adicionales')
+@include('citas.fullcalendarcitas')
+@endsection

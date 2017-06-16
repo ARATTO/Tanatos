@@ -60,7 +60,7 @@ class expedienteController extends Controller
 
     public function index(){
         $expediente = DB::table('expediente')
-            ->join("persona","expediente.id","=","persona.id")
+            ->join("persona","expediente.idpersona","=","persona.id")
             ->get();
 
         
@@ -69,22 +69,22 @@ class expedienteController extends Controller
     }
 
     public function verExpedientes($id){
-        $expedientes = Cita::where('idexpediente','=',$id)->get();
-
-        $consulta = DB::table('expediente')
-        	->join("persona","expediente.id","=","persona.id")
-        	->join("estadocivil","persona.idestadocivil","=","estadocivil.id")
-            ->join("telefono","persona.idtelefono","=","telefono.id")
-            ->join("detalledireccion","persona.iddetalledireccion","=","detalledireccion.id")
-            ->join("municipio","detalledireccion.idmunicipio","=","municipio.id")
-            ->join("USER","persona.iduser","=","USER.id")
-            ->join("rol","USER.idrol","=","rol.id")
-        	->where('expediente.id','=',$id)
-            ->get();
-
+        
+        $consulta= Expediente::where('idpersona',$id)->get();
             
 
+            $consulta->each(function($consulta){   
+             $consulta->personas->detallesDirecciones->municipios;
+             $consulta->personas->telefonos;
+             $consulta->personas->users;
+             $consulta->personas->estadosCiviles;
+             $consulta->historialesClinicos;
+             $consulta->cita;
+             $consulta->ingreso;
 
+            });
+
+            
 
         $consulta2 = DB::table('expediente')
         ->join("historialclinico","expediente.idhistorialclinico","=","historialclinico.id")
@@ -92,9 +92,8 @@ class expedienteController extends Controller
         ->get();
 
         return view('expediente.vista')
-        ->with('expedientes',$expedientes)
-        ->with('consulta',$consulta)
-        ->with('consulta2',$consulta2);
+        ->with('consulta',$consulta);
+        
 
     }
 

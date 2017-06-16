@@ -27,6 +27,17 @@ class DatabaseSeeder extends Seeder
         
         $this->call(SeedHospital::class);
         $this->call(SeedCatalogoPrecio::class);
+
+        $this->call(SeedTipoTratamiento::class);
+
+        $this->call(SeedTipoExamenClinico::class);
+        $this->call(SeedTipoExamenFisico::class);
+
+        $this->call(SeedMedicamento::class);
+        $this->call(SeedTipoEnfermedad::class);
+        
+        $this->call(SeedEnfermedad::class);
+
         $this->call(SeedCamilla::class);
         $this->call(SeedSala::class);
         $this->call(SeedDoctor::class);
@@ -37,5 +48,6 @@ class DatabaseSeeder extends Seeder
         //$this->call(SeedTipoExamenFisico::class);
         //
         //$this->call(SeedMedicamento::class);
+
     }
 }
