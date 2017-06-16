@@ -5,10 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Auth;
+
 
 use GeneaLabs\Bones\Flash\Flash;
 use App\ConsultaMedica;
 use App\Cita;
+use App\User;
+use App\Expediente;
+use App\Persona;
+use App\Doctor;
 use App\Tratamiento;
 use App\TipoTratamiento;
 use App\TipoExamenClinico;
@@ -18,12 +24,19 @@ use App\Medicamento;
 use App\ExamenClinico;
 use App\ExamenFisico;
 use App\Diagnostico;
+use App\CostoServicio;
 use Carbon\Carbon;
 use DB;
 
 
+
 class ConsultaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function show($id){
         $consulta= Cita::where('id',$id)->get();
         $tipoexamenclinico=TipoExamenClinico::all();
@@ -36,11 +49,6 @@ class ConsultaController extends Controller
              $consulta->expedientes;
 
             });
-        
-        
-        
-        
-        
 
         return view('consulta.consultamedica')
         ->with('tipoexamenclinico',$tipoexamenclinico)
@@ -55,21 +63,45 @@ class ConsultaController extends Controller
     public function index(){
         $dia=date("d");
         $day= (string) $dia;
-
-        $cadena1="select  * from (select (EXTRACT(DAY FROM start)),cita.id as cita,cita.idexpediente,primernombre,primerapellido,dui,nombredoctor,color,finalizada from cita inner join doctor on cita.iddoctor = doctor.id inner join persona on persona.id=doctor.idpersona) as dia inner join expediente on dia.idexpediente=expediente.id";
-        $cadena2=" where date_part=".$dia." AND finalizada = 'false'";
-        $resultado=$cadena1 . $cadena2;
-
-        $consultamedica = DB::select(DB::raw($resultado));
         
-        
-        return view('consulta.index')->with('diagnostico',$consultamedica);
+        //dd($usuario);
+        $persona=Persona::where('iduser',Auth::user()->id)->get();
 
+        if(count($persona)>0){
+            
+            $doctor=Doctor::where('idpersona',$persona[0]->id)->get();
+            
+            if(count($doctor)>0){
+            $cadena1="select  * from (select (EXTRACT(DAY FROM start)),cita.id as cita,cita.idexpediente,primernombre,primerapellido,dui,nombredoctor,color,finalizada from cita inner join doctor on cita.iddoctor = doctor.id inner join persona on persona.id=doctor.idpersona) as dia inner join expediente on dia.idexpediente=expediente.id";
+            $cadena2=" where date_part=".$dia." AND finalizada = 'false' AND nombredoctor='".$doctor[0]->nombredoctor."'";
+            $resultado=$cadena1 . $cadena2;
+
+            $consultamedica = DB::select(DB::raw($resultado));
+            
+            }else
+            {
+            $cadena1="select  * from (select (EXTRACT(DAY FROM start)),cita.id as cita,cita.idexpediente,primernombre,primerapellido,dui,nombredoctor,color,finalizada from cita inner join doctor on cita.iddoctor = doctor.id inner join persona on persona.id=doctor.idpersona) as dia inner join expediente on dia.idexpediente=expediente.id";
+            $cadena2=" where date_part=".$dia." AND finalizada = 'false'";
+            $resultado=$cadena1 . $cadena2;
+
+            $consultamedica = DB::select(DB::raw($resultado));
+            dd($consultamedica);
+            }
+
+           
+        }
+         return view('consulta.index')->with('diagnostico',$consultamedica);
     }
 
     public function store(Request $request){
 
        //dd($request->all());
+        /*$costo= new CostoServicio();
+
+        $costo->nombreservicio="Cita";
+        $costo->preciocostoservicio=0;
+        $costo->descripcionservicio="Facturacion";
+        $costo->save();*/
 
         //Guardando e consulta
         $consulta = new ConsultaMedica();
@@ -79,6 +111,8 @@ class ConsultaController extends Controller
         $consulta->idcita=$request->idcita;
         $consulta->idcostoservicio=1;
         $consulta->save();
+
+        
 
         //Guardando examen clinico
         foreach ($request->idtipoexamenclinico as $valor ) {
@@ -135,15 +169,31 @@ class ConsultaController extends Controller
         if($request->operacion){
             return redirect()->route('ingreso.show',[$request->idexpediente]);
         }else{
-            $dia=date("d");
-            $day= (string) $dia;
+        $dia=date("d");
+        $day= (string) $dia;
+        
+        //dd($usuario);
+        $persona=Persona::where('iduser',Auth::user()->id)->get();
+        if(count($persona)>0){
+            
+            $doctor=Doctor::where('idpersona',$persona[0]->id)->get();
+            if(count($doctor)>0){
+            $cadena1="select  * from (select (EXTRACT(DAY FROM start)),cita.id as cita,cita.idexpediente,primernombre,primerapellido,dui,nombredoctor,color,finalizada from cita inner join doctor on cita.iddoctor = doctor.id inner join persona on persona.id=doctor.idpersona) as dia inner join expediente on dia.idexpediente=expediente.id";
+            $cadena2=" where date_part=".$dia." AND finalizada = 'false' AND nombredoctor='".$doctor[0]->nombredoctor."'";
+            $resultado=$cadena1 . $cadena2;
 
+            $consultamedica = DB::select(DB::raw($resultado));
+            
+            }else
+            {
             $cadena1="select  * from (select (EXTRACT(DAY FROM start)),cita.id as cita,cita.idexpediente,primernombre,primerapellido,dui,nombredoctor,color,finalizada from cita inner join doctor on cita.iddoctor = doctor.id inner join persona on persona.id=doctor.idpersona) as dia inner join expediente on dia.idexpediente=expediente.id";
             $cadena2=" where date_part=".$dia." AND finalizada = 'false'";
             $resultado=$cadena1 . $cadena2;
 
             $consultamedica = DB::select(DB::raw($resultado));
-            return view('consulta.index')->with('diagnostico',$consultamedica);
+            }
+        }
+        return view('consulta.index')->with('diagnostico',$consultamedica);
         }
 
         
@@ -160,26 +210,51 @@ class ConsultaController extends Controller
 
     }
 
-    public function VerExamenesPendientes(){
+    public function VerCitasFinalizadas(){
 
-        //$usuario = User::all()->lists('nombres','id');
-        //$hospital = Hospital::all()->lists('nombre','id');
+        $user = User::where('id',Auth::user()->id)->get();
 
-        return view('consulta.examenespendientes');
-        //->with('usuarios',$usuario)
-        //->with('hospitales',$hospital);
+        if(count($user)>0){
+            $persona=Persona::where('iduser',$user[0]->id)->get();
+            if(count($persona)>0){
+                $expediente=Expediente::where('idpersona',$persona[0]->id)->get();
+                //dd($expediente);
+                if(count($expediente)>0){
+                    $cita=Cita::where('idexpediente',$expediente[0]->id)->Where('finalizada',true)->get();
+                    //dd($cita);
+                    $cita->each(function($cita){
+                        $cita->expedientes;
+                    });
+                    //dd($cita);
+                    return view('consulta.citasdelpaciente')->with('cita',$cita);
+                }
+            }
+            
+        }
+
 
     }
 
-    public function RegistrarResultadosExamenes(){
+    public function VerExamenesPendientes($id){
+        /*$consulta = ConsultaMedica::where('idcita',$id);
+        $consulta->examenClinico();
+        dd($consulta);*/
+        
+        $consulta1="select * from tipoexamenclinico where id in(select idtipoexamenclinico from examenclinico where idconsultamedica in (select id from consultamedica where idcita=".$id.") and idresultadoexamenclinico is null)";
+        
 
-        //$usuario = User::all()->lists('nombres','id');
-        //$hospital = Hospital::all()->lists('nombre','id');
+        $consulta2="select * from tipoexamenfisico where id in(select idtipoexamenfisico from examenfisico where idconsultamedica in (select id from consultamedica  where  idcita=".$id.") and idresultadoexamenfisico is null)";
 
-        return view('consulta.resultadosexamenes');
-        //->with('usuarios',$usuario)
-        //->with('hospitales',$hospital);
+        $examenesclinicos = DB::select(DB::raw($consulta1));
 
+        $examenesfisicos= DB::select(DB::raw($consulta2));
+        //
+
+
+        return view('consulta.examenespendientes')
+        ->with('examenesfisicos',$examenesfisicos)
+        ->with('examenesclinicos',$examenesclinicos);
+        
     }
 
 

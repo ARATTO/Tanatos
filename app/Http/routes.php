@@ -147,19 +147,20 @@ Route::get('/doctores/json',[
 	        ]);
 
 	Route::get('examenespendientes', [
-	    'uses' => 'ConsultaController@VerExamenesPendientes', 
-	    'as'    => 'consulta.examenesexpedientes'
+	    'uses' => 'ConsultaController@VerCitasFinalizadas', 
+	    'as'    => 'consulta.citasdelpaciente'
 	    ]);
+
+	Route::get('examenespendientes/{id}',[
+	        'uses' => 'ConsultaController@VerExamenesPendientes',
+	        'as' => 'examenespendientes'
+	        ]);
 
 	Route::get('consultas/{id}', [
 	    'uses' => 'ConsultaController@show', 
 	    'as'    => 'consultas'
 	    ]);
 
-	Route::get('resultadosexamenes',[
-	        'uses' => 'ConsultaController@RegistrarResultadosExamenes',
-	        'as' => 'consulta.resultadosexamenes'
-	        ]);
 
 
 
