@@ -12,6 +12,7 @@ use App\ConsultaMedica;
 use App\TratamientoMedicamento;
 use App\Medicamento;
 use App\CostoServicio;
+use App\TipoExamenClinico;
 use GeneaLabs\Bones\Flash\Flash;
 use View;
 
@@ -113,7 +114,7 @@ class CobroController extends Controller
                 $consultaMedica->examenClinico;
                 if(count($consultaMedica->examenClinico)>0){
                     foreach ($consultaMedica->examenClinico as $examenClinico) {
-                        $examenClinico->tipoExamenesClinicos; 
+                        $examenClinico->tipoExamenesClinicos = TipoExamenClinico::where('id',$examenClinico->idtipoexamenclinico)->get()[0];
                     }
                     
                 }
@@ -127,14 +128,20 @@ class CobroController extends Controller
                 }
                 
                 $consultaMedica->diagnostico;
+                if(count($consultaMedica->diagnostico)>0){
+
                 foreach ($consultaMedica->diagnostico as $diagnostico) {
                     $diagnostico->tratamientos;
                 }
+                }
                 
             });
+            
+            $precio;
+            $k=0;
 
             //dd($consultaMedica);
-           
+           if(count($consultaMedica[0]->diagnostico)>0){
            $tratamientos= TratamientoMedicamento::where('idtratamiento',$consultaMedica[0]->diagnostico[0]->tratamientos->id)->paginate(20);
 
            //dd($tratamientos);
@@ -145,9 +152,7 @@ class CobroController extends Controller
                 $i=$i+1;
             }
 
-            $precio;
-            $k=0;
-           foreach ($medicamento as $medicina => $vector) {
+               foreach ($medicamento as $medicina => $vector) {
             foreach ($vector as $key => $value) {
 
             $precio[$k] = CatalogoPrecio::where('nombreprecioespecial',$value->nombremedicamento)->get();
@@ -155,6 +160,8 @@ class CobroController extends Controller
             }
             
            }
+           }
+
 
 
            if (count($consultaMedica[0]->examenFisico )>0) {
@@ -169,7 +176,8 @@ class CobroController extends Controller
             if (count($consultaMedica[0]->examenClinico )>0) {
 
                 foreach ($consultaMedica[0]->examenClinico as $examenClinico) {
-                    $precio[$k] = CatalogoPrecio::where('nombreprecioespecial',$examenFisico->tipoExamenesClinicos->nombreexamenclinico)->get();
+                    //dd($examenClinico->tipoExamenesClinicos->nombreexamenclinico);    
+                    $precio[$k] = CatalogoPrecio::where('nombreprecioespecial',$examenClinico->tipoExamenesClinicos->nombreexamenclinico)->get();
            
                    $k=$k+1;            
                            }
