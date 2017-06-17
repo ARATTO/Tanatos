@@ -24,7 +24,11 @@
 					<div class="panel-body">
 						@include('bones-flash::bones.flash')
 						@include('layouts.partials.flash')	
-	{!! Form::open(['action' =>'CobroController@store','class'=>'form-center' ]) !!}			
+    @if($consultaMedica[0]->costosServicios->preciocostoservicio == 0)   
+	{!! Form::open(['action' =>'CobroController@store','class'=>'form-center' ]) !!}
+    @else
+    {!! Form::open(['action' =>'CobroController@store2','class'=>'form-center' ]) !!}
+    @endif
 
                                         <div class="input-group has-info form-inline">
                                             <h3>
@@ -98,11 +102,18 @@
                     <h3><span class="label label-danger">{{ trans('Guardar Factura') }}</span><h3>
                     <button type="submit" class="btn btn-success btn-lg"> {{trans('Facturar')}} </button>
                 </div>
+            @else
+            <div class="form-group form-inline" id="crear">
+                    <h3><span class="label label-danger">{{ trans('Crear Factura') }}</span><h3>
+                    <button type="submit" class="btn btn-success btn-lg"> {{trans('Crear Factura')}} </button>
+                </div>
             @endif
 
+
                 <div style="display: none;">
-                			
-					<input type="text" name="todo" value="{{$consultaMedica[0]->costosServicios->id}}">
+                	<input type="number" name="expediente" value="{{ $consultaMedica[0]->citas->expedientes->id}}">
+
+					<input type="text" name="idcostoservicio" value="{{$consultaMedica[0]->costosServicios->id}}">
 
                 @foreach($precio as $unitario)
                 <input type="number" name="{{$unitario[0]->nombreprecioespecial}}" value="{{$unitario[0]->id}}">

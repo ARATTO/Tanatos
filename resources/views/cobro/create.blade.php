@@ -46,7 +46,7 @@
 
                                         @if($exp->consultaMedica[0]->costosServicios->preciocostoservicio>0)
                                             <td>
-                                                <a href="{{route('servicios',$exp->consultaMedica[0]->id)}}" class="btn btn-primary"><font color="black" size="2"> <b>Ver Factura</b></font></a>
+                                                <a href="{{route('factura',$exp->consultaMedica[0]->id)}}" class="btn btn-primary"><font color="black" size="2"> <b>Ver Factura</b></font></a>
                                             </td>
                                         @else
                                             <td>

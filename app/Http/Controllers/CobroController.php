@@ -70,9 +70,9 @@ class CobroController extends Controller
         foreach ($request->all() as $valores) {
             if($i==0){
 
-            }elseif ($i==1) {
+            }elseif ($i==2) {
                 $idCostoServicio = $valores;
-            }elseif ($i>1) {
+            }elseif ($i>2) {
                 $idCatalogo[$k] = $valores;
                 $k = $k+1;
             }
@@ -94,12 +94,156 @@ class CobroController extends Controller
         $costoServicio->preciocostoservicio = $total;
         $costoServicio->save();
 
+
+
         Flash::success("Se ha guardado la factura " .$idCostoServicio. " con exito" );
-        return redirect()->route('cobro.index');
-        //dd('resultado');
-        /*$pdf = PDF::loadView('cobro.servicio');
-        return $pdf->download('invoice.pdf');*/
+
+
+        return redirect()->route('cobro.show',$request->expediente);
+        //return redirect()->route('cobro.index');
+
     }
+
+
+
+
+    public function store2(Request $request)
+    {
+        //dd($request->all());
+
+        $i=0;
+        $k=0;
+        foreach ($request->all() as $valores) {
+            if($i==0){
+
+            }elseif ($i==2) {
+                $idCostoServicio = $valores;
+            }elseif ($i>2) {
+                $idCatalogo[$k] = $valores;
+                $k = $k+1;
+            }
+
+            $i = $i+1;
+        }
+
+        $total = 0;
+
+        $costoServicio = CostoServicio::find($idCostoServicio);
+
+
+        $costoServicio->preciocostoservicio = $total;
+
+
+        $consultaMedica = ConsultaMedica::where('idcostoservicio',$costoServicio->id)->paginate(1);
+
+                $consultaMedica->each(function($consultaMedica){
+                $consultaMedica->citas;
+                $consultaMedica->expedientes;
+                $consultaMedica->citas->doctores;
+                $consultaMedica->citas->doctores->especialidad;
+                $consultaMedica->costosServicios;
+                $consultaMedica->examenClinico;
+                if(count($consultaMedica->examenClinico)>0){
+                    foreach ($consultaMedica->examenClinico as $examenClinico) {
+                        $examenClinico->tipoExamenesClinicos = TipoExamenClinico::where('id',$examenClinico->idtipoexamenclinico)->get()[0];
+                    }
+                    
+                }
+
+                $consultaMedica->examenFisico;
+                if(count($consultaMedica->examenFisico)>0){
+                    foreach ($consultaMedica->examenFisico as $examenFisico) {
+                        $examenFisico->tipoExamenesFisicos; 
+                    }
+                    
+                }
+                
+                $consultaMedica->diagnostico;
+                if(count($consultaMedica->diagnostico)>0){
+
+                foreach ($consultaMedica->diagnostico as $diagnostico) {
+                    $diagnostico->tratamientos;
+                }
+                }
+                
+            });
+
+            $precio;
+            $k=0;
+
+            //dd($consultaMedica);
+           if(count($consultaMedica[0]->diagnostico)>0){
+           $tratamientos= TratamientoMedicamento::where('idtratamiento',$consultaMedica[0]->diagnostico[0]->tratamientos->id)->paginate(20);
+
+           //dd($tratamientos);
+           $medicamento;
+           $i=0;
+            foreach ($tratamientos as $key => $value) {
+                $medicamento[$i] = Medicamento::where('id',$value->idmedicamento)->get();
+                $i=$i+1;
+            }
+
+               foreach ($medicamento as $medicina => $vector) {
+            foreach ($vector as $key => $value) {
+
+            $precio[$k] = CatalogoPrecio::where('nombreprecioespecial',$value->nombremedicamento)->get();
+               $k=$k+1;
+            }
+            
+           }
+           }
+
+
+
+           if (count($consultaMedica[0]->examenFisico )>0) {
+
+                foreach ($consultaMedica[0]->examenFisico as $examenFisico) {
+                    $precio[$k] = CatalogoPrecio::where('nombreprecioespecial',$examenFisico->tipoExamenesFisicos->nombreexamenfisico)->get();
+           
+                   $k=$k+1;            
+                           }
+           }
+
+            if (count($consultaMedica[0]->examenClinico )>0) {
+
+                foreach ($consultaMedica[0]->examenClinico as $examenClinico) {
+                    //dd($examenClinico->tipoExamenesClinicos->nombreexamenclinico);    
+                    $precio[$k] = CatalogoPrecio::where('nombreprecioespecial',$examenClinico->tipoExamenesClinicos->nombreexamenclinico)->get();
+           
+                   $k=$k+1;            
+                           }
+           }
+           
+
+           $precio[$k] = CatalogoPrecio::where('nombreprecioespecial',$consultaMedica[0]->citas->doctores->especialidad->nombreespecialidad)->get();
+
+           $totalSinIVA = 0;
+           foreach ($precio as $unitario) {
+                $totalSinIVA = $totalSinIVA + $unitario[0]->precioespecial;
+           }
+           //dd($precio);
+
+            $IVA = $totalSinIVA *0.13;
+            $total = $totalSinIVA + $IVA;
+
+             $view =  \View::make('cobro.factura',compact('precio','consultaMedica','totalSinIVA','IVA','total'))->render();
+
+             //dd($view);
+             $pdf = \App::make('dompdf.wrapper');
+             $pdf->loadHTML($view);
+             //dd($pdf);
+             //return $pdf->download('reporte.pdf');
+
+             return $pdf->download('reporte.pdf');
+
+    }
+
+
+
+
+
+
+
 
     /**
      * Display the specified resource.
