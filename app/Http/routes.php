@@ -185,8 +185,20 @@ Route::get('/doctores/json',[
 	    'as'    => 'consultas'
 	    ]);
 
+	Route::get('detalleExamenFisico/{id}',[
+	        'uses' => 'ConsultaController@detalleExamenFisico',
+	        'as' => 'detalleExamenFisico'
+	        ]);
 
+	Route::put('redExamenFisico/{id}',[
+	        'uses' => 'ConsultaController@redExamenFisico',
+	        'as' => 'redExamenFisico'
+	        ]);
 
+	Route::get('detalleExamenClinico/{id}',[
+	        'uses' => 'ConsultaController@detalleExamenClinico',
+	        'as' => 'detalleExamenClinico'
+	        ]);
 
 /*
 *

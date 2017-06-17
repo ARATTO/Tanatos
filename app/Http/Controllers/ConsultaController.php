@@ -24,6 +24,10 @@ use App\Medicamento;
 use App\ExamenClinico;
 use App\ExamenFisico;
 use App\Diagnostico;
+use App\ResExamenFisico;
+use App\Imagen;
+use App\Audio;
+use App\Video;
 use App\CostoServicio;
 use Carbon\Carbon;
 use DB;
@@ -202,7 +206,7 @@ class ConsultaController extends Controller
 
         //$usuario = User::all()->lists('nombres','id');
         //$hospital = Hospital::all()->lists('nombre','id');
-
+        
         return view('consulta.consultamedica');
         //->with('usuarios',$usuario)
         //->with('hospitales',$hospital);
@@ -230,8 +234,8 @@ class ConsultaController extends Controller
             }
             
         }
-
-
+        $cita = null;
+        return view('consulta.citasdelpaciente')->with('cita',$cita);
     }
 
     public function VerExamenesPendientes($id){
@@ -248,11 +252,38 @@ class ConsultaController extends Controller
 
         $examenesfisicos= DB::select(DB::raw($consulta2));
         //
+        //dd($examenesclinicos);
+        ///////////////////////////////////////
+        $user = User::where('id',Auth::user()->id)->get();
 
+        if(count($user)>0){
+            $persona=Persona::where('iduser',$user[0]->id)->get();
+            if(count($persona)>0){
+                $expediente=Expediente::where('idpersona',$persona[0]->id)->get();
+                //dd($expediente);
+                if(count($expediente)>0){
+                    $cita=Cita::where('idexpediente',$expediente[0]->id)->where('finalizada',true)->where('id',$id)->get();
+                    //dd($cita);
+                    if(count($cita)>0){
+                        $consultaMedica=ConsultaMedica::where('idcita',$cita[0]->id)->get();
+                        if(count($consultaMedica)>0){
+                            $examenFisicoResuelto = ExamenFisico::where('idconsultamedica',$consultaMedica[0]->id)->where('idresultadoexamenfisico', '<>',null)->get();
+
+                            foreach($examenFisicoResuelto as $exResuleto){
+                                $exResuleto->tipoExamenFisico = TipoExamenFisico::find($exResuleto->idtipoexamenfisico);
+                            }                            
+                        }
+                    }
+
+                }
+            }
+        }
+        ///////////////////////////////////////
 
         return view('consulta.examenespendientes')
         ->with('examenesfisicos',$examenesfisicos)
-        ->with('examenesclinicos',$examenesclinicos);
+        ->with('examenesclinicos',$examenesclinicos)
+        ->with('examenFisicoResuelto',$examenFisicoResuelto);
         
     }
 
@@ -266,5 +297,39 @@ class ConsultaController extends Controller
 
         return back();
     
+    }
+
+    public function detalleExamenFisico($id){
+
+        $exFisico = ExamenFisico::find($id);
+
+      
+        $exFisico->consultaMedica = ConsultaMedica::find($exFisico->idconsultamedica);
+        $exFisico->tipoExamenFisico = TipoExamenFisico::find($exFisico->idtipoexamenfisico);
+        $exFisico->cita = Cita::find($exFisico->consultaMedica->idcita);
+        $exFisico->expediente = Expediente::find($exFisico->cita->idexpediente);
+        $exFisico->resExamenFisico = ResExamenFisico::find($exFisico->idresultadoexamenfisico);
+
+        if($exFisico->resExamenFisico->idimagen != null){
+            $exFisico->imagen = Imagen::find($exFisico->resExamenFisico->idimagen);
+        }
+        if($exFisico->resExamenFisico->idvideo != null){
+            $exFisico->video = Video::find($exFisico->resExamenFisico->idvideo);
+        }
+        if($exFisico->resExamenFisico->idaudio != null){
+            $exFisico->audio = Audio::find($exFisico->resExamenFisico->idaudio);
+        }
+
+        return view('consulta.detalleExamenFisico')->with(['exFisico' => $exFisico]);
+    }
+
+    public function redExamenFisico($id){
+        //dd($id);
+        return redirect()->route('consulta.citasdelpaciente');
+        
+    }
+
+    public function detalleExamenClinico($id){
+        
     }
 }

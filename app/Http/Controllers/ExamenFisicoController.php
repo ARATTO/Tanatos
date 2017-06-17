@@ -71,7 +71,7 @@ class ExamenFisicoController extends Controller
           //Hay Imagen
           $archivo = $request->file('img');
           $nombreimagen = 'tanatos' . time() . '.' . $archivo->getClientOriginalExtension();
-          $path = public_path() . "\storage\imagen";
+          $path = public_path() . "/storage/imagen";
           $archivo->move($path, $nombreimagen);
 
           $imagen = new Imagen();
@@ -92,7 +92,7 @@ class ExamenFisicoController extends Controller
           //Hay Video
           $archivo = $request->file('video');
           $nombrevideo = 'tanatos' . time() . '.' . $archivo->getClientOriginalExtension();
-          $path = public_path() . "\storage\video";
+          $path = public_path() . "/storage/video";
           $archivo->move($path, $nombrevideo);
 
           $video = new Video();
@@ -113,7 +113,7 @@ class ExamenFisicoController extends Controller
           //Hay Video
           $archivo = $request->file('audio');
           $nombreaudio = 'tanatos' . time() . '.' . $archivo->getClientOriginalExtension();
-          $path = public_path() . "\storage\audio";
+          $path = public_path() . "/storage/audio";
           $archivo->move($path, $nombreaudio);
 
           $audio = new Audio();
@@ -212,5 +212,35 @@ class ExamenFisicoController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    //No se usa borrar
+    public function VerExamenPaciente(){
+        
+        $user = User::where('id',Auth::user()->id)->get();
+
+        if(count($user)>0){
+            $persona=Persona::where('iduser',$user[0]->id)->get();
+            if(count($persona)>0){
+                $expediente=Expediente::where('idpersona',$persona[0]->id)->get();
+                //dd($expediente);
+                if(count($expediente)>0){
+                    $cita=Cita::where('idexpediente',$expediente[0]->id)->where('finalizada',true)->get();
+                    //dd($cita);
+                    if(count($cita)>0){
+                        $consultaMedica=ConsultaMedica::where('idcita',$cita[0]->id)->get();
+                        if(count($consultaMedica)>0){
+                            $examenFisico = ExamenFisico::where('idconsultamedica',$consultaMedica[0]->id)->get();
+                        }
+                    }
+                    
+                    //dd($cita);
+                    return view('consulta.citasdelpaciente')->with('cita',$cita);
+                }
+            }
+            
+        }
+
+
     }
 }

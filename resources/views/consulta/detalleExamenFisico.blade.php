@@ -8,7 +8,6 @@
 
 @section('main-content')
     <!-- AQUI DEBEN LLAMAR EL HEADER PARA CADA VIEW CREADO EN "CONTENTHEADER"" -->
-	@include('layouts.partials.contentheader.examenFisico.show_head')
     <!-- Main content -->
         <section class="content">
             <!-- Your Page Content Here -->
@@ -23,7 +22,7 @@
 						@include('layouts.partials.flash')						
                         
 
-                        {!! Form::open(['route' => ['examenesFisicos.update', $exFisico], 'method' => 'PUT', 'files' => true]) !!}
+                        {!! Form::open(['route' => ['redExamenFisico', $exFisico->cita->id], 'method' => 'PUT', 'files' => true]) !!}
 
                             <h3>
                                <span class="label label-primary">{{ trans('tntmessage.General') }}</span>

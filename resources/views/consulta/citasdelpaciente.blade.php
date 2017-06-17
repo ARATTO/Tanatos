@@ -21,6 +21,8 @@
             @include('bones-flash::bones.flash')
             @include('layouts.partials.flash')    
 
+            @if($cita != null)
+
             <table class="table table-striped" > 
                             <thead>
                               <th>Cita</th>
@@ -33,7 +35,13 @@
                               
                               @foreach($cita as $ci)
                                 <tr>
-                                <td><a href="{{route('examenespendientes',$ci->id)}}">{{$ci->id}} </a></td>
+                                <td>
+                                  <div class="btn-group btn-group-sm" role="group" aria-label="...">
+                                    <a href=" {{route('examenespendientes',$ci->id)}} " title="Ver Cita" class="btn btn-success">
+                                      <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                                    </a>
+                                  </div>
+                                </td>
                                 <td>{{$ci->title}} </td>
                                 <td>{{$ci->start}} </td>
                                 <td>{{$ci->fin}} </td>
@@ -44,6 +52,9 @@
                             </tbody>
                           </table>         
             
+            @else
+            No tiene Citas Asociadas al Sistema.
+            @endif             
           </div>
         </div>
       </div>
