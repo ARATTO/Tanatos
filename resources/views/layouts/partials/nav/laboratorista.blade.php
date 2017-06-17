@@ -9,9 +9,9 @@
 
             <!-- Inicio Menu ExamenesFisicos -->
             <li class="treeview">
-                <a href="#"><i class='fa fa-link'></i> <span>Examenes Fisicos</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <a href="#"><i class='fa fa-link'></i> <span>Examenes Clinicos</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
-                    <li><a href="{{ route('examenesFisicos.index') }}">Ver Examenes</a></li>
+                    <li><a href="{{ route('examenesClinicos.index') }}">Ver Examenes</a></li>
                 </ul>
             </li>
             <!-- Fin Menu ExamenesFisicos -->

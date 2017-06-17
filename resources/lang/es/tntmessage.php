@@ -60,7 +60,7 @@ return [
     'Eliminar'               => 'ELIMINAR',
     'Actualizar'             => 'ACTUALIZAR',
     'Asignar'                => 'ASIGNAR',
-    'Regresar'               => 'REGRESAR',
+    'Regresar'               => 'Ir a Citas',
 
     'VerUsuario'             => 'Ver Usuarios',
     'VerMateria'             => 'Ver Materias',
@@ -78,6 +78,7 @@ return [
     'InscripcionEstudiante'  => 'Inscribir Estudiantes',
 
     'ExamenesFisicos'        => 'Examenes Fisicos',
+    'ExamenesClinicos'       => 'Examenes Clinicos',
 
     /*
     *  Fin SlideBar

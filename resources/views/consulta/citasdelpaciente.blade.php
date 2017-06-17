@@ -1,13 +1,13 @@
 @extends('layouts.app')
 <!-- TEXTO DEL HEADER -->
 @section('htmlheader_title')
-  INICIO
+  Citas
 @endsection
 
 
 @section('main-content')
     <!-- AQUI DEBEN LLAMAR EL HEADER PARA CADA VIEW CREADO EN "CONTENTHEADER"" -->
-  @include('layouts.partials.contentheader.consulta.create_head')
+
     <!-- Main content -->
         <section class="content">
             <!-- Your Page Content Here -->

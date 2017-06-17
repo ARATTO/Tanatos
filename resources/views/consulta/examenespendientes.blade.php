@@ -1,7 +1,7 @@
 @extends('layouts.app')
 <!-- TEXTO DEL HEADER -->
 @section('htmlheader_title')
-  INICIO
+  Examenes Pendientes
 @endsection
 
 
@@ -101,6 +101,39 @@
                   </table>
                   <hr>    
             @else
+            <h4><span  class="label label-warning">No Posee Examenes Fisicos con Respuesta</span></h4>
+            @endif
+
+            @if($examenClinicoResuelto != null)
+                  <h4><span  for="chosen-select1" class="label label-info">Examenes Clinicos</span></h4>          
+                  <table class="table table-striped" > 
+                    <thead>
+                      <th>No. Examen</th>
+                      <th>Nombre</th>
+                      <th>Descripcion</th> 
+                      <th>Precio</th>   
+                    </thead>
+                    <tbody>
+                      @foreach($examenClinicoResuelto as $ecr)
+                        <tr>
+                          
+                          <td>
+                            <div class="btn-group btn-group-sm" role="group" aria-label="...">
+                              <a href=" {{route('detalleExamenClinico',$ecr->id)}} " title="Ver Examen" class="btn btn-success">
+                                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                              </a>
+                            </div>
+                          </td>
+                          <td>{{$ecr->tipoExamenClinico->nombreexamenclinico}}</td>
+                          <td>{{$ecr->tipoExamenClinico->descripcionexamenclinico}}</td>
+                          <td>{{$ecr->tipoExamenClinico->precioexamenclinico}}</td>
+                        </tr>
+                      @endforeach
+                    </tbody>
+                  </table>
+                  <hr>    
+            @else
+            <h4><span  class="label label-warning">No Posee Examenes Clinico con Respuesta</span></h4>
             @endif
           </div>
         </div>

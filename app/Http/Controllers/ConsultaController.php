@@ -25,6 +25,7 @@ use App\ExamenClinico;
 use App\ExamenFisico;
 use App\Diagnostico;
 use App\ResExamenFisico;
+use App\ResultadoExamenClinico;
 use App\Imagen;
 use App\Audio;
 use App\Video;
@@ -271,7 +272,15 @@ class ConsultaController extends Controller
 
                             foreach($examenFisicoResuelto as $exResuleto){
                                 $exResuleto->tipoExamenFisico = TipoExamenFisico::find($exResuleto->idtipoexamenfisico);
-                            }                            
+                            }  
+
+                            $examenClinicoResuelto = ExamenClinico::where('idconsultamedica',$consultaMedica[0]->id)->where('idresultadoexamenclinico', '<>',null)->get();
+
+                            foreach($examenClinicoResuelto as $exResuleto){
+                                $exResuleto->tipoExamenClinico = TipoExamenClinico::find($exResuleto->idtipoexamenclinico);
+                            }                                                      
+
+
                         }
                     }
 
@@ -283,7 +292,8 @@ class ConsultaController extends Controller
         return view('consulta.examenespendientes')
         ->with('examenesfisicos',$examenesfisicos)
         ->with('examenesclinicos',$examenesclinicos)
-        ->with('examenFisicoResuelto',$examenFisicoResuelto);
+        ->with('examenFisicoResuelto',$examenFisicoResuelto)
+        ->with('examenClinicoResuelto',$examenClinicoResuelto);
         
     }
 
@@ -323,13 +333,26 @@ class ConsultaController extends Controller
         return view('consulta.detalleExamenFisico')->with(['exFisico' => $exFisico]);
     }
 
+    public function detalleExamenClinico($id){
+
+        $exClinico = ExamenClinico::find($id);
+
+        $exClinico->consultaMedica = ConsultaMedica::find($exClinico->idconsultamedica);
+        $exClinico->tipoExamenClinico = TipoExamenClinico::find($exClinico->idtipoexamenclinico);
+        $exClinico->cita = Cita::find($exClinico->consultaMedica->idcita);
+        $exClinico->expediente = Expediente::find($exClinico->cita->idexpediente);
+        $exClinico->resExamenClinico = ResultadoExamenClinico::find($exClinico->idresultadoexamenclinico);
+
+        return view('consulta.detalleExamenClinico')->with(['exClinico' => $exClinico]);
+    }
+
     public function redExamenFisico($id){
         //dd($id);
         return redirect()->route('consulta.citasdelpaciente');
         
     }
 
-    public function detalleExamenClinico($id){
-        
+    public function redExamenClinico($id){
+        return redirect()->route('consulta.citasdelpaciente');
     }
 }

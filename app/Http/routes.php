@@ -67,6 +67,14 @@ Route::get('/admin', 'HomeController@index');
         */
 
 		/*
+		* Inicio Rutas para Examen Clinico
+        */
+		Route::resource('examenesClinicos','ExamenClinicoController');
+		/*
+        * Fin Rutas para Examen Clinico
+        */
+
+		/*
 		* Inicio Rutas para DEMO
         */
 		Route::resource('demos','DemoController');
@@ -200,6 +208,10 @@ Route::get('/doctores/json',[
 	        'as' => 'detalleExamenClinico'
 	        ]);
 
+	Route::put('redExamenClinico/{id}',[
+	        'uses' => 'ConsultaController@redExamenClinico',
+	        'as' => 'redExamenClinico'
+	        ]);
 /*
 *
 * FIN RUTAS LOBO
