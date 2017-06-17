@@ -234,7 +234,7 @@ class CobroController extends Controller
              //dd($pdf);
              //return $pdf->download('reporte.pdf');
 
-             return $pdf->download('reporte.pdf');
+             return $pdf->download("factura".$idCostoServicio.".pdf");
 
     }
 
