@@ -69,4 +69,6 @@
     <!--CSS RODRIGO PARA expandir DIV -->
      <link href="{{ asset('/css/expandir.css') }}" rel="stylesheet" type="text/css" />
 
+     <!-- Light Gallery -->
+     <link href="{{ asset('/plugins/lightGallery/dist/css/lightgallery.css') }}" rel="stylesheet" type="text/css">
 </head>

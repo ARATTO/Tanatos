@@ -9,6 +9,9 @@ use App\Municipio;
 use App\Telefono;
 use App\DetalleDireccion;
 use App\Persona;
+use App\HistorialClinico;
+use App\Expediente;
+use App\Hospital;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -127,6 +130,23 @@ class AuthController extends Controller
         
         $persona->save();
 
+        //Fill Historial Clinico
+        $historialClinico = new HistorialClinico();
+        $historialClinico->nombremadre = $data['nombremadre'];
+        $historialClinico->nombrepadre = $data['nombrepadre'];
+        $historialClinico->antesedentes =  $data['antesedentes'];
+        
+        $historialClinico->save();
+
+        //Fill Expediente
+        $hospital = Hospital::find(1); //Busca el unico Hospital
+
+        $expediente = new Expediente();
+        $expediente->idpersona = $persona->id;
+        $expediente->idhistorialclinico = $historialClinico->id;
+        $expediente->idhospital = $hospital->id;
+
+        $expediente->save();
 
         //dd($request);
 

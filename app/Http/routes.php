@@ -46,8 +46,24 @@ Route::get('/admin', 'HomeController@index');
             'as' => 'users.storepaciente',
             'uses' => 'UserController@storePaciente'
         ]);
+		Route::get('users/{id}/activar', [
+            'as' => 'users.activar',
+            'uses' => 'UserController@activar'
+        ]);
+        Route::get('users/{id}/inactivar', [
+            'as' => 'users.inactivar',
+            'uses' => 'UserController@inactivar'
+        ]);
         /*
         * Fin Rutas para User
+        */
+
+		/*
+		* Inicio Rutas para Examen Fisico
+        */
+		Route::resource('examenesFisicos','ExamenFisicoController');
+		/*
+        * Fin Rutas para Examen Fisico
         */
 
 		/*

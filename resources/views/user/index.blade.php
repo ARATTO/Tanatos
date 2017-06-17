@@ -33,6 +33,7 @@
                                         <th>Correo</th>
 										<th>Nacimiento</th>
 										<th>Rol</th>
+										<th>Activo</th>
 									</tr>
 								</thead>
 								<tfoot>
@@ -43,6 +44,7 @@
                                         <th>Correo</th>
 										<th>Nacimiento</th>
 										<th>Rol</th>
+										<th>Activo</th>
 									</tr>
 								</tfoot>
 								<tbody>
@@ -54,6 +56,31 @@
 											<td>{{$user->email}}</td>
                                             <td>{{$user->personas->fechanacimiento}}</td>
                                             <td>{{$user->roles->nombrerol}}</td>
+											<td>
+											@if( Auth::user()->id == $user->id )
+												<a href="#" class="btn btn-info btn-block" title="Eres tú, no puedes darte de baja.">
+													<span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+												</a>
+											@else
+												@if($user->estado == 1)
+													<a 	href=" {{ route('users.inactivar' , $user->id) }} " 
+														title="Desactivar Usuario: {{$user->personas->primernombre}} {{$user->personas->primerapellido}}" 
+														class="btn btn-danger btn-block" 
+														onclick="return confirm('¿Desactivar a {{$user->personas->primernombre}} ?')"
+													>
+														<span class="glyphicon glyphicon-download" aria-hidden="true"></span>
+													</a>
+												@else
+													<a 	href=" {{ route('users.activar' , $user->id) }} " 
+														title="Activar Usuario: {{$user->personas->primernombre}} {{$user->personas->primerapellido}}" 
+														class="btn btn-success btn-block" 
+														onclick="return confirm('¿Activar a {{$user->personas->primernombre}} ?')"
+													>
+														<span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
+													</a>
+												@endif
+											@endif
+											</td>
 										</tr>
 									@endforeach
 								</tbody>

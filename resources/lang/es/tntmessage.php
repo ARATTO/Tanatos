@@ -17,6 +17,7 @@ return [
     'U'                      => 'FIA-UES',
     'BAD'                    => 'Bases de Datos',
     'correoInstitucional'    => '@ues.edu.sv',
+    'Home'                   => 'Inicio',
 
     /*
     *  Header Generales Pages
@@ -59,6 +60,7 @@ return [
     'Eliminar'               => 'ELIMINAR',
     'Actualizar'             => 'ACTUALIZAR',
     'Asignar'                => 'ASIGNAR',
+    'Regresar'               => 'REGRESAR',
 
     'VerUsuario'             => 'Ver Usuarios',
     'VerMateria'             => 'Ver Materias',
@@ -74,6 +76,8 @@ return [
     'NuevoCategoria'         => 'Crear Categoria',
 
     'InscripcionEstudiante'  => 'Inscribir Estudiantes',
+
+    'ExamenesFisicos'        => 'Examenes Fisicos',
 
     /*
     *  Fin SlideBar
@@ -92,6 +96,8 @@ return [
     */
     'SI'                     =>'SI',
     'NO'                     =>'NO',
+    'Terminado'              =>'Terminado',
+    'Pendiente'              =>'Pendiente',
     /*
     *  Fin TABLA
     */
@@ -107,6 +113,10 @@ return [
     'Telefono'               =>'Telefono',
     'Contacto'               =>'Contacto',
     'Sistema'                =>'Sistema',
+    'HistorialClinico'       =>'Historial Clinico',
+    'Archivos'               =>'Archivos',
+    'General'                =>'Informacion General',
+    'RespuestaExamen'        =>'Respuesta a Examen',
     /*
     *  Fin FORM
     */
@@ -116,10 +126,10 @@ return [
     */
 
     'MensajePassword'           => '**Contraseña inicial: Numero de DUI Ej: 12345678',
-    'DescripcionTanatos'        =>'Sistema de Gestion y Administracion para Clinica desarrollada por ',
-    'DescripcionTanatos2'       =>'para la catedra de ',
+    'DescripcionTanatos'        => 'Sistema de Gestion y Administracion para Clinica desarrollada por ',
+    'DescripcionTanatos2'       => 'para la catedra de ',
     'Comencemos'                => 'Comencemos',
-    'Registrarme'               => 'Registrarme',
+    'Registrarme'               => 'REGISTRARME',
     'GeneralChequeo'            => 'Chequeo General',
     'GeneralChequeo_Cuerpo'     => 'Piensa en tu salud, nosotros nos encargamos del resto.',
     'AmpliaGama'                => 'Amplia gama de Medicamentos',
