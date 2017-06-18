@@ -1,7 +1,8 @@
 <head>
     <meta charset="UTF-8">
     <link rel="shortcut icon" href="#">
-    <title> {{ trans('tntmessage.Tanatos') }} - @yield('htmlheader_title', 'Your title here') </title>
+    <title> @yield('htmlheader_title', 'Your title here') </title>
+    <link rel="shortcut icon" href="{{ asset('/img/tanatos/welcome/Logo.png') }}">
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 3.3.4 -->
     <link href="{{ asset('/css/bootstrap.css') }}" rel="stylesheet" type="text/css" />
@@ -68,4 +69,6 @@
     <!--CSS RODRIGO PARA expandir DIV -->
      <link href="{{ asset('/css/expandir.css') }}" rel="stylesheet" type="text/css" />
 
+     <!-- Light Gallery -->
+     <link href="{{ asset('/plugins/lightGallery/dist/css/lightgallery.css') }}" rel="stylesheet" type="text/css">
 </head>

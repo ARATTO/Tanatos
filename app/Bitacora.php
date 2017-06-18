@@ -59,6 +59,7 @@ class Bitacora extends Model
      public function name_singular(){
          return $this->hasMany('App\Class');
      }
+
      */
      //////////////////////////////////////////////////////
 
@@ -70,5 +71,6 @@ class Bitacora extends Model
             $query->where('idingreso', "$idingreso");
             }
      }//final del scope
+
 
 }

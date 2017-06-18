@@ -4,11 +4,11 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        @yield('contentheader_title', 'Page Header here')
+        @yield('contentheader_title', 'Crear Paciente')
         <small>@yield('contentheader_description')</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> {{ trans('adminlte_lang::message.level') }}</a></li>
-        <li class="active">{{ trans('adminlte_lang::message.here') }}</li>
+        <li><a href="{{ url('/home') }}"><i class="fa fa-dashboard"></i> Inicio</a></li>
+        <li class="active">Crear Paciente</li>
     </ol>
 </section>

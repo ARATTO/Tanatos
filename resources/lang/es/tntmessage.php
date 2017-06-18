@@ -13,8 +13,11 @@ return [
     | Bienvenido rufian. GG IZI
     */
     'LosEternos'             => 'Los_Eternos',
-    'Tanatos'                => 'Tanato',
+    'Tanatos'                => 'Tanatos',
+    'U'                      => 'FIA-UES',
+    'BAD'                    => 'Bases de Datos',
     'correoInstitucional'    => '@ues.edu.sv',
+    'Home'                   => 'Inicio',
 
     /*
     *  Header Generales Pages
@@ -57,6 +60,7 @@ return [
     'Eliminar'               => 'ELIMINAR',
     'Actualizar'             => 'ACTUALIZAR',
     'Asignar'                => 'ASIGNAR',
+    'Regresar'               => 'Ir a Citas',
 
     'VerUsuario'             => 'Ver Usuarios',
     'VerMateria'             => 'Ver Materias',
@@ -72,6 +76,9 @@ return [
     'NuevoCategoria'         => 'Crear Categoria',
 
     'InscripcionEstudiante'  => 'Inscribir Estudiantes',
+
+    'ExamenesFisicos'        => 'Examenes Fisicos',
+    'ExamenesClinicos'       => 'Examenes Clinicos',
 
     /*
     *  Fin SlideBar
@@ -90,6 +97,8 @@ return [
     */
     'SI'                     =>'SI',
     'NO'                     =>'NO',
+    'Terminado'              =>'Terminado',
+    'Pendiente'              =>'Pendiente',
     /*
     *  Fin TABLA
     */
@@ -102,8 +111,31 @@ return [
     'Imagen'                 =>'Imagen',
     'DatosGenerales'         =>'Datos Generales',
     'Direccion'              =>'Direccion',
+    'Telefono'               =>'Telefono',
+    'Contacto'               =>'Contacto',
+    'Sistema'                =>'Sistema',
+    'HistorialClinico'       =>'Historial Clinico',
+    'Archivos'               =>'Archivos',
+    'General'                =>'Informacion General',
+    'RespuestaExamen'        =>'Respuesta a Examen',
     /*
     *  Fin FORM
+    */
+
+    /*
+    *  Mensajes
+    */
+
+    'MensajePassword'           => '**Contraseña inicial: Numero de DUI Ej: 12345678',
+    'DescripcionTanatos'        => 'Sistema de Gestion y Administracion para Clinica desarrollada por ',
+    'DescripcionTanatos2'       => 'para la catedra de ',
+    'Comencemos'                => 'Comencemos',
+    'Registrarme'               => 'REGISTRARME',
+    'GeneralChequeo'            => 'Chequeo General',
+    'GeneralChequeo_Cuerpo'     => 'Piensa en tu salud, nosotros nos encargamos del resto.',
+    'AmpliaGama'                => 'Amplia gama de Medicamentos',
+    /*
+    *  Fin Menajes
     */
 
 ];

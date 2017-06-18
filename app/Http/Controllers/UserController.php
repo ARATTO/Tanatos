@@ -12,6 +12,9 @@ use App\Telefono;
 use App\DetalleDireccion;
 use App\Rol;
 use App\EstadoCivil;
+use App\HistorialClinico;
+use App\Expediente;
+use App\Hospital;
 use App\Http\Requests;
 use Laracasts\Flash\Flash;
 
@@ -34,6 +37,7 @@ class UserController extends Controller
         $users->each(function($users){
             $users->roles = Rol::find($users->idrol);
             $users->personas = Persona::find($users->id);
+
         });
 
         //dd($users);
@@ -47,9 +51,9 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    {   
         $estadoCivil = EstadoCivil::all();
-        $roles = Rol::all();
+        $roles = Rol::where( 'nombrerol', '!=', 'Paciente' )->get();
         $municipio = Municipio::all();
 
         return view('user.crear')->with([
@@ -223,10 +227,44 @@ class UserController extends Controller
         
         $persona->save();
 
+        //Fill Historial Clinico
+        $historialClinico = new HistorialClinico();
+
+        $historialClinico->fill($request->all());
+        $historialClinico->save();
+
+        //Fill Expediente
+        $hospital = Hospital::find(1); //Busca el unico Hospital
+
+        $expediente = new Expediente();
+        $expediente->idpersona = $persona->id;
+        $expediente->idhistorialclinico = $historialClinico->id;
+        $expediente->idhospital = $hospital->id;
+
+        $expediente->save();
+
         Flash::info("Se ha registrado el Paciente: ".$user->usuario." de forma exitosa");
 
         //dd($request);
 
         return view('home');
+    }
+
+    public function activar($id){
+        $user = User::find($id);
+        $user->estado = 1;
+        $user->save();
+        
+        Flash::success("Se ha ACTIVADO ".$user->usuario." de forma exitosa");
+        return redirect()->route('users.index');
+    }
+
+    public function inactivar($id){
+        $user = User::find($id);
+        $user->estado = 0;
+        $user->save();
+
+        Flash::danger("Se ha INACTIVADO ".$user->usuario." de forma exitosa");
+        return redirect()->route('users.index');
     }
 }

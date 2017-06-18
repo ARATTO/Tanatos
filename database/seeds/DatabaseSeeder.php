@@ -41,6 +41,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SeedCamilla::class);
         $this->call(SeedSala::class);
         $this->call(SeedDoctor::class);
+        $this->call(SeedHorario::class);
         //$this->call(SeedTipoTratamiento::class);
         
         

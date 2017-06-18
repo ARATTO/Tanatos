@@ -29,25 +29,38 @@
 						{!! Form::open(['route' =>'cobro.index', 'method'=>'GET','class'=>'form-center', 'role'=>'search' ]) !!}
 							<div class="input-group">
 					 			<span class="input-group-addon">@</span>
-					 			{!!Form::number('expediente',null,['class'=>'form-control','placeholder'=>'Busqueda'])!!}
-					
+					 			{!!Form::number('expediente',null,['class'=>'form-control','placeholder'=>'Busqueda de expedientes'])!!}
+							<br>
 							</div>
 					{!! Form::close() !!}
 
 
-                    <div class="form-group">
-                        <h4><span for="chosen-select" class="label label-info">Seleccione el servicio a cobrar</span><h4>
-                                @if($precio != null)
-                                    <select class="form-inline" name="idmunicipio" id="chosen-select" data-placeholder="Seleccione el servicio a cobrar..." multiple="true">
-                                        @foreach ($precio as $mun)
-                                            <option value="{{ $mun->id }}">{{$mun->nombreprecioespecial}}</option>
-                                        @endforeach
-                                    </select>
-                                    <hr>
-                                @else
-                                    {!! form::label('#','No existen servicios') !!}
-                                @endif 
-                    </div>						
+<br>
+
+        			<table class="table table-striped">
+						    <thead>
+						      <tr>
+								<th>expediente</th>
+						        <th>Nombre</th>
+								<th>Apellidos</th>			
+								<th>Realizar Cobro</th>
+						      </tr>
+						    </thead>
+						    <tbody>
+						    @if($expediente != null)
+						    	@foreach($expediente as $exp)
+						    		<td>{{$exp->id}}</td>
+						    		<td>{{$exp->personas->primernombre}} {{$exp->personas->segundonombre}}</td>
+						    		<td>{{$exp->personas->primerapellido}} {{$exp->personas->segundoapellido}}</td>
+						    		<td>
+					        			<a href="{{route('cobro.show',$exp->id)}}" class="btn btn-success"><font color="black" size="2"> <b>Ver Consultas</b></font></a>
+						    		</td>
+						    	@endforeach
+						    @endif
+						    </tbody>
+						  </table>	
+
+					
 						
 					</div>
 				</div>

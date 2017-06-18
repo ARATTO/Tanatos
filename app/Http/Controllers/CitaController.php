@@ -16,6 +16,10 @@ use View;
 
 class CitaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -93,13 +97,13 @@ class CitaController extends Controller
                             try{
                                 $cita->save();
                                 Flash::success(trans('eetntmessage.CitaGuardada'));
+
                             }catch(\Illuminate\Database\QueryException $e2){
                                 
                                 Flash::danger($e2->errorInfo[2]);
 
                             }
-                            
-                            
+                            Flash::success(trans('eetntmessage.CitaGuardada'));
                         }catch(Exception $e){
                             Flash::danger($e->getMessage());
                         }

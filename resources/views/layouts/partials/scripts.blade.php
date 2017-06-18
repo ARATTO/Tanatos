@@ -40,6 +40,11 @@
 <!-- Include Plugin DatePicker -->
 <script src="{{ asset('/plugins/datepicker/bootstrap-datepicker.js') }}" type="text/javascript"></script>
 
+<!-- Ligth Gallery -->
+<script src="https://cdn.jsdelivr.net/picturefill/2.3.1/picturefill.min.js"></script>
+<script src="{{ asset('/plugins/lightGallery/dist/js/lightgallery.js') }}"></script>
+<script src="{{ asset('/plugins/lightGallery/lib/jquery.mousewheel.min.js') }}"></script>
+
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
       Both of these plugins are recommended to enhance the
       user experience. Slimscroll is required when using the
@@ -93,8 +98,17 @@
 <!-- Include Plugin FileShido -->
 <script>
       // defaults
-      $("#input-id").fileinput({
+      $("#input-img").fileinput({
             showUpload: false,
+            mainClass: "input-group-lg"
+      });  
+      $("#input-video").fileinput({
+            showUpload: false,
+            mainClass: "input-group-lg"
+      });  
+      $("#input-audio").fileinput({
+            showUpload: false,
+            mainClass: "input-group-lg"
       });       
 </script>
 
@@ -106,6 +120,10 @@
              width: "100%",
       });
       $("#chosen-select_").chosen({
+             no_results_text: "Oops, No encontramos nada como:  ",
+             width: "100%",
+      });
+      $("#chosen-select__").chosen({
              no_results_text: "Oops, No encontramos nada como:  ",
              width: "100%",
       });
@@ -183,13 +201,13 @@
       
 </script>
 
+<!-- Ligth Gallery -->
+<script type="text/javascript">
+        $(document).ready(function(){
+            $('#lightgallery').lightGallery();
+        });
+</script>
 
-<!-- ELIAS CALENDAR SCRIPTS                      -->
-
-<!-- Scripts Rodrigo -->
 
 
-
-
-
-<!-- Scripts Rodrigo -->
+<!-- Fin Ligth Gallery -->
