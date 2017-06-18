@@ -103,7 +103,7 @@ class CitaController extends Controller
                                 Flash::danger($e2->errorInfo[2]);
 
                             }
-                            Flash::success(trans('eetntmessage.CitaGuardada'));
+                            
                         }catch(Exception $e){
                             Flash::danger($e->getMessage());
                         }
