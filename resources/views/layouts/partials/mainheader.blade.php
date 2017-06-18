@@ -15,9 +15,11 @@
         <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
             <span class="sr-only">{{ trans('adminlte_lang::message.togglenav') }}</span>
         </a>
+        
         <!-- Navbar Right Menu -->
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
+                @if( Auth::user()->idrol == 1 )
                 <!-- Messages: style can be found in dropdown.less-->
                 <li class="dropdown messages-menu">
                     <!-- Menu toggle button -->
@@ -32,25 +34,22 @@
                             <ul class="menu">
                                 <li><!-- start message -->
                                     <a href="#">
-                                        <div class="pull-left">
-                                            <!-- User Image -->
-                                            <img src="{{asset('/img/tanatos/welcome/Logo.png')}}" class="img-circle" alt="User Image"/>
-                                        </div>
+                                        
                                         <!-- Message title and timestamp -->
                                         <h4>
                                             {{ trans('adminlte_lang::message.supteam') }}
                                             <small><i class="fa fa-clock-o"></i> 5 mins</small>
                                         </h4>
                                         <!-- The message -->
-                                        <p>{{ trans('adminlte_lang::message.awesometheme') }}</p>
+                                        <p>Permiso sobre Laboratorista</p>
                                     </a>
                                 </li><!-- end message -->
                             </ul><!-- /.menu -->
                         </li>
-                        <li class="footer"><a href="#">c</a></li>
+                        <li class="footer"><a href="#">v</a></li>
                     </ul>
                 </li><!-- /.messages-menu -->
-
+             
                 <!-- Notifications Menu -->
                 <li class="dropdown notifications-menu">
                     <!-- Menu toggle button -->
@@ -108,6 +107,8 @@
                         </li>
                     </ul>
                 </li>
+                @endif
+
                 @if (Auth::guest())
                     <li><a href="{{ url('/register') }}">{{ trans('adminlte_lang::message.register') }}</a></li>
                     <li><a href="{{ url('/login') }}">{{ trans('adminlte_lang::message.login') }}</a></li>
@@ -127,25 +128,14 @@
                                 <img src="{{asset('/img/tanatos/l_ejpg.jpg')}}" class="img-circle" alt="User Image" />
                                 <p>
                                     {{ Auth::user()->usuario }}
-                                    <small>{{ trans('adminlte_lang::message.login') }} Nov. 2012</small>
+                                    <small>{{ Auth::user()->email }}</small>
                                 </p>
                             </li>
-                            <!-- Menu Body -->
-                            <li class="user-body">
-                                <div class="col-xs-4 text-center">
-                                    <a href="#">{{ trans('adminlte_lang::message.followers') }}</a>
-                                </div>
-                                <div class="col-xs-4 text-center">
-                                    <a href="#">{{ trans('adminlte_lang::message.sales') }}</a>
-                                </div>
-                                <div class="col-xs-4 text-center">
-                                    <a href="#">{{ trans('adminlte_lang::message.friends') }}</a>
-                                </div>
-                            </li>
+                            
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <a href="#" class="btn btn-default btn-flat">{{ trans('adminlte_lang::message.profile') }}</a>
+                                    <a href="#" class="btn btn-default btn-flat" disabled>{{ trans('adminlte_lang::message.profile') }}</a>
                                 </div>
                                 <div class="pull-right">
                                     <a href="{{ url('/logout') }}" class="btn btn-default btn-flat">{{ trans('adminlte_lang::message.signout') }}</a>

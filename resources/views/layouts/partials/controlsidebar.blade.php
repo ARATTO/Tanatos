@@ -5,6 +5,7 @@
         <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
         <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
     </ul>
+    @if( Auth::user()->idrol == 1 )
     <!-- Tab panes -->
     <div class="tab-content">
         <!-- Home tab content -->
@@ -13,10 +14,10 @@
             <ul class='control-sidebar-menu'>
                 <li>
                     <a href='javascript::;'>
-                        <i class="menu-icon fa fa-birthday-cake bg-red"></i>
+                        <i class="menu-icon fa fa-user-plus bg-red"></i>
                         <div class="menu-info">
-                            <h4 class="control-sidebar-subheading">{{ trans('adminlte_lang::message.birthday') }}</h4>
-                            <p>{{ trans('adminlte_lang::message.birthdaydate') }}</p>
+                            <h4 class="control-sidebar-subheading">Nuevo Usuario Registrado</h4>
+                            <p>Juan Perez</p>
                         </div>
                     </a>
                 </li>
@@ -27,7 +28,7 @@
                 <li>
                     <a href='javascript::;'>
                         <h4 class="control-sidebar-subheading">
-                            {{ trans('adminlte_lang::message.customtemplate') }}
+                            Examenes Pendientes
                             <span class="label label-danger pull-right">70%</span>
                         </h4>
                         <div class="progress progress-xxs">
@@ -56,6 +57,8 @@
             </form>
         </div><!-- /.tab-pane -->
     </div>
+    @endif
+
 </aside><!-- /.control-sidebar
 
 <!-- Add the sidebar's background. This div must be placed
