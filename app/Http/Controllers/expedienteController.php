@@ -104,6 +104,7 @@ class expedienteController extends Controller
             });
             
             
+            
 
         $consulta2 = DB::table('expediente')
         ->join("historialclinico","expediente.idhistorialclinico","=","historialclinico.id")

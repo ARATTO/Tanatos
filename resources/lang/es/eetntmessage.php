@@ -23,7 +23,7 @@ return [
     'IngreseFechaDeInicio'  =>'Ingrese fecha y hora de su próxima cita',
     'IngreseTituloCita'     =>'Titulo de la Cita',
     'CitaGuardada'          =>'Cita guardada exitosamente, no olvide estar 15 minutos antes de su cita.',
-    'ErrorAlGuardar'        =>'Lo sentimos pero no ha sido posible agendar la cita en esas fechas, verificar dispinibilidad.',
+    'ErrorAlGuardar'        =>'Lo sentimos pero no ha sido posible agendar la cita en esas fechas, verificar disponibilidad.',
     'DoctorNoDisponible'    =>'El doctor seleccionado no esta disponible es el horario solicitado',
 
     /*
