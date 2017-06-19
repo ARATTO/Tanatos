@@ -154,7 +154,25 @@
                         <input type="text" name="celulartelefono" class="form-control bfh-phone" placeholder="77777777" required>
                     </div>
                     <hr>
-                    
+                    <h3>
+                        <span class="label label-primary">{{ trans('tntmessage.HistorialClinico') }}</span>
+                    </h3>
+                    <hr>
+                    <div class="input-group has-success form-inline">
+                        <span class="input-group-addon" id="nombremadre">Nombre Madre</span>
+                        <input type="text" name="nombremadre" class="form-control" placeholder="Maria del Carmen" required>
+                    </div>
+                    <hr>
+                    <div class="input-group has-success form-inline">
+                        <span class="input-group-addon" id="nombrepadre">Nombre Padre</span>
+                        <input type="text" name="nombrepadre" class="form-control" placeholder="Juan Jose Rivas" required>
+                    </div>
+                    <hr>
+                    <div class="input-group has-success form-inline">
+                        <span class="input-group-addon" id="antesedentes">Antesedentes</span>
+                        {!! Form::textArea('antesedentes', null, ['class' => 'form-control ', 'placeholder'=> 'Antesedentes y padecimientos del paciente.', 'required', 'maxlength'=>'200']) !!}
+                    </div>
+                    <hr> 
                     <div class="input-group has-success form-inline">
                         <span class="input-group-addon" id="casatelefono">Acepto los Terminos y Condiciones</span>
                         <input type="checkbox" value="1" name="terms" id="checkboxTerm" class="form-control" required>

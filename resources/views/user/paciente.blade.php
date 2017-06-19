@@ -10,7 +10,7 @@
             <div class="container spark-screen">    
                 <div class="row">
                     <div class="col-md-10 col-md-offset-1">
-                        <div class="panel panel-default">
+                        <div class="panel panel-success">
                             <div class="panel-heading">{{ trans('tntmessage.Paciente') }}</div>
                                 <div class="panel-body">
                                     @include('layouts.partials.flash')
@@ -129,7 +129,7 @@
 
                                             <div class="input-group has-warning form-inline">
                                                 <span class="input-group-addon" id="casatelefono">Casa</span>
-                                                {!! form::text('casatelefono', null, ['class' => 'form-control bfh-phone', 'placeholder'=> '2222222' ]) !!}
+                                                {!! form::text('casatelefono', null, ['class' => 'form-control', 'placeholder'=> '2222222' ]) !!}
 
                                                 <span class="input-group-addon" id="trabajotelefono">Trabajo</span>
                                                 {!! form::text('trabajotelefono', null, ['class' => 'form-control', 'placeholder'=> '2222222']) !!}
@@ -138,12 +138,27 @@
                                                 {!! form::text('celulartelefono', null, ['class' => 'form-control', 'placeholder'=> '77777777', 'required']) !!}
                                             </div>
                                             <hr>
-                                            
+                                             
                                             <h3>
-                                                <span class="label label-primary">{{ trans('tntmessage.Sistema') }}</span>
+                                                <span class="label label-primary">{{ trans('tntmessage.HistorialClinico') }}</span>
                                             </h3>
                                             <hr>
-
+                                            <div class="input-group has-success form-inline">
+                                                <span class="input-group-addon" id="nombremadre">Nombre Madre</span>
+                                                {!! form::text('nombremadre', null, ['class' => 'form-control ', 'placeholder'=> 'Maria del Carmen' ]) !!}
+                                            </div>
+                                            <hr>
+                                            <div class="input-group has-success form-inline">
+                                                <span class="input-group-addon" id="nombrepadre">Nombre Padre</span>
+                                                {!! form::text('nombrepadre', null, ['class' => 'form-control ', 'placeholder'=> 'Juan Jose Rivas' ]) !!}
+                                            </div>
+                                            <hr>
+                                            <div class="input-group has-success form-inline">
+                                                <span class="input-group-addon" id="antesedentes">Antesedentes</span>
+                                                {!! form::textArea('antesedentes', null, ['class' => 'form-control ', 'placeholder'=> 'Antesedentes y padecimientos del paciente.', 'required', 'maxlength'=>'200']) !!}
+                                            </div>
+                                            <hr>       
+                                               
                                             <div class="form-group form-inline">
                                                 <h3><span class="label label-danger">{{ trans('tntmessage.MensajePassword') }}</span><h3>
                                                 <button type="submit" class="btn btn-success btn-lg"> {{trans('tntmessage.Crear')}} </button>

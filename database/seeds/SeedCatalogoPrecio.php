@@ -11,6 +11,8 @@ class SeedCatalogoPrecio extends Seeder
      */
     public function run()
     {
+
+         //
         DB::table('catalogoprecio')->insert([
             'nombreprecioespecial' => 'Medico General',
             'precioespecial' => 2.5,
@@ -226,6 +228,44 @@ class SeedCatalogoPrecio extends Seeder
             'nombreprecioespecial' => 'Hospitalizacion',
             'precioespecial' => 12,
             'descripcionprecioespecial' => 'Hospitalizacion por dia',
+        ]);
+
+        
+        DB::table('catalogoprecio')->insert([
+
+            'nombreprecioespecial' => 'Topamac 200g 20 tabletas',
+            'precioespecial' => 1.5,
+            'descripcionprecioespecial' => 'pastillas',
+            
+        ]);
+
+        DB::table('catalogoprecio')->insert([
+
+            'nombreprecioespecial' => 'Ibuprofeno 250g 15 tabletas',
+            'precioespecial' => 1.20,
+            'descripcionprecioespecial' =>'Pastillas contra el dolor',
+            
+        ]);
+
+        DB::table('catalogoprecio')->insert([
+            'nombreprecioespecial' => 'Acetaminofen 200g 20 tabletas',
+            'precioespecial' => 1,
+            'descripcionprecioespecial' => 'Pastillas contra la fiebre',
+            
+        ]);
+
+        DB::table('catalogoprecio')->insert([
+            'nombreprecioespecial' => 'Loratadina 300g 10 tabletas',
+            'precioespecial' => 1,
+            'descripcionprecioespecial' => 'Pastillas contra la alergia',
+            
+        ]);
+
+        DB::table('catalogoprecio')->insert([
+            'nombreprecioespecial' => 'Metocarbamol 500g 20 tabletas',
+            'precioespecial' => 0.15,
+            'descripcionprecioespecial' =>'Pastillas para la gastritis',
+            
         ]);
 
 

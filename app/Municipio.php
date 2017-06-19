@@ -19,6 +19,7 @@ class Municipio extends Model
         
         /*FK*/
         'iddepartamento',
+        'iddetalledireccion',
     ];
 
     /**

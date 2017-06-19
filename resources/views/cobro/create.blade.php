@@ -25,19 +25,44 @@
 						@include('bones-flash::bones.flash')
 						@include('layouts.partials.flash')						
 						
-                    <div class="form-group">
-                        <h4><span for="chosen-select" class="label label-info">Seleccione el servicio a cobrar</span><h4>
-                                @if($precio != null)
-                                    <select class="form-inline" name="idservicio" id="chosen-select" data-placeholder="Seleccione el servicio a cobrar..." multiple="true">
-                                        @foreach ($precio as $pre)
-                                            <option value="{{ $pre->id }}">{{$pre->nombreprecioespecial}}</option>
-                                        @endforeach
-                                    </select>
-                                    <hr>
-                                @else
-                                    {!! form::label('#','No existen servicios') !!}
-                                @endif 
-                    </div>							
+						<br>
+
+                    <table class="table table-striped">
+                            <thead>
+                              <tr>
+                                <th>cita</th>
+                                <th>consulta</th>
+                                <th>Factura</th>          
+                 
+                              </tr>
+                            </thead>
+                            <tbody>
+                            @if($expediente != null)
+                                @foreach($expediente[0]->cita as $exp)
+                                <tr>
+                                    <td>{{$exp->id}}</td>
+                                    @if(count($exp->consultaMedica)>0)
+                                        <td>{{$exp->consultaMedica[0]->id}}</td>
+
+                                        @if($exp->consultaMedica[0]->costosServicios->preciocostoservicio>0)
+                                            <td>
+                                                <a href="{{route('factura',$exp->consultaMedica[0]->id)}}" class="btn btn-primary"><font color="black" size="2"> <b>Ver Factura</b></font></a>
+                                            </td>
+                                        @else
+                                            <td>
+                                                <a href="{{route('servicios',$exp->consultaMedica[0]->id)}}" class="btn btn-success"><font color="black" size="2"> <b>Crear Factura</b></font></a>
+                                            </td>
+                                        @endif
+                                    @else
+                                        <td>No ha realizado consulta</td>
+                                        <td>No hay Factura</td>
+                                    @endif
+                                     
+                                </tr>
+                                @endforeach
+                            @endif
+                            </tbody>
+                          </table>                          
 
 					</div>
 				</div>

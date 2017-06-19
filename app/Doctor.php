@@ -48,7 +48,7 @@ class Doctor extends Model
          return $this->belongsTo('App\Persona','idpersona');
      }
      public function especialidad(){
-         return $this->belongsTo('App\Especialidad');
+         return $this->belongsTo('App\Especialidad','idespecialidad');
      }
 
      

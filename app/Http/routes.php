@@ -46,8 +46,32 @@ Route::get('/admin', 'HomeController@index');
             'as' => 'users.storepaciente',
             'uses' => 'UserController@storePaciente'
         ]);
+		Route::get('users/{id}/activar', [
+            'as' => 'users.activar',
+            'uses' => 'UserController@activar'
+        ]);
+        Route::get('users/{id}/inactivar', [
+            'as' => 'users.inactivar',
+            'uses' => 'UserController@inactivar'
+        ]);
         /*
         * Fin Rutas para User
+        */
+
+		/*
+		* Inicio Rutas para Examen Fisico
+        */
+		Route::resource('examenesFisicos','ExamenFisicoController');
+		/*
+        * Fin Rutas para Examen Fisico
+        */
+
+		/*
+		* Inicio Rutas para Examen Clinico
+        */
+		Route::resource('examenesClinicos','ExamenClinicoController');
+		/*
+        * Fin Rutas para Examen Clinico
         */
 
 		/*
@@ -80,8 +104,22 @@ Route::get('/admin', 'HomeController@index');
 		'uses' => 'BusquedaController@index',
 		'as' => 'busqueda'
 			]);
+
+	Route::get('servicios/{id}',[
+		'uses' => 'CobroController@servicios',
+		'as' => 'servicios'
+	]);
+
+	Route::get('factura/{id}',[
+		'uses' => 'CobroController@servicios',
+		'as' => 'factura'
+	]);
+
+	Route::post('crearfactura',[
+		'uses' => 'CobroController@store2',
+		'as' => 'crearfactura'
+	]);
 /*
-*
 * FIN RUTAS RODRIGO
 *
 */
@@ -169,9 +207,25 @@ Route::get('/doctores/json',[
 	    'as'    => 'consultas'
 	    ]);
 
+	Route::get('detalleExamenFisico/{id}',[
+	        'uses' => 'ConsultaController@detalleExamenFisico',
+	        'as' => 'detalleExamenFisico'
+	        ]);
 
+	Route::put('redExamenFisico/{id}',[
+	        'uses' => 'ConsultaController@redExamenFisico',
+	        'as' => 'redExamenFisico'
+	        ]);
 
+	Route::get('detalleExamenClinico/{id}',[
+	        'uses' => 'ConsultaController@detalleExamenClinico',
+	        'as' => 'detalleExamenClinico'
+	        ]);
 
+	Route::put('redExamenClinico/{id}',[
+	        'uses' => 'ConsultaController@redExamenClinico',
+	        'as' => 'redExamenClinico'
+	        ]);
 /*
 *
 * FIN RUTAS LOBO
