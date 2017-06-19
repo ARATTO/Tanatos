@@ -52,9 +52,7 @@ class Diagnostico extends Model
      public function tratamientos(){
          return $this->belongsTo('App\Tratamiento','idtratamiento');
      }
-     public function tratamientos(){
-         return $this->belongsTo('App\Tratamiento');
-     }
+     
 
      //////////////////////////////////////////////////////
 

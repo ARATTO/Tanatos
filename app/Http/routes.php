@@ -104,8 +104,22 @@ Route::get('/admin', 'HomeController@index');
 		'uses' => 'BusquedaController@index',
 		'as' => 'busqueda'
 			]);
+
+	Route::get('servicios/{id}',[
+		'uses' => 'CobroController@servicios',
+		'as' => 'servicios'
+	]);
+
+	Route::get('factura/{id}',[
+		'uses' => 'CobroController@servicios',
+		'as' => 'factura'
+	]);
+
+	Route::post('crearfactura',[
+		'uses' => 'CobroController@store2',
+		'as' => 'crearfactura'
+	]);
 /*
-*
 * FIN RUTAS RODRIGO
 *
 */

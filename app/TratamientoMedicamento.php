@@ -43,10 +43,10 @@ class TratamientoMedicamento extends Model
 
      
      public function medicamentos(){
-         return $this->belongsTo('App\Medicamento');
+         return $this->belongsTo('App\Medicamento','idmedicamento');
      }
      public function tratamientos(){
-         return $this->belongsTo('App\Tratamiento');
+         return $this->belongsTo('App\Tratamiento','idtratamiento');
      }
      
      //////////////////////////////////////////////////////
