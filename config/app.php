@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'America/El_Salvador',
 
     /*
     |--------------------------------------------------------------------------
@@ -172,6 +172,10 @@ return [
         GeneaLabs\Bones\Flash\BonesFlashServiceProvider::class,
         /*Paquete de Flash de Redirect con Clase*/
 
+        /*Paquete para genergar pdf*/
+        Barryvdh\DomPDF\ServiceProvider::class,
+        /*Paquete para genergar pdf*/
+
     ],
 
     /*
@@ -228,6 +232,9 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         /*Paquete HTML-FORM*/
 
+         /*Paquete para Generar PDF*/
+        'PDF' => Barryvdh\DomPDF\Facade::class,
+        /*Paquete para Generar PDF*/
     ],
 
 ];

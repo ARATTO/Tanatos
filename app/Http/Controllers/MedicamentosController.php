@@ -15,6 +15,10 @@ use DB;
 
 class MedicamentosController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -27,6 +31,7 @@ class MedicamentosController extends Controller
 
         $medicamentos = Medicamento::name($request->name)->orderBy('codigomedicamento','ASC')->paginate(20); 
 
+        
        // $medicamentos = DB::table('medicamento')->paginate(20);
 
 

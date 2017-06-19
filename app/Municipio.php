@@ -46,9 +46,6 @@ class Municipio extends Model
      public function departamentos(){
          return $this->belongsTo('App\Departamento');
      }
-     public function detalleDirecciones(){
-         return $this->belongsTo('App\DetalleDireccion');
-     }
 
      
      //////////////////////////////////////////////////////
@@ -62,9 +59,10 @@ class Municipio extends Model
      public function hospital(){
          return $this->hasMany('App\Hospital');
      }
-     public function municipio(){
-         return $this->hasMany('App\Municipio');
+     public function detalleDireccion(){
+         return $this->hasMany('App\DetalleDireccion');
      }
+     
      
      //////////////////////////////////////////////////////
 }

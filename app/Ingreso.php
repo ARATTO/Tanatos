@@ -21,6 +21,8 @@ class Ingreso extends Model
         'idexpediente',
         'idcamilla',
         'idsala',
+        'fechaingreso',
+        'fechasalida',
     ];
 
     /**
@@ -45,16 +47,16 @@ class Ingreso extends Model
 
      
      public function doctores(){
-         return $this->belongsTo('App\Doctor');
+         return $this->belongsTo('App\Doctor','iddoctor');
      }
      public function expedientes(){
-         return $this->belongsTo('App\Expediente');
+         return $this->belongsTo('App\Expediente','idexpediente');
      }
      public function camillas(){
-         return $this->belongsTo('App\Camilla');
+         return $this->belongsTo('App\Camilla','idcamilla');
      }
      public function salas(){
-         return $this->belongsTo('App\Sala');
+         return $this->belongsTo('App\Sala','idsala');
      }
      
      //////////////////////////////////////////////////////
@@ -70,4 +72,14 @@ class Ingreso extends Model
      }
      
      //////////////////////////////////////////////////////
+
+          /*SCOPE*/
+    public function scopeIngreso($query,$ingreso){
+        if($ingreso != ""){
+            
+            $query->where('id', "$ingreso");
+            }else{
+                $query=null;
+            }
+     }//final del scope
 }

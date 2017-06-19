@@ -20,6 +20,9 @@ class DetalleDireccion extends Model
         'casa',
         'apartamento',
         'colonia',
+
+        /*FK*/
+        'idmunicipio'
         
     ];
 
@@ -43,11 +46,11 @@ class DetalleDireccion extends Model
      *
      */
 
-     /*
-     public function name_plural(){
-         return $this->belongsTo('App\Class');
+     
+     public function municipios(){
+         return $this->belongsTo('App\Municipio', 'idmunicipio');
      }
-     */
+     
      //////////////////////////////////////////////////////
 
      /**
@@ -56,9 +59,6 @@ class DetalleDireccion extends Model
      */
 
      
-     public function municipio(){
-         return $this->hasMany('App\Minicipio');
-     }
      public function persona(){
          return $this->hasMany('App\Persona');
      }

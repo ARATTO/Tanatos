@@ -58,8 +58,11 @@ class CostoServicio extends Model
          return $this->hasMany('App\ConsultaMedica');
      }
      public function servicioPrecio(){
-         return $this->hasMany('App\ServicoPrecio');
+         return $this->belongsToMany('App\ServicioPrecio','servicioprecio','idcostoservicio','idcatalogoprecio');
      }
      
      //////////////////////////////////////////////////////
+
+
+     
 }

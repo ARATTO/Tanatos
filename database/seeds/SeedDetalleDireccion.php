@@ -18,6 +18,7 @@ class SeedDetalleDireccion extends Seeder
             'casa'          => '4',
             'apartamento'   => '15',
             'colonia'       => 'arkantos',
+            'idmunicipio'   => 1,
         ]);
         ////////////////////////////////////////
         
@@ -28,6 +29,7 @@ class SeedDetalleDireccion extends Seeder
             'casa'          => '45',
             'apartamento'   => '1',
             'colonia'       => 'arkantos',
+            'idmunicipio'   => 1,
         ]);
         ////////////////////////////////////////
         //LOBO
@@ -37,6 +39,7 @@ class SeedDetalleDireccion extends Seeder
             'casa'          => '44',
             'apartamento'   => '145',
             'colonia'       => 'arkantos',
+            'idmunicipio'   => 1,
         ]);
         ////////////////////////////////////////
         //ELIAS
@@ -46,6 +49,7 @@ class SeedDetalleDireccion extends Seeder
             'casa'          => '47',
             'apartamento'   => '15',
             'colonia'       => 'arkantos',
+            'idmunicipio'   => 1,
         ]);
         ////////////////////////////////////////
         //RODRIGO
@@ -55,6 +59,7 @@ class SeedDetalleDireccion extends Seeder
             'casa'          => '43',
             'apartamento'   => '145',
             'colonia'       => 'arkantos',
+            'idmunicipio'   => 1,
         ]);
         ////////////////////////////////////////
     }

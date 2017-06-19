@@ -22,7 +22,6 @@ class Cita extends Model
 
         /*FK*/
         'iddoctor',
-        'idconsultamedica',
         'idexpediente',
     ];
 
@@ -48,13 +47,11 @@ class Cita extends Model
 
      
      public function doctores(){
-         return $this->belongsTo('App\Doctor');
+         return $this->belongsTo('App\Doctor','iddoctor');
      }
-     public function consultasMedicas(){
-         return $this->belongsTo('App\ConsultaMedica');
-     }
+
      public function expedientes(){
-         return $this->belongsTo('App\Expediente');
+         return $this->belongsTo('App\Expediente','idexpediente');
      }
      //////////////////////////////////////////////////////
 
@@ -66,6 +63,10 @@ class Cita extends Model
      
      public function signoVital(){
          return $this->hasMany('App\SignoVital');
+     }
+
+    public function consultaMedica(){
+         return $this->hasMany('App\ConsultaMedica','idcita');
      }
      
      //////////////////////////////////////////////////////

@@ -59,7 +59,7 @@ class SeedUsuarios extends Seeder
             'usuario' => 'Rodrigo Segovia',
             'estado' => 1,
             /*FK*/
-            'idrol' => 1,
+            'idrol' => 4,
         ]);
         ////////////////////////////////////////
     }

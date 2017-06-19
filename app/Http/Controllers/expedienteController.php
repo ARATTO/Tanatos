@@ -11,19 +11,30 @@ use App\Expediente;
 use App\Cita;
 use App\HistorialClinico;
 use App\User;
+use App\Sala;
+use App\Camilla;
+use App\Doctor;
+use App\Bitacora;
 use App\Hospital;
 use DB;
 
 class expedienteController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function show(Request $request){
         $expediente = DB::table('expediente')
-            ->join("usuario","expediente.id","=","usuario.id")
+            ->join("persona","expediente.idpersona","=","persona.id")
             ->get();
 
         return view('expediente.index');
-
     }
+
+    
 
     public function store(Request $request){
         $historialClinico=new HistorialClinico;
@@ -32,22 +43,22 @@ class expedienteController extends Controller
         $historialClinico->antesedentes = $request->antecedentes;
         $historialClinico->save();
 
-
         $auxiliar = DB::table('historialclinico')->orderBy('id','desc')->first();
 
         $expediente = new Expediente;
         $expediente->idhistorialclinico = $auxiliar->id;
-        $expediente->idusuario = $request->id;
+        $expediente->idpersona = $request->id;
         $expediente->idhospital = $request->idhospitales;
         $expediente->save();
+
+        Flash::success('Se guardo el expediente');
 
         return view('/home');
     }
 
-
     public function create(){
 
-        $usuario = User::all()->lists('nombres','id');
+        $usuario = USER::all()->lists('email','id');
         $hospital = Hospital::all()->lists('nombre','id');
 
         return view('expediente.create')
@@ -59,22 +70,40 @@ class expedienteController extends Controller
 
     public function index(){
         $expediente = DB::table('expediente')
-            ->join("usuario","expediente.id","=","usuario.id")
+            ->join("persona","expediente.idpersona","=","persona.id")
             ->get();
 
+        
         return view('expediente.index')->with('expedientes',$expediente);
 
     }
 
     public function verExpedientes($id){
-        $expedientes = Cita::where('idexpediente','=',$id)->get();
+        
+        $consulta= Expediente::where('idpersona',$id)->paginate(1);
+            
 
-        $consulta = DB::table('expediente')
-            ->join("usuario","expediente.id","=","usuario.id")
-            ->join("estadocivil","usuario.idestadocivil","=","estadocivil.id")
-            ->where('expediente.id','=',$id)
-            ->get()
-            ->simplePaginate(2);
+            $consulta->each(function($consulta){   
+             $consulta->personas->detallesDirecciones->municipios;
+             $consulta->personas->telefonos;
+             $consulta->personas->users;
+             $consulta->personas->estadosCiviles;
+             $consulta->historialesClinicos;
+             $consulta->cita;
+             $consulta->ingreso;
+             foreach ($consulta->ingreso as $ingresos => $value) {
+                 
+                 $value->salas;
+                 $value->camillas;
+                 $value->doctores->personas;
+                 
+             }
+
+
+             
+            });
+            
+            
 
         $consulta2 = DB::table('expediente')
         ->join("historialclinico","expediente.idhistorialclinico","=","historialclinico.id")
@@ -82,13 +111,10 @@ class expedienteController extends Controller
         ->get();
 
         return view('expediente.vista')
-        ->with('expedientes',$expedientes)
-        ->with('consulta',$consulta)
-        ->with('consulta2',$consulta2);
+        ->with('consulta',$consulta);
+        
 
     }
-
-    
 
     public function destroy($id){
 

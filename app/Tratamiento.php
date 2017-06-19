@@ -60,8 +60,8 @@ class Tratamiento extends Model
          return $this->hasMany('App\Diagnostico');
      }
      public function tratamientoMedicamento(){
-         return $this->hasMany('App\TratamientoMedicamento');
+         return $this->belongsToMany('App\TratamientoMedicamento','tratamientomedicamento','idtratamiento','idmedicamento');
      }
-     
+
      //////////////////////////////////////////////////////
 }

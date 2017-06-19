@@ -40,6 +40,11 @@
 <!-- Include Plugin DatePicker -->
 <script src="{{ asset('/plugins/datepicker/bootstrap-datepicker.js') }}" type="text/javascript"></script>
 
+<!-- Ligth Gallery -->
+<script src="https://cdn.jsdelivr.net/picturefill/2.3.1/picturefill.min.js"></script>
+<script src="{{ asset('/plugins/lightGallery/dist/js/lightgallery.js') }}"></script>
+<script src="{{ asset('/plugins/lightGallery/lib/jquery.mousewheel.min.js') }}"></script>
+
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
       Both of these plugins are recommended to enhance the
       user experience. Slimscroll is required when using the
@@ -93,8 +98,17 @@
 <!-- Include Plugin FileShido -->
 <script>
       // defaults
-      $("#input-id").fileinput({
+      $("#input-img").fileinput({
             showUpload: false,
+            mainClass: "input-group-lg"
+      });  
+      $("#input-video").fileinput({
+            showUpload: false,
+            mainClass: "input-group-lg"
+      });  
+      $("#input-audio").fileinput({
+            showUpload: false,
+            mainClass: "input-group-lg"
       });       
 </script>
 
@@ -109,10 +123,49 @@
              no_results_text: "Oops, No encontramos nada como:  ",
              width: "100%",
       });
+      $("#chosen-select__").chosen({
+             no_results_text: "Oops, No encontramos nada como:  ",
+             width: "100%",
+      });
       $("#chosen-borrar").chosen({
              no_results_text: "Oops, No encontramos nada como:  ",
              width: "100%",
       });
+      $("#chosen_camilla").chosen({
+             no_results_text: "Oops, No encontramos nada como:  ",
+             width: "100%",
+      });
+      $("#chosen_sala").chosen({
+             no_results_text: "Oops, No encontramos nada como:  ",
+             width: "100%",
+      }); 
+
+      <!--           chosen lobos       -->
+      $("#tipoexamenclinico").chosen({
+             no_results_text: "Oops, No encontramos nada como:  ",
+             width: "100%",
+      }); 
+             
+       $("#tipoexamenfisico").chosen({
+             no_results_text: "Oops, No encontramos nada como:  ",
+             width: "100%",
+      }); 
+
+        $("#enfermedad").chosen({
+             no_results_text: "Oops, No encontramos nada como:  ",
+             width: "100%",
+      }); 
+
+      $("#tipotratamiento").chosen({
+             no_results_text: "Oops, No encontramos nada como:  ",
+             width: "100%",
+      }); 
+
+       $("#medicamentos").chosen({
+             no_results_text: "Oops, No encontramos nada como:  ",
+             width: "100%",
+      }); 
+             
 </script>
 
 
@@ -130,12 +183,31 @@
 <script src="{{ asset('/plugins/sweetalert2/sweetalert2.min.js') }}" type="text/javascript"></script>
 
 <!-- Este archivo contiene la inicializacion del fullcalendar como la interaccion con este -->
-@include('citas.fullcalendarcitas')
+
 
 
 <script type="text/javascript">
       $(function () {
             $('#datetimepicker1').datetimepicker({format: "YYYY-MM-DD HH:mm"});
       });
+
+      $(function () {
+            $('#datetimepicker2').datetimepicker({format: "YYYY-MM-DD HH:mm"});
+      });
+      
+      $(function() { 
+            $(".chosen-slt").chosen();   
+      });
       
 </script>
+
+<!-- Ligth Gallery -->
+<script type="text/javascript">
+        $(document).ready(function(){
+            $('#lightgallery').lightGallery();
+        });
+</script>
+
+
+
+<!-- Fin Ligth Gallery -->

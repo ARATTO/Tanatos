@@ -44,10 +44,10 @@ class Expediente extends Model
 
      
      public function personas(){
-         return $this->belongsTo('App\Persona');
+         return $this->belongsTo('App\Persona', 'idpersona');
      }
      public function historialesClinicos(){
-         return $this->belongsTo('App\HistorialClinico');
+         return $this->belongsTo('App\HistorialClinico', 'idhistorialclinico');
      }
      public function hospitales(){
          return $this->belongsTo('App\Hospital');
@@ -62,11 +62,26 @@ class Expediente extends Model
 
      
      public function cita(){
-         return $this->hasMany('App\Cita');
+         return $this->hasMany('App\Cita', 'idexpediente');
      }
      public function ingreso(){
-         return $this->hasMany('App\Ingreso');
+         return $this->hasMany('App\Ingreso','idexpediente');
      }
+
      
      //////////////////////////////////////////////////////
+
+
+     /*SCOPE*/
+    public function scopeExpediente($query,$expediente){
+        if($expediente != ""){
+            
+            $query->where('id', "$expediente");
+            }else{
+                $query=null;
+            }
+     }//final del scope
+
+
+
 }

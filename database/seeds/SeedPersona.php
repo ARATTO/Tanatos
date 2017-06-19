@@ -13,7 +13,7 @@ class SeedPersona extends Seeder
     {
         //MOTTO
         DB::table('persona')->insert([
-
+            'dui'                   => '12345671',
             'primernombre'          => 'Dario',
             'segundonombre'         => 'Roman',
             'primerapellido'        => 'Araya',
@@ -32,6 +32,7 @@ class SeedPersona extends Seeder
         //ALAM
         DB::table('persona')->insert([
 
+            'dui'                   => '12345672',
             'primernombre'          => 'Alam',
             'segundonombre'         => 'Alam',
             'primerapellido'        => 'Lopez',
@@ -49,6 +50,7 @@ class SeedPersona extends Seeder
         //LOBO
         DB::table('persona')->insert([
 
+            'dui'                   => '12345673',
             'primernombre'          => 'Bryan',
             'segundonombre'         => 'Erick',
             'primerapellido'        => 'Lobos',
@@ -66,6 +68,7 @@ class SeedPersona extends Seeder
         //ELIAS
         DB::table('persona')->insert([
 
+            'dui'                   => '12345674',
             'primernombre'          => 'Elias',
             'segundonombre'         => 'Ernesto',
             'primerapellido'        => 'Barrera',
@@ -83,6 +86,7 @@ class SeedPersona extends Seeder
         //RODRIGO
         DB::table('persona')->insert([
 
+            'dui'                   => '12345675',
             'primernombre'          => 'Rodrigo',
             'segundonombre'         => 'Daniel',
             'primerapellido'        => 'Romero',

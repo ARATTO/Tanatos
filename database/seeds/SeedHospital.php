@@ -11,9 +11,9 @@ class SeedHospital extends Seeder
      */
     public function run()
     {
-             DB::table('hospital')->insert([
-            'idpais' => 1,
-            'nombre' => 'Santa Rita del Rosario',
+        DB::table('hospital')->insert([
+            'idmunicipio' => 1 ,
+            'nombre' => 'Hospital Chelito',
             'descripciondireccion' => 'colonia las vegas calle N°5',
         ]);
     }
